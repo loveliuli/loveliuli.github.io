@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>归档 | Time Memory</title>
+  <title>php5.3.28 类型冲突 | Time Memory</title>
   <meta name="author" content="Copyright By Qun.Xue  版权所有">
   
   <meta name="description" content="where there is will there is way">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="php5.3.28 类型冲突"/>
   <meta property="og:site_name" content="Time Memory"/>
 
   
@@ -201,61 +201,84 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">归档</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-01-27T01:27:46.000Z"><a href="/2014/01/27/php_problem/">1月 27 2014</a></time>
+      
+      
+  
+    <h1 class="title">php5.3.28 类型冲突</h1>
+  
 
+    </header>
+    <div class="entry">
+      
+        <hr>
+<h1><strong>问题出现</strong></h1>
+<p>  由于最近公司扫描发现php和apache版本过低，有几个比较严重的漏洞，所以准备对php和apache进行升级。<a id="more"></a><br>apache版本为2.4.3，但是在开启apache发现加载libphp5.so时错误：undefined symbol:unixd_config,<br>经查明原因：http2.4目前不再支持php5.2版本，要使用php为5.3或者以上的版本，所以PHP也需要升级。在官网下载5.3.28版本后，安装过程中发现有如下问题：<br>./configure过程很顺利，在make环节发生错误。报错：<br>/root/php-5.3.28/Zend/zend_language_parser.h:317:错误:与‘zendparse’类型冲突。下一句给了提示：zend_globals_macros.h：35中‘zendparse’类型如此：</p>
+<h1><strong>解决过程</strong></h1>
+<p>打开./Zend/zend<em>language<em>parser.h文件，看看zendparese参数：<br> 316 #if defined __STDC</em></em> || defined __cplusplus<br> 317 int zendparse (void);<br> 318 #else<br> 319 int zendparse ();<br> 320 #endif<br>再看看zend_globals_macros.h：35是什么参数。<br> 33 #ifdef ZTS<br> 34 # define CG(v) TSRMG(compiler_globals_id, zend_compiler_globals <em>, v)<br> 35 int zendparse(void </em>compiler_globals);<br> 36 #else<br>好吧，那我就把35行的参数，改到zend_language_parser.h 317行。</p>
+<p> 316 #if defined <strong>STDC</strong> || defined __cplusplus<br> 317 int zendparse (void *compiler_globals);<br> 318 #else<br> 319 int zendparse ();<br> 320 #endif<br>再进行make，OK。<br>顺利完成了。<br>官方版本发布的太急了吧，有此错误。<br>PS：生产服务器一定三思，此参数的更改可能会影响到您的业务。</p>
 
-  <div class="archive">
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2014-01-27T01:27:46.000Z"><a href="/2014/01/27/php_problem/">1月 27 2014</a></time>
-            
-              <h1 class="title"><a href="/2014/01/27/php_problem/">php5.3.28 类型冲突</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2013-11-29T02:48:19.000Z"><a href="/2013/11/29/laugh/">11月 29 2013</a></time>
-            
-              <h1 class="title"><a href="/2013/11/29/laugh/">我要笑遍世界</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2013-11-11T14:35:44.000Z"><a href="/2013/11/11/puppet-01/">11月 11 2013</a></time>
-            
-              <h1 class="title"><a href="/2013/11/11/puppet-01/">第二篇 puppet介绍</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2013-11-11T03:40:41.000Z"><a href="/2013/11/11/markdownsytax/">11月 11 2013</a></time>
-            
-              <h1 class="title"><a href="/2013/11/11/markdownsytax/">第一篇 Markdown：syntax</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/php/">php</a>
   </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/php_problem/">php_problem</a>
+  </div>
+
+        <!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_tsina"></a>
+<a class="bds_qzone"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6861768" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"loveliuli"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+</section>
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">

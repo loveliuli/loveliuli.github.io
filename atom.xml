@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Where there is a will, there is way。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://loveliuli.com/"/>
-  <updated>2014-01-23T09:01:08.608Z</updated>
+  <updated>2014-01-28T03:56:25.289Z</updated>
   <id>http://loveliuli.com/</id>
   
   <author>
@@ -13,6 +13,29 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[php5.3.28 类型冲突]]></title>
+    <link href="http://loveliuli.com/2014/01/27/php_problem/"/>
+    <id>http://loveliuli.com/2014/01/27/php_problem/</id>
+    <published>2014-01-27T01:27:46.000Z</published>
+    <updated>2014-01-27T01:55:13.000Z</updated>
+    <content type="html"><![CDATA[<hr>
+<h1><strong>问题出现</strong></h1>
+<p>  由于最近公司扫描发现php和apache版本过低，有几个比较严重的漏洞，所以准备对php和apache进行升级。<a id="more"></a><br>apache版本为2.4.3，但是在开启apache发现加载libphp5.so时错误：undefined symbol:unixd_config,<br>经查明原因：http2.4目前不再支持php5.2版本，要使用php为5.3或者以上的版本，所以PHP也需要升级。在官网下载5.3.28版本后，安装过程中发现有如下问题：<br>./configure过程很顺利，在make环节发生错误。报错：<br>/root/php-5.3.28/Zend/zend_language_parser.h:317:错误:与‘zendparse’类型冲突。下一句给了提示：zend_globals_macros.h：35中‘zendparse’类型如此：</p>
+<h1><strong>解决过程</strong></h1>
+<p>打开./Zend/zend<em>language<em>parser.h文件，看看zendparese参数：<br> 316 #if defined __STDC</em></em> || defined __cplusplus<br> 317 int zendparse (void);<br> 318 #else<br> 319 int zendparse ();<br> 320 #endif<br>再看看zend_globals_macros.h：35是什么参数。<br> 33 #ifdef ZTS<br> 34 # define CG(v) TSRMG(compiler_globals_id, zend_compiler_globals <em>, v)<br> 35 int zendparse(void </em>compiler_globals);<br> 36 #else<br>好吧，那我就把35行的参数，改到zend_language_parser.h 317行。</p>
+<p> 316 #if defined <strong>STDC</strong> || defined __cplusplus<br> 317 int zendparse (void *compiler_globals);<br> 318 #else<br> 319 int zendparse ();<br> 320 #endif<br>再进行make，OK。<br>顺利完成了。<br>官方版本发布的太急了吧，有此错误。<br>PS：生产服务器一定三思，此参数的更改可能会影响到您的业务。</p>
+]]></content>
+    <summary type="html"><![CDATA[<hr>
+<h1><strong>问题出现</strong></h1>
+<p>  由于最近公司扫描发现php和apache版本过低，有几个比较严重的漏洞，所以准备对php和apache进行升级。]]></summary>
+    
+      <category term="php_problem" scheme="http://loveliuli.com/tags/php_problem/"/>
+    
+      <category term="php" scheme="http://loveliuli.com/categories/php/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[我要笑遍世界]]></title>
