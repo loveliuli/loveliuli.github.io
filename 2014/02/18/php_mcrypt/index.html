@@ -203,6 +203,18 @@
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
   <div class="post-content">
     <header>
       
@@ -218,53 +230,93 @@
     <div class="entry">
       
         <hr>
-<h2>问题的出现</h2>
+<h2 id="-">问题的出现</h2>
 <p> 由于最近需要对php的模块进行扩展，所以进行了简单整理，过程如下。<a id="more"></a></p>
-<h2>问题的解决</h2>
+<h2 id="-">问题的解决</h2>
 <pre><code>#!/bin/bash
-<span class="title">cur_dir</span>=${pwd}
-<span class="title">tar</span> zxvf libmcrypt-<span class="number">2.5</span><span class="number">.8</span>.tar.gz
-<span class="title">cd</span> libmcrypt-<span class="number">2.5</span><span class="number">.8</span>
+cur_dir=${pwd}
+tar zxvf libmcrypt-2.5.8.tar.gz
+cd libmcrypt-2.5.8
 ./configure
-<span class="title">make</span> &amp;&amp; make install
+make &amp;&amp; make install
 
-<span class="title">cd</span> ..
-<span class="title">tar</span> xvf mhash-<span class="number">0.9</span><span class="number">.9</span><span class="number">.9</span>.tar.bz2
-<span class="title">cd</span> mhash-<span class="number">0.9</span><span class="number">.9</span><span class="number">.9</span>
+cd $cur_dir
+tar xvf mhash-0.9.9.9.tar.bz2
+cd mhash-0.9.9.9
 ./configure
-<span class="title">make</span> &amp;&amp; make install
+make &amp;&amp; make install
 
-<span class="title">cd</span> ..
-<span class="title">tar</span> zxvf m4-<span class="number">1.4</span><span class="number">.9</span>.tar.gz 
-<span class="title">cd</span> m4-<span class="number">1.4</span><span class="number">.9</span>
+cd ..
+tar zxvf m4-1.4.9.tar.gz 
+cd m4-1.4.9
 ./configure
-<span class="title">make</span> &amp;&amp; make install
+make &amp;&amp; make install
 
-<span class="title">cd</span> ..
-<span class="title">tar</span> zxvf autoconf-<span class="number">2.62</span>.tar.gz 
-<span class="title">cd</span> autoconf-<span class="number">2.62</span>
+cd ..
+tar zxvf autoconf-2.62.tar.gz 
+cd autoconf-2.62
 ./configure
-<span class="title">make</span> &amp;&amp; make install
+make &amp;&amp; make install
 
-<span class="title">cd</span> ..
-<span class="title">tar</span> zxvf mcrypt-<span class="number">2.6</span><span class="number">.8</span>.tar.gz
-<span class="title">cd</span> mcrypt-<span class="number">2.6</span><span class="number">.8</span>
-<span class="type">LD_LIBRARY_PATH</span>=/usr/local/lib ./configure 
-<span class="title">make</span> &amp;&amp; make install
+cd ..
+tar zxvf mcrypt-2.6.8.tar.gz
+cd mcrypt-2.6.8
+LD_LIBRARY_PATH=/usr/local/lib ./configure 
+make &amp;&amp; make install
 
-<span class="title">cd</span> ..
-<span class="title">tar</span> zxvf php-<span class="number">5.2</span><span class="number">.17</span>.tar.gz
-<span class="title">cd</span> php-<span class="number">5.2</span><span class="number">.17</span>/ext/mcrypt/
+cd ..
+tar zxvf php-5.2.17.tar.gz
+cd php-5.2.17/ext/mcrypt/
 /usr/local/php/bin/phpize
-./configure  <span class="comment">--with-php-config=/usr/local/php/bin/php-config  </span>
-<span class="title">make</span> &amp;&amp; make test &amp;&amp; make install
+./configure  --with-php-config=/usr/local/php/bin/php-config  
+make &amp;&amp; make test &amp;&amp; make install
 
 
 
-<span class="title">cp</span> /usr/local/php/lib/php/extensions/no-debug-non-zts-<span class="number">20060613</span>/mcrypt.so /usr/local/php
+cp /usr/local/php/lib/php/extensions/no-debug-non-zts-20060613/mcrypt.so /usr/local/php
 
-<span class="title">service</span> httpd restart</code></pre>
-<p>其他模块的扩展可以依葫芦画瓢，没有难度的。<br>    [root@chcp-ct01-log01 mcrypt]# php -m<br>    [PHP Modules]<br>    bcmath<br>    Core<br>    ctype<br>    curl<br>    date<br>    dom<br>    ereg<br>    fileinfo<br>    filter<br>    gd<br>    gettext<br>    hash<br>    iconv<br>    json<br>    libxml<br>    mbstring<br>    <strong>mcrypt</strong><br>    mysql<br>    pcre<br>    PDO<br>    pdo_sqlite<br>    Phar<br>    posix<br>    Reflection<br>    session<br>    SimpleXML<br>    sockets<br>    SPL<br>    SQLite<br>    sqlite3<br>    standard<br>    tokenizer<br>    xml<br>    xmlreader<br>    xmlwriter<br>    Zend Guard Loader<br>     zlib<br>    [Zend Modules]<br>    Zend Guard Loader</p>
+service httpd restart
+</code></pre><p>其他模块的扩展可以依葫芦画瓢，没有难度的。
+    [root@chcp-ct01-log01 mcrypt]# php -m
+    [PHP Modules]
+    bcmath
+    Core
+    ctype
+    curl
+    date
+    dom
+    ereg
+    fileinfo
+    filter
+    gd
+    gettext<br>    hash
+    iconv
+    json
+    libxml
+    mbstring
+    <strong>mcrypt</strong>
+    mysql
+    pcre
+    PDO
+    pdo_sqlite
+    Phar
+    posix
+    Reflection
+    session
+    SimpleXML
+    sockets
+    SPL
+    SQLite
+    sqlite3
+    standard
+    tokenizer
+    xml
+    xmlreader
+    xmlwriter
+    Zend Guard Loader
+     zlib
+    [Zend Modules]
+    Zend Guard Loader</p>
 
       
     </div>
