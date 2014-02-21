@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Where there is a will, there is way。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://loveliuli.com/"/>
-  <updated>2014-02-21T08:59:53.441Z</updated>
+  <updated>2014-02-21T09:02:08.684Z</updated>
   <id>http://loveliuli.com/</id>
   
   <author>
@@ -31,7 +31,7 @@
     <link href="http://loveliuli.com/2014/02/18/php_mcrypt/"/>
     <id>http://loveliuli.com/2014/02/18/php_mcrypt/</id>
     <published>2014-02-18T01:27:46.000Z</published>
-    <updated>2014-02-21T08:50:55.000Z</updated>
+    <updated>2014-02-21T09:01:53.000Z</updated>
     <content type="html"><![CDATA[<hr>
 <h2 id="-">问题的出现</h2>
 <p> 由于最近需要对php的模块进行扩展，所以进行了简单整理，过程如下。<a id="more"></a></p>
@@ -49,28 +49,29 @@ cd mhash-0.9.9.9
 ./configure
 make &amp;&amp; make install
 
-cd ..
+cd $cur_dir
 tar zxvf m4-1.4.9.tar.gz 
 cd m4-1.4.9
 ./configure
 make &amp;&amp; make install
 
-cd ..
+cd $cur_dir
 tar zxvf autoconf-2.62.tar.gz 
 cd autoconf-2.62
 ./configure
 make &amp;&amp; make install
 
-cd ..
+cd $cur_dir
 tar zxvf mcrypt-2.6.8.tar.gz
 cd mcrypt-2.6.8
 LD_LIBRARY_PATH=/usr/local/lib ./configure 
 make &amp;&amp; make install
 
-cd ..
+cd $cur_dir
 tar zxvf php-5.2.17.tar.gz
 cd php-5.2.17/ext/mcrypt/
-/usr/local/php/bin/phpize
+/usr/local/
+php/bin/phpize
 ./configure  --with-php-config=/usr/local/php/bin/php-config  
 make &amp;&amp; make test &amp;&amp; make install
 

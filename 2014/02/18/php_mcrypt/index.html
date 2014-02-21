@@ -246,28 +246,29 @@ cd mhash-0.9.9.9
 ./configure
 make &amp;&amp; make install
 
-cd ..
+cd $cur_dir
 tar zxvf m4-1.4.9.tar.gz 
 cd m4-1.4.9
 ./configure
 make &amp;&amp; make install
 
-cd ..
+cd $cur_dir
 tar zxvf autoconf-2.62.tar.gz 
 cd autoconf-2.62
 ./configure
 make &amp;&amp; make install
 
-cd ..
+cd $cur_dir
 tar zxvf mcrypt-2.6.8.tar.gz
 cd mcrypt-2.6.8
 LD_LIBRARY_PATH=/usr/local/lib ./configure 
 make &amp;&amp; make install
 
-cd ..
+cd $cur_dir
 tar zxvf php-5.2.17.tar.gz
 cd php-5.2.17/ext/mcrypt/
-/usr/local/php/bin/phpize
+/usr/local/
+php/bin/phpize
 ./configure  --with-php-config=/usr/local/php/bin/php-config  
 make &amp;&amp; make test &amp;&amp; make install
 
