@@ -230,31 +230,33 @@
     <div class="entry">
       
         <hr>
-<h1 id="-"><strong>问题出现</strong></h1>
-<p>  由于最近公司扫描发现php和apache版本过低，有几个比较严重的漏洞，所以准备对php和apache进行升级。<a id="more"></a>
-apache版本为2.4.3，但是在开启apache发现加载libphp5.so时错误：undefined symbol:unixd_config,
-经查明原因：http2.4目前不再支持php5.2版本，要使用php为5.3或者以上的版本，所以PHP也需要升级。在官网下载5.3.28版本后，安装过程中发现有如下问题：
+<h1 id="-">问题出现</h1>
+<h4 id="-php-apache-php-apache-more-">由于最近公司扫描发现php和apache版本过低，有几个比较严重的漏洞，所以准备对php和apache进行升级。<a id="more"></a></h4>
+<pre><code>apache版本为2.4.3，但是在开启apache发现加载libphp5.so时错误：undefined symbol:unixd_config,
+经查明原因：http2.4目前不再支持php5.2版本，要使用php为5.3或者以上的版本，所以PHP也需要升级。
+在官网下载5.3.28版本后，安装过程中发现有如下问题：
 ./configure过程很顺利，在make环节发生错误。报错：
-/root/php-5.3.28/Zend/zend_language_parser.h:317:错误:与‘zendparse’类型冲突。下一句给了提示：zend_globals_macros.h：35中‘zendparse’类型如此：</p>
-<h1 id="-"><strong>解决过程</strong></h1>
-<p>打开./Zend/zend<em>language<em>parser.h文件，看看zendparese参数：
- 316 #if defined __STDC</em></em> || defined __cplusplus
- 317 int zendparse (void);
- 318 #else
- 319 int zendparse ();
- 320 #endif
+/root/php-5.3.28/Zend/zend_language_parser.h:317:错误:与‘zendparse’类型冲突。
+下一句给了提示：zend_globals_macros.h：35中‘zendparse’类型如此：
+</code></pre><h1 id="-">解决过程</h1>
+<pre><code>打开./Zend/zend_language_parser.h文件，看看zendparese参数：
+316 #if defined __STDC__ || defined __cplusplus
+317 int zendparse (void);
+318 #else
+319 int zendparse ();
+320 #endif
 再看看zend_globals_macros.h：35是什么参数。
- 33 #ifdef ZTS
- 34 # define CG(v) TSRMG(compiler_globals_id, zend_compiler_globals <em>, v)
- 35 int zendparse(void </em>compiler_globals);
- 36 #else
-好吧，那我就把35行的参数，改到zend_language_parser.h 317行。</p>
-<p> 316 #if defined <strong>STDC</strong> || defined __cplusplus
- 317 int zendparse (void *compiler_globals);
- 318 #else
- 319 int zendparse ();
- 320 #endif
-再进行make，OK。
+33 #ifdef ZTS
+34 # define CG(v) TSRMG(compiler_globals_id, zend_compiler_globals *, v)
+35 int zendparse(void *compiler_globals);
+36 #else
+</code></pre><p>好吧，那我就把35行的参数，改到zend_language_parser.h 317行。</p>
+<pre><code>316 #if defined __STDC__ || defined __cplusplus
+317 int zendparse (void *compiler_globals);
+318 #else
+319 int zendparse ();
+320 #endif
+</code></pre><p>再进行make，OK。
 顺利完成了。
 官方版本发布的太急了吧，有此错误。
 PS：生产服务器一定三思，此参数的更改可能会影响到您的业务。</p>
