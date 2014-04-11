@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Where there is a will, there is way。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://loveliuli.com/"/>
-  <updated>2014-04-11T03:25:03.697Z</updated>
+  <updated>2014-04-11T03:27:29.321Z</updated>
   <id>http://loveliuli.com/</id>
   
   <author>
@@ -15,14 +15,18 @@
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[Welcome you!]]></title>
+    <title><![CDATA[Welcome to my blog]]></title>
     <link href="http://loveliuli.com/2014/02/21/hello-world/"/>
     <id>http://loveliuli.com/2014/02/21/hello-world/</id>
     <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-04-11T03:24:50.000Z</updated>
+    <updated>2014-04-11T03:27:20.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
 ]]></content>
     
+    
+      <category term="生活领悟" scheme="http://loveliuli.com/tags/%E7%94%9F%E6%B4%BB%E9%A2%86%E6%82%9F/"/>
+    
+      <category term="生活领悟" scheme="http://loveliuli.com/categories/%E7%94%9F%E6%B4%BB%E9%A2%86%E6%82%9F/"/>
     
   </entry>
   
