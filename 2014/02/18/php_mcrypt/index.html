@@ -230,43 +230,43 @@
     <div class="entry">
       
         <hr>
-<h2 id="-">问题的出现</h2>
+<h2 id="问题的出现">问题的出现</h2>
 <p> 由于最近需要对php的模块进行扩展，所以进行了简单整理，过程如下。<a id="more"></a></p>
-<h2 id="-">问题的解决</h2>
-<pre><code>#!/bin/bash
-cur_dir=${pwd}
-tar zxvf libmcrypt-2.5.8.tar.gz
-cd libmcrypt-2.5.8
+<h2 id="问题的解决">问题的解决</h2>
+<pre><code><span class="shebang">#!/bin/bash</span>
+cur_dir=<span class="variable">${pwd}</span>
+tar zxvf libmcrypt-<span class="number">2.5</span>.<span class="number">8</span>.tar.gz
+<span class="built_in">cd</span> libmcrypt-<span class="number">2.5</span>.<span class="number">8</span>
 ./configure
 make &amp;&amp; make install
 
-cd ..
-tar xvf mhash-0.9.9.9.tar.bz2
-cd mhash-0.9.9.9
+<span class="built_in">cd</span> ..
+tar xvf mhash-<span class="number">0.9</span>.<span class="number">9.9</span>.tar.bz2
+<span class="built_in">cd</span> mhash-<span class="number">0.9</span>.<span class="number">9.9</span>
 ./configure
 make &amp;&amp; make install
 
-cd ..
-tar zxvf m4-1.4.9.tar.gz 
-cd m4-1.4.9
+<span class="built_in">cd</span> ..
+tar zxvf m4-<span class="number">1.4</span>.<span class="number">9</span>.tar.gz 
+<span class="built_in">cd</span> m4-<span class="number">1.4</span>.<span class="number">9</span>
 ./configure
 make &amp;&amp; make install
 
-cd ..
-tar zxvf autoconf-2.62.tar.gz 
-cd autoconf-2.62
+<span class="built_in">cd</span> ..
+tar zxvf autoconf-<span class="number">2.62</span>.tar.gz 
+<span class="built_in">cd</span> autoconf-<span class="number">2.62</span>
 ./configure
 make &amp;&amp; make install
 
-cd ..
-tar zxvf mcrypt-2.6.8.tar.gz
-cd mcrypt-2.6.8
+<span class="built_in">cd</span> ..
+tar zxvf mcrypt-<span class="number">2.6</span>.<span class="number">8</span>.tar.gz
+<span class="built_in">cd</span> mcrypt-<span class="number">2.6</span>.<span class="number">8</span>
 LD_LIBRARY_PATH=/usr/local/lib ./configure 
 make &amp;&amp; make install
 
-cd ..
-tar zxvf php-5.2.17.tar.gz
-cd php-5.2.17/ext/mcrypt/
+<span class="built_in">cd</span> ..
+tar zxvf php-<span class="number">5.2</span>.<span class="number">17</span>.tar.gz
+<span class="built_in">cd</span> php-<span class="number">5.2</span>.<span class="number">17</span>/ext/mcrypt/
 /usr/local/
 php/bin/phpize
 ./configure  --with-php-config=/usr/local/php/bin/php-config  
@@ -274,17 +274,17 @@ make &amp;&amp; make test &amp;&amp; make install
 
 
 
-cp /usr/local/php/lib/php/extensions/no-debug-non-zts-20060613/mcrypt.so /usr/local/php
+cp /usr/local/php/lib/php/extensions/no-debug-non-zts-<span class="number">20060613</span>/mcrypt.so /usr/local/php
 
 service httpd restart
 </code></pre><p>其他模块的扩展可以依葫芦画瓢，没有难度的。</p>
-<pre><code>[root@chcp-ct01-log01 mcrypt]# php -m
+<pre><code>[root@chcp-ct01-log01 mcrypt]<span class="preprocessor"># php -m</span>
 [PHP Modules]
 bcmath
 Core
-ctype
+<span class="built_in">ctype</span>
 curl
-date
+<span class="built_in">date</span>
 dom
 ereg
 fileinfo
@@ -297,28 +297,28 @@ json
 libxml
 mbstring
 </code></pre><p> <strong>mcrypt</strong></p>
-<pre><code>mysql
-pcre
-PDO
-pdo_sqlite
-Phar
-posix
-Reflection
-session
-SimpleXML
-sockets
-SPL
-SQLite
-sqlite3
-standard
-tokenizer
-xml
-xmlreader
-xmlwriter
-Zend Guard Loader
-zlib
-[Zend Modules]
-Zend Guard Loader
+<pre><code><span class="tag">mysql</span>
+<span class="tag">pcre</span>
+<span class="tag">PDO</span>
+<span class="tag">pdo_sqlite</span>
+<span class="tag">Phar</span>
+<span class="tag">posix</span>
+<span class="tag">Reflection</span>
+<span class="tag">session</span>
+<span class="tag">SimpleXML</span>
+<span class="tag">sockets</span>
+<span class="tag">SPL</span>
+<span class="tag">SQLite</span>
+<span class="tag">sqlite3</span>
+<span class="tag">standard</span>
+<span class="tag">tokenizer</span>
+<span class="tag">xml</span>
+<span class="tag">xmlreader</span>
+<span class="tag">xmlwriter</span>
+<span class="tag">Zend</span> <span class="tag">Guard</span> <span class="tag">Loader</span>
+<span class="tag">zlib</span>
+<span class="attr_selector">[Zend Modules]</span>
+<span class="tag">Zend</span> <span class="tag">Guard</span> <span class="tag">Loader</span>
 </code></pre>
       
     </div>

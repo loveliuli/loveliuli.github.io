@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Where there is a will, there is way。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://loveliuli.com/"/>
-  <updated>2014-03-20T07:59:23.900Z</updated>
+  <updated>2014-04-11T02:34:34.099Z</updated>
   <id>http://loveliuli.com/</id>
   
   <author>
@@ -33,43 +33,43 @@
     <published>2014-02-18T01:27:46.000Z</published>
     <updated>2014-02-21T09:35:40.000Z</updated>
     <content type="html"><![CDATA[<hr>
-<h2 id="-">问题的出现</h2>
+<h2 id="问题的出现">问题的出现</h2>
 <p> 由于最近需要对php的模块进行扩展，所以进行了简单整理，过程如下。<a id="more"></a></p>
-<h2 id="-">问题的解决</h2>
-<pre><code>#!/bin/bash
-cur_dir=${pwd}
-tar zxvf libmcrypt-2.5.8.tar.gz
-cd libmcrypt-2.5.8
+<h2 id="问题的解决">问题的解决</h2>
+<pre><code><span class="shebang">#!/bin/bash</span>
+cur_dir=<span class="variable">${pwd}</span>
+tar zxvf libmcrypt-<span class="number">2.5</span>.<span class="number">8</span>.tar.gz
+<span class="built_in">cd</span> libmcrypt-<span class="number">2.5</span>.<span class="number">8</span>
 ./configure
 make &amp;&amp; make install
 
-cd ..
-tar xvf mhash-0.9.9.9.tar.bz2
-cd mhash-0.9.9.9
+<span class="built_in">cd</span> ..
+tar xvf mhash-<span class="number">0.9</span>.<span class="number">9.9</span>.tar.bz2
+<span class="built_in">cd</span> mhash-<span class="number">0.9</span>.<span class="number">9.9</span>
 ./configure
 make &amp;&amp; make install
 
-cd ..
-tar zxvf m4-1.4.9.tar.gz 
-cd m4-1.4.9
+<span class="built_in">cd</span> ..
+tar zxvf m4-<span class="number">1.4</span>.<span class="number">9</span>.tar.gz 
+<span class="built_in">cd</span> m4-<span class="number">1.4</span>.<span class="number">9</span>
 ./configure
 make &amp;&amp; make install
 
-cd ..
-tar zxvf autoconf-2.62.tar.gz 
-cd autoconf-2.62
+<span class="built_in">cd</span> ..
+tar zxvf autoconf-<span class="number">2.62</span>.tar.gz 
+<span class="built_in">cd</span> autoconf-<span class="number">2.62</span>
 ./configure
 make &amp;&amp; make install
 
-cd ..
-tar zxvf mcrypt-2.6.8.tar.gz
-cd mcrypt-2.6.8
+<span class="built_in">cd</span> ..
+tar zxvf mcrypt-<span class="number">2.6</span>.<span class="number">8</span>.tar.gz
+<span class="built_in">cd</span> mcrypt-<span class="number">2.6</span>.<span class="number">8</span>
 LD_LIBRARY_PATH=/usr/local/lib ./configure 
 make &amp;&amp; make install
 
-cd ..
-tar zxvf php-5.2.17.tar.gz
-cd php-5.2.17/ext/mcrypt/
+<span class="built_in">cd</span> ..
+tar zxvf php-<span class="number">5.2</span>.<span class="number">17</span>.tar.gz
+<span class="built_in">cd</span> php-<span class="number">5.2</span>.<span class="number">17</span>/ext/mcrypt/
 /usr/local/
 php/bin/phpize
 ./configure  --with-php-config=/usr/local/php/bin/php-config  
@@ -77,17 +77,17 @@ make &amp;&amp; make test &amp;&amp; make install
 
 
 
-cp /usr/local/php/lib/php/extensions/no-debug-non-zts-20060613/mcrypt.so /usr/local/php
+cp /usr/local/php/lib/php/extensions/no-debug-non-zts-<span class="number">20060613</span>/mcrypt.so /usr/local/php
 
 service httpd restart
 </code></pre><p>其他模块的扩展可以依葫芦画瓢，没有难度的。</p>
-<pre><code>[root@chcp-ct01-log01 mcrypt]# php -m
+<pre><code>[root@chcp-ct01-log01 mcrypt]<span class="preprocessor"># php -m</span>
 [PHP Modules]
 bcmath
 Core
-ctype
+<span class="built_in">ctype</span>
 curl
-date
+<span class="built_in">date</span>
 dom
 ereg
 fileinfo
@@ -100,31 +100,31 @@ json
 libxml
 mbstring
 </code></pre><p> <strong>mcrypt</strong></p>
-<pre><code>mysql
-pcre
-PDO
-pdo_sqlite
-Phar
-posix
-Reflection
-session
-SimpleXML
-sockets
-SPL
-SQLite
-sqlite3
-standard
-tokenizer
-xml
-xmlreader
-xmlwriter
-Zend Guard Loader
-zlib
-[Zend Modules]
-Zend Guard Loader
+<pre><code><span class="tag">mysql</span>
+<span class="tag">pcre</span>
+<span class="tag">PDO</span>
+<span class="tag">pdo_sqlite</span>
+<span class="tag">Phar</span>
+<span class="tag">posix</span>
+<span class="tag">Reflection</span>
+<span class="tag">session</span>
+<span class="tag">SimpleXML</span>
+<span class="tag">sockets</span>
+<span class="tag">SPL</span>
+<span class="tag">SQLite</span>
+<span class="tag">sqlite3</span>
+<span class="tag">standard</span>
+<span class="tag">tokenizer</span>
+<span class="tag">xml</span>
+<span class="tag">xmlreader</span>
+<span class="tag">xmlwriter</span>
+<span class="tag">Zend</span> <span class="tag">Guard</span> <span class="tag">Loader</span>
+<span class="tag">zlib</span>
+<span class="attr_selector">[Zend Modules]</span>
+<span class="tag">Zend</span> <span class="tag">Guard</span> <span class="tag">Loader</span>
 </code></pre>]]></content>
     <summary type="html"><![CDATA[<hr>
-<h2 id="-">问题的出现</h2>
+<h2 id="问题的出现">问题的出现</h2>
 <p> 由于最近需要对php的模块进行扩展，所以进行了简单整理，过程如下。]]></summary>
     
       <category term="php_modules" scheme="http://loveliuli.com/tags/php_modules/"/>
@@ -140,40 +140,37 @@ Zend Guard Loader
     <published>2014-01-27T01:27:46.000Z</published>
     <updated>2014-03-20T07:58:39.000Z</updated>
     <content type="html"><![CDATA[<hr>
-<h1 id="-">问题出现</h1>
-<h4 id="-php-apache-php-apache-more-">由于最近公司扫描发现php和apache版本过低，有几个比较严重的漏洞，所以准备对php和apache进行升级。<a id="more"></a></h4>
-<pre><code>apache版本为2.4.3，但是在开启apache发现加载libphp5.so时错误：undefined symbol:unixd_config,
-经查明原因：http2.4目前不再支持php5.2版本，要使用php为5.3或者以上的版本，所以PHP也需要升级。
-在官网下载5.3.28版本后，安装过程中发现有如下问题：
+<h1 id="问题出现">问题出现</h1>
+<h4 id="由于最近公司扫描发现php和apache版本过低，有几个比较严重的漏洞，所以准备对php和apache进行升级。<!-more->">由于最近公司扫描发现php和apache版本过低，有几个比较严重的漏洞，所以准备对php和apache进行升级。<a id="more"></a></h4>
+<pre><code>apache版本为<span class="number">2.4</span><span class="number">.3</span>，但是在开启apache发现加载libphp5<span class="preprocessor">.so</span>时错误：undefined symbol:unixd_config,
+经查明原因：http2<span class="number">.4</span>目前不再支持php5<span class="number">.2</span>版本，要使用php为<span class="number">5.3</span>或者以上的版本，所以PHP也需要升级。
+在官网下载<span class="number">5.3</span><span class="number">.28</span>版本后，安装过程中发现有如下问题：
 ./configure过程很顺利，在make环节发生错误。报错：
-/root/php-5.3.28/Zend/zend_language_parser.h:317:错误:与‘zendparse’类型冲突。
-下一句给了提示：zend_globals_macros.h：35中‘zendparse’类型如此：
-</code></pre><h1 id="-">解决过程</h1>
+/root/php-<span class="number">5.3</span><span class="number">.28</span>/Zend/zend_language_parser<span class="preprocessor">.h</span>:<span class="number">317</span>:错误:与‘zendparse’类型冲突。
+下一句给了提示：zend_globals_macros<span class="preprocessor">.h</span>：<span class="number">35</span>中‘zendparse’类型如此：
+</code></pre><h1 id="解决过程">解决过程</h1>
 <pre><code>打开./Zend/zend_language_parser.h文件，看看zendparese参数：
-316 #if defined __STDC__ || defined __cplusplus
-317 int zendparse (void);
-318 #else
-319 int zendparse ();
-320 #endif
-再看看zend_globals_macros.h：35是什么参数。
-33 #ifdef ZTS
-34 # define CG(v) TSRMG(compiler_globals_id, zend_compiler_globals *, v)
-35 int zendparse(void *compiler_globals);
-36 #else
+<span class="number">316</span> <span class="preprocessor">#<span class="keyword">if</span> defined __STDC__ || defined __cplusplus</span>
+<span class="number">317</span> <span class="keyword">int</span> zendparse (<span class="keyword">void</span>);
+<span class="number">318</span> <span class="preprocessor">#<span class="keyword">else</span></span>
+<span class="number">319</span> <span class="keyword">int</span> zendparse ();
+<span class="number">320</span> <span class="preprocessor">#<span class="keyword">endif</span></span>
+再看看zend_globals_macros.h：<span class="number">35</span>是什么参数。
+<span class="number">33</span> <span class="preprocessor">#ifdef ZTS</span>
+<span class="number">34</span> <span class="preprocessor"># <span class="keyword">define</span> CG(v) TSRMG(compiler_globals_id, zend_compiler_globals *, v)</span>
+<span class="number">35</span> <span class="keyword">int</span> zendparse(<span class="keyword">void</span> *compiler_globals);
+<span class="number">36</span> <span class="preprocessor">#<span class="keyword">else</span></span>
 </code></pre><p>好吧，那我就把35行的参数，改到zend_language_parser.h 317行。</p>
-<pre><code>316 #if defined __STDC__ || defined __cplusplus
-317 int zendparse (void *compiler_globals);
-318 #else
-319 int zendparse ();
-320 #endif
-</code></pre><p>再进行make，OK。
-顺利完成了。
-官方版本发布的太急了吧，有此错误。
-PS：生产服务器一定三思，此参数的更改可能会影响到您的业务。</p>
+<pre><code><span class="number">316</span> <span class="preprocessor">#<span class="keyword">if</span> defined __STDC__ || defined __cplusplus</span>
+<span class="number">317</span> <span class="keyword">int</span> zendparse (<span class="keyword">void</span> *compiler_globals);
+<span class="number">318</span> <span class="preprocessor">#<span class="keyword">else</span></span>
+<span class="number">319</span> <span class="keyword">int</span> zendparse ();
+<span class="number">320</span> <span class="preprocessor">#<span class="keyword">endif</span></span>
+</code></pre><p>再进行make，OK。<br>顺利完成了。<br>官方版本发布的太急了吧，有此错误。<br>PS：生产服务器一定三思，此参数的更改可能会影响到您的业务。</p>
 ]]></content>
     <summary type="html"><![CDATA[<hr>
-<h1 id="-">问题出现</h1>
-<h4 id="-php-apache-php-apache-more-">由于最近公司扫描发现php和apache版本过低，有几个比较严重的漏洞，所以准备对php和apache进行升级。]]></summary>
+<h1 id="问题出现">问题出现</h1>
+<h4 id="由于最近公司扫描发现php和apache版本过低，有几个比较严重的漏洞，所以准备对php和apache进行升级。<!-more->">由于最近公司扫描发现php和apache版本过低，有几个比较严重的漏洞，所以准备对php和apache进行升级。]]></summary>
     
       <category term="php_problem" scheme="http://loveliuli.com/tags/php_problem/"/>
     
@@ -186,43 +183,44 @@ PS：生产服务器一定三思，此参数的更改可能会影响到您的业
     <link href="http://loveliuli.com/2013/11/29/laugh/"/>
     <id>http://loveliuli.com/2013/11/29/laugh/</id>
     <published>2013-11-29T02:48:19.000Z</published>
-    <updated>2014-01-23T02:22:28.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="-more-">今天在一个虚拟化大牛的博客上看到一篇非常不错的文章，催人奋进，遂记之。<a id="more"></a></h3>
-<h3 id="-"><strong>我要笑遍世界。</strong></h3>
+    <updated>2014-04-11T02:34:20.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="当你生活不如意时,当你工作不顺心时,当你遇到烦心事时……-">当你生活不如意时,当你工作不顺心时,当你遇到烦心事时…….</h3>
+<h3 id="请仔细阅读以下文字,也许可以帮助你走出困境-<!-more->">请仔细阅读以下文字,也许可以帮助你走出困境.<a id="more"></a></h3>
+<h3 id="<strong>我要笑遍世界。</strong>"><strong>我要笑遍世界。</strong></h3>
 <pre><code>只有人类才会笑。树木受伤时也会流“血”，禽兽也会 因痛苦和饥饿而哭嚎哀鸣，
 然而，只有我才具备笑的天赋，可以随时开怀大笑。
 从今往后，我要培养笑的习惯。笑有助于消化，笑能减轻压力，笑，是长寿的秘方。现在我终于掌握了它。
-</code></pre><h3 id="-"><strong>我要笑遍世界。</strong></h3>
+</code></pre><h3 id="<strong>我要笑遍世界。</strong>-1"><strong>我要笑遍世界。</strong></h3>
 <pre><code>我笑自己，因为自视甚高的人往往显得滑稽。千万不能跌进这个精神陷阶。
 虽说我是造物主最伟大的奇迹，我不也是沧海一栗吗？
 我真的知道自己从哪里来，到哪里去吗？我现在所关心的事情，十年后看来，不会显得愚蠢吗？
 为什么我要让现在发生的微不足道的琐事烦扰我？在这漫漫的历史长河中，能留下多少日落的记忆呢？
-</code></pre><h3 id="-"><strong>我要笑遍世界。</strong></h3>
+</code></pre><h3 id="<strong>我要笑遍世界。</strong>-2"><strong>我要笑遍世界。</strong></h3>
 <pre><code>当我受到别人的冒犯时，当我遇到不如意的事情时，我只会流泪诅咒，却怎么笑得出来？
 有一句至理名言，我要反复练习，直到它们深入我的骨髓，出口成言，让我永远保持良好的心境。
 这句话，传自远古时代，它们将陪我渡过难关，使我的生活保持平衡。
 这句至理名言就是：这一切都会过去。
-</code></pre><h3 id="-"><strong>我要笑遍世界。</strong></h3>
+</code></pre><h3 id="<strong>我要笑遍世界。</strong>-3"><strong>我要笑遍世界。</strong></h3>
 <pre><code>世上种种到头来都会成为过去。
 心力衰竭时，我安慰自己，这一切都会过去：当我因成功洋洋得意时，我提醒自己，这一切都会过去。
 穷困潦倒时，我告诉自己，这一切都会过去。腰缠万贯时，我也告诉自己，这一切都会过去。
 是的，昔日修筑金宇塔的人早已作古，埋在冰冷的石头下面，而金宇塔有朝一日，也会埋在沙土下面。
 如果世上种种终必成空，我又为何对今天的得失斤斤计较？
-</code></pre><h3 id="-"><strong>我要笑遍世界。</strong></h3>
+</code></pre><h3 id="<strong>我要笑遍世界。</strong>-4"><strong>我要笑遍世界。</strong></h3>
 <pre><code>我要用笑声点缀今天，我要用歌声照亮黑夜。
 我不再苦苦寻觅快乐，我要在繁忙的工作中忘记悲伤。
 我要享受今天的快乐，它不像粮食可以贮藏，更不似美酒越陈越香。
 我不是为将来而活。今天播种今天收获。
-</code></pre><h3 id="-"><strong>我要笑遍世界。</strong></h3>
+</code></pre><h3 id="<strong>我要笑遍世界。</strong>-5"><strong>我要笑遍世界。</strong></h3>
 <pre><code>笑声中，一切都显露本色。我笑自己的失败，它们将化为梦的云彩；我笑自己的成功，它们回复本来面目；
 我笑邪恶，它们远我而去；我笑善良，它们发扬光大。
 我要用我的笑容感染别人，虽然我的目的自私，但这确是成功之道，因为皱起的眉头会让顾客弃我而去。
-</code></pre><h3 id="-"><strong>我要笑遍世界。</strong></h3>
+</code></pre><h3 id="<strong>我要笑遍世界。</strong>-6"><strong>我要笑遍世界。</strong></h3>
 <pre><code>从今往后，我只因幸福而落泪，因为悲伤、悔恨、挫折的泪水在商场上毫无价值，
 只有微笑可以换来财富，善言可以建起一座城堡。
 我不再允许自己因为变得重要、聪明、体面、强大，而忘记如何嘲笑自己和周围的一切。
 在这一点上，我要永远像小孩子一样，因为只有做回小孩子，我才能尊敬别人，尊敬别人，我才不会自以为是。
-</code></pre><h3 id="-"><strong>我要笑遍世界。</strong></h3>
+</code></pre><h3 id="<strong>我要笑遍世界。</strong>-7"><strong>我要笑遍世界。</strong></h3>
 <pre><code>只要我能笑，就永远不会贫穷。这也是天赋，我不再浪费它。
 只有在笑声和快乐中，我才能真正体会到成功的滋味。
 只有在笑声和快乐中，我才能享受到劳动的果实。
@@ -231,76 +229,77 @@ PS：生产服务器一定三思，此参数的更改可能会影响到您的业
 我要快乐。
 我要成功。
 我要成为世上最伟大的推销员。
-</code></pre><h1 id="-">英文版本</h1>
-<h3 id="-">原文如下</h3>
-<h3 id="-i-will-laugh-at-the-world-"><strong>I will laugh at the world.</strong></h3>
+</code></pre><h1 id="英文版本">英文版本</h1>
+<h3 id="原文如下">原文如下</h3>
+<h3 id="<strong>I_will_laugh_at_the_world-</strong>"><strong>I will laugh at the world.</strong></h3>
 <pre><code>No living creature can laugh except humans.  
-Trees may bleed when they are wounded, and beasts in the field will cry in pain and hunger, 
-yet only I have the gift of laughter and it is mine to use whenever I choose. 
-Henceforth I will cultivate the habit of laughter.I will smile and my digestion will improve; 
-I will chuckle and my burdens will be lightened;
-I will laugh and my life will be lengthened for this is the great secret of long life and now it is mine.
-</code></pre><h3 id="-i-will-laugh-at-the-world-"><strong>I will laugh at the world.</strong></h3>
-<pre><code>And most of all, 
-I will laugh at myself for humans are most comical when we take ourselves too seriously.  
-Never will I fall into this trap of the mind.
-For though I be nature’s greatest miracle am I not still a mere grain tossed about by the winds of time? 
-Do I truly know whence I came or whither I am bound? 
-Will my concern for this day not seem foolish ten years hence?  
-Why should I permit the petty happenings of today to disturb me? 
-What can take place before this sun sets which will not seem insignificant in the river of centuries?
-</code></pre><h3 id="-i-will-laugh-at-the-world-"><strong>I will laugh at the world.</strong></h3>
-<pre><code>And how can I laugh when confronted with person or deed which offends me so as to bring forth my tears or my curses? 
-Four words I will train myself to say until they become a habit so strong that immediately they will appear in my mind whenever good humor threatens to depart from me.  
-These words, passed down from the ancients, will carry me through every adversity and maintain my life in balance.  
-These four words are:  This too shall pass.
-</code></pre><h3 id="-i-will-laugh-at-the-world-"><strong>I will laugh at the world.</strong></h3>
+Trees may bleed when they are wounded, <span class="keyword">and</span> beasts <span class="keyword">in</span> <span class="keyword">the</span> field will cry <span class="keyword">in</span> pain <span class="keyword">and</span> hunger, 
+yet only I have <span class="keyword">the</span> gift <span class="keyword">of</span> laughter <span class="keyword">and</span> <span class="keyword">it</span> <span class="keyword">is</span> mine <span class="keyword">to</span> use whenever I choose. 
+Henceforth I will cultivate <span class="keyword">the</span> habit <span class="keyword">of</span> laughter.I will smile <span class="keyword">and</span> <span class="keyword">my</span> digestion will improve; 
+I will chuckle <span class="keyword">and</span> <span class="keyword">my</span> burdens will be lightened;
+I will laugh <span class="keyword">and</span> <span class="keyword">my</span> life will be lengthened <span class="keyword">for</span> this <span class="keyword">is</span> <span class="keyword">the</span> great secret <span class="keyword">of</span> long life <span class="keyword">and</span> now <span class="keyword">it</span> <span class="keyword">is</span> mine.
+</code></pre><h3 id="<strong>I_will_laugh_at_the_world-</strong>-1"><strong>I will laugh at the world.</strong></h3>
+<pre><code>And most <span class="keyword">of</span> all, 
+I will laugh <span class="keyword">at</span> myself <span class="keyword">for</span> humans are most comical when we take ourselves too seriously.  
+Never will I fall <span class="keyword">into</span> this trap <span class="keyword">of</span> <span class="keyword">the</span> mind.
+For though I be nature’s greatest miracle am I <span class="keyword">not</span> still a mere grain tossed <span class="keyword">about</span> <span class="keyword">by</span> <span class="keyword">the</span> winds <span class="keyword">of</span> <span class="property">time</span>? 
+Do I truly know whence I came <span class="keyword">or</span> whither I am bound? 
+Will <span class="keyword">my</span> concern <span class="keyword">for</span> this <span class="property">day</span> <span class="keyword">not</span> seem foolish ten years hence?  
+Why should I permit <span class="keyword">the</span> petty happenings <span class="keyword">of</span> today <span class="keyword">to</span> disturb <span class="keyword">me</span>? 
+What can take place <span class="keyword">before</span> this sun sets which will <span class="keyword">not</span> seem insignificant <span class="keyword">in</span> <span class="keyword">the</span> river <span class="keyword">of</span> centuries?
+</code></pre><h3 id="<strong>I_will_laugh_at_the_world-</strong>-1"><strong>I will laugh at the world.</strong></h3>
+<pre><code>And how can I laugh when confronted <span class="keyword">with</span> person <span class="keyword">or</span> deed which offends <span class="keyword">me</span> so <span class="keyword">as</span> <span class="keyword">to</span> bring forth <span class="keyword">my</span> tears <span class="keyword">or</span> <span class="keyword">my</span> curses? 
+Four <span class="property">words</span> I will train myself <span class="keyword">to</span> <span class="command">say</span> <span class="keyword">until</span> they become a habit so strong <span class="keyword">that</span> immediately they will appear <span class="keyword">in</span> <span class="keyword">my</span> mind whenever good humor threatens <span class="keyword">to</span> depart <span class="keyword">from</span> <span class="keyword">me</span>.  
+These <span class="property">words</span>, passed down <span class="keyword">from</span> <span class="keyword">the</span> ancients, will carry <span class="keyword">me</span> <span class="keyword">through</span> <span class="keyword">every</span> adversity <span class="keyword">and</span> maintain <span class="keyword">my</span> life <span class="keyword">in</span> balance.  
+These four <span class="property">words</span> are:  This too shall pass.
+</code></pre><h3 id="<strong>I_will_laugh_at_the_world-</strong>-1"><strong>I will laugh at the world.</strong></h3>
 <pre><code>For all worldly things shall indeed pass. 
-When I am heavy with heartache I shall console myself that this too shall pass;
-when I am puffed with success I shall warn myself that this too shall pass.  
-When I am strangled in poverty I shall tell myself that this too shall pass; 
-when I am burdened with wealth I shall tell myself that this too shall pass.  
-Yea, verily, where is he who built the pyramid?  Is he not buried within its stone? 
-And will the pyramid, one day, not also be buried under sand? 
-If all things shall pass why should I be of concern for today?
-</code></pre><h3 id="-i-will-laugh-at-the-world-"><strong>I will laugh at the world.</strong></h3>
-<pre><code>I will paint this day with laughter;
-I will frame this night in song.  
-Never will I labor to be happy; 
-rather I will remain too busy to be sad. 
+When I am heavy <span class="keyword">with</span> heartache I shall console myself <span class="keyword">that</span> this too shall pass;
+when I am puffed <span class="keyword">with</span> success I shall warn myself <span class="keyword">that</span> this too shall pass.  
+When I am strangled <span class="keyword">in</span> poverty I shall <span class="keyword">tell</span> myself <span class="keyword">that</span> this too shall pass; 
+when I am burdened <span class="keyword">with</span> wealth I shall <span class="keyword">tell</span> myself <span class="keyword">that</span> this too shall pass.  
+Yea, verily, <span class="keyword">where</span> <span class="keyword">is</span> he who built <span class="keyword">the</span> pyramid?  Is he <span class="keyword">not</span> buried within <span class="keyword">its</span> stone? 
+And will <span class="keyword">the</span> pyramid, one <span class="property">day</span>, <span class="keyword">not</span> also be buried under sand? 
+If all things shall pass why should I be <span class="keyword">of</span> concern <span class="keyword">for</span> today?
+</code></pre><h3 id="<strong>I_will_laugh_at_the_world-</strong>-1"><strong>I will laugh at the world.</strong></h3>
+<pre><code>I will paint this <span class="property">day</span> <span class="keyword">with</span> laughter;
+I will frame this night <span class="keyword">in</span> song.  
+Never will I labor <span class="keyword">to</span> be happy; 
+rather I will remain too busy <span class="keyword">to</span> be sad. 
 I will enjoy today’s happiness today. 
-It is not grain to be stored in a box. 
-It is not wine to be saved in a jar.  
-It cannot be saved for the morrow. 
-It must be sown and reaped on the same day and this will I do, henceforth.
-</code></pre><h3 id="-i-will-laugh-at-the-world-"><strong>I will laugh at the world.</strong></h3>
-<pre><code>And with my laughter all things will be reduced to their proper size. 
-I will laugh at my failures and they will vanish in clouds of new dreams.
-I will laugh at my successes and they will shrink to their true value.  
-I will laugh at evil and it will die untasted; I will laugh at goodness and it will thrive and abound. 
-Each day will be triumphant only when my smiles bring forth smiles from others and this I do in selfishness, 
-for those on whom I frown are those who purchase not my goods.
-</code></pre><h3 id="-i-will-laugh-at-the-world-"><strong>I will laugh at the world.</strong></h3>
-<pre><code>Henceforth will I shed only tears of sweat, 
-for those of sadness or remorse or frustration are of no value in the marketplace whilst each smile can be exchanged for gold and each kind word,
-spoken from my heart, can build a castle.
+It <span class="keyword">is</span> <span class="keyword">not</span> grain <span class="keyword">to</span> be stored <span class="keyword">in</span> a box. 
+It <span class="keyword">is</span> <span class="keyword">not</span> wine <span class="keyword">to</span> be saved <span class="keyword">in</span> a jar.  
+It cannot be saved <span class="keyword">for</span> <span class="keyword">the</span> morrow. 
+It must be sown <span class="keyword">and</span> reaped <span class="function_start"><span class="keyword">on</span></span> <span class="keyword">the</span> same <span class="property">day</span> <span class="keyword">and</span> this will I do, henceforth.
+</code></pre><h3 id="<strong>I_will_laugh_at_the_world-</strong>-1"><strong>I will laugh at the world.</strong></h3>
+<pre><code>And <span class="keyword">with</span> <span class="keyword">my</span> laughter all things will be reduced <span class="keyword">to</span> their proper size. 
+I will laugh <span class="keyword">at</span> <span class="keyword">my</span> failures <span class="keyword">and</span> they will vanish <span class="keyword">in</span> clouds <span class="keyword">of</span> new dreams.
+I will laugh <span class="keyword">at</span> <span class="keyword">my</span> successes <span class="keyword">and</span> they will shrink <span class="keyword">to</span> their <span class="constant">true</span> value.  
+I will laugh <span class="keyword">at</span> evil <span class="keyword">and</span> <span class="keyword">it</span> will die untasted; I will laugh <span class="keyword">at</span> goodness <span class="keyword">and</span> <span class="keyword">it</span> will thrive <span class="keyword">and</span> abound. 
+Each <span class="property">day</span> will be triumphant only when <span class="keyword">my</span> smiles bring forth smiles <span class="keyword">from</span> others <span class="keyword">and</span> this I do <span class="keyword">in</span> selfishness, 
+<span class="keyword">for</span> those <span class="function_start"><span class="keyword">on</span></span> whom I frown are those who purchase <span class="keyword">not</span> <span class="keyword">my</span> goods.
+</code></pre><h3 id="<strong>I_will_laugh_at_the_world-</strong>-1"><strong>I will laugh at the world.</strong></h3>
+<pre><code>Henceforth will I shed only tears <span class="keyword">of</span> sweat, 
+<span class="keyword">for</span> those <span class="keyword">of</span> sadness <span class="keyword">or</span> remorse <span class="keyword">or</span> frustration are <span class="keyword">of</span> no value <span class="keyword">in</span> <span class="keyword">the</span> marketplace whilst each smile can be exchanged <span class="keyword">for</span> gold <span class="keyword">and</span> each kind <span class="property">word</span>,
+spoken <span class="keyword">from</span> <span class="keyword">my</span> heart, can build a castle.
 
-Never will I allow myself to become so important, so wise, so dignified, so powerful, 
-that I forget how to laugh at myself and my world. 
-In this matter I will always remain as a child, for only as a child am I given the ability to look up to others;
-and so long as I look up to another I will never grow too long for my cot.
-</code></pre><h3 id="-i-will-laugh-at-the-world-"><strong>I will laugh at the world.</strong></h3>
-<pre><code>And so long as I can laugh never will I be poor.  
-This then, is one of nature’s greatest gifts, and I will waste it no more.
-Only with laughter and happiness can I truly become a success.  
-Only with laughter and happiness can I enjoy the fruits of my labor.
-Were it not so, far better would it be to fail, for happiness is the wine that sharpens the taste of the meal. 
-To enjoy success I must have happiness, and laughter will be the maiden who serves me.
+Never will I allow myself <span class="keyword">to</span> become so important, so wise, so dignified, so powerful, 
+<span class="keyword">that</span> I forget how <span class="keyword">to</span> laugh <span class="keyword">at</span> myself <span class="keyword">and</span> <span class="keyword">my</span> world. 
+In this matter I will always remain <span class="keyword">as</span> a child, <span class="keyword">for</span> only <span class="keyword">as</span> a child am I <span class="keyword">given</span> <span class="keyword">the</span> ability <span class="keyword">to</span> look up <span class="keyword">to</span> others;
+<span class="keyword">and</span> so long <span class="keyword">as</span> I look up <span class="keyword">to</span> another I will never grow too long <span class="keyword">for</span> <span class="keyword">my</span> cot.
+</code></pre><h3 id="<strong>I_will_laugh_at_the_world-</strong>-1"><strong>I will laugh at the world.</strong></h3>
+<pre><code>And so long <span class="keyword">as</span> I can laugh never will I be poor.  
+This <span class="keyword">then</span>, <span class="keyword">is</span> one <span class="keyword">of</span> nature’s greatest gifts, <span class="keyword">and</span> I will waste <span class="keyword">it</span> no more.
+Only <span class="keyword">with</span> laughter <span class="keyword">and</span> happiness can I truly become a success.  
+Only <span class="keyword">with</span> laughter <span class="keyword">and</span> happiness can I enjoy <span class="keyword">the</span> fruits <span class="keyword">of</span> <span class="keyword">my</span> labor.
+Were <span class="keyword">it</span> <span class="keyword">not</span> so, far better would <span class="keyword">it</span> be <span class="keyword">to</span> fail, <span class="keyword">for</span> happiness <span class="keyword">is</span> <span class="keyword">the</span> wine <span class="keyword">that</span> sharpens <span class="keyword">the</span> taste <span class="keyword">of</span> <span class="keyword">the</span> meal. 
+To enjoy success I must have happiness, <span class="keyword">and</span> laughter will be <span class="keyword">the</span> maiden who serves <span class="keyword">me</span>.
 I will be happy.
 I will be successful.
-I will be the greatest salesman the world has ever known.
+I will be <span class="keyword">the</span> greatest salesman <span class="keyword">the</span> world has ever known.
 </code></pre>]]></content>
-    <summary type="html"><![CDATA[<h3 id="-more-">今天在一个虚拟化大牛的博客上看到一篇非常不错的文章，催人奋进，遂记之。]]></summary>
+    <summary type="html"><![CDATA[<h3 id="当你生活不如意时,当你工作不顺心时,当你遇到烦心事时……-">当你生活不如意时,当你工作不顺心时,当你遇到烦心事时…….</h3>
+<h3 id="请仔细阅读以下文字,也许可以帮助你走出困境-<!-more->">请仔细阅读以下文字,也许可以帮助你走出困境.]]></summary>
     
       <category term="生活领悟" scheme="http://loveliuli.com/tags/%E7%94%9F%E6%B4%BB%E9%A2%86%E6%82%9F/"/>
     
@@ -315,32 +314,29 @@ I will be the greatest salesman the world has ever known.
     <published>2013-11-11T14:35:44.000Z</published>
     <updated>2014-02-18T08:35:28.000Z</updated>
     <content type="html"><![CDATA[<p>本文档目标是描述Puppet的 manifest在系统上是如何工作。此过程相当复杂，但是一般也不需要了解其中太多的细节。整理此文档也正是为了那些想了解更多关于Puppet内部机制人更方便更直接理解。<a id="more"></a></p>
-<p>在介绍之前，我们先看两个关于Puppet的经典图。一方面希望这两幅图能帮助理解，另一方面也希望下面的解释能帮助理解这两幅图。
-Puppet架构图</p>
-<p><img src="http://ww3.sinaimg.cn/large/b7ec873bgw1ednlygdpeuj209p04vjrk.jpg" alt="Puppet架构图">
-Puppet工作流程图
-<img src="http://ww3.sinaimg.cn/large/b7ec873bgw1ednm9apav3j20j90a7dh8.jpg" alt="Puppet工作流程图"></p>
-<h1 id="high-level">High Level</h1>
-<p>粗略来看，Puppet有三个主要的执行阶段--编译、实例化和配置</p>
-<h1 id="-">编译</h1>
+<p>在介绍之前，我们先看两个关于Puppet的经典图。一方面希望这两幅图能帮助理解，另一方面也希望下面的解释能帮助理解这两幅图。<br>Puppet架构图</p>
+<p><img src="http://ww3.sinaimg.cn/large/b7ec873bgw1ednlygdpeuj209p04vjrk.jpg" alt="Puppet架构图"><br>Puppet工作流程图<br><img src="http://ww3.sinaimg.cn/large/b7ec873bgw1ednm9apav3j20j90a7dh8.jpg" alt="Puppet工作流程图"></p>
+<h1 id="High_Level">High Level</h1>
+<p>粗略来看，Puppet有三个主要的执行阶段—编译、实例化和配置</p>
+<h1 id="编译">编译</h1>
 <p>这阶段描述如何将一个基于文本的manifest转变为一个针对特定节点规范(node-specific specification)。任何与此主机无关的代码都会被忽略，而任何与此主机相关的代码都会被插入，意味着变量扩展并且所有的结果都是文字字符串。</p>
 <p>编译阶段与Puppet库资源类型的唯一联系就是所有作为结果的资源规范都会被验证：也就是验证指定的类型是有效的并且该类型所有特定属性都是有效的。这时候没有对属性值的验证。</p>
 <p>在网络安装环境中，这阶段完全发生在服务端。此阶段的输出是一个类似于哈希的简单资源集合。</p>
-<h1 id="-">实例化</h1>
+<h1 id="实例化">实例化</h1>
 <p>这阶段将简单的哈希和数组(编译阶段的输出)转变为Puppet库对象。因为这阶段需要依赖客户端的很多信息才能正常工作（比如，使用什么类型的包，什么类型的服务等），这阶段完全发生在客户端。</p>
 <p>从简单的格式转换为文字的Puppet对象允许这些对象对输入做更强大的验证，这是大部分输入验证发生的地方。如果你指定有效的属性但却赋予无效的值，在这里你可以发现它。意味着你将在客户端实例化配置时验证这类值错误，而不是在服务端。</p>
 <p>这阶段的输出是全部的机器配置，而它能够改变本地系统。</p>
-<h1 id="-">配置</h1>
+<h1 id="配置">配置</h1>
 <p>这阶段Puppet真正改变系统。每个资源实例比较自身特定状态与机器状态并且去做任何需要更改的变动。如果机器状态恰好与指定状态一致，则不需要做任何变动。</p>
-<h1 id="lower-level">Lower Level</h1>
+<h1 id="Lower_Level">Lower Level</h1>
 <p>上述三个阶段每个都可以分解为更多步骤。</p>
-<h1 id="-1-">编译阶段1：解析</h1>
+<h1 id="编译阶段1：解析">编译阶段1：解析</h1>
 <p>输入：使用Puppet语言编写的Manifests</p>
 <p>输出：解析树(AST对象实例)</p>
 <p>入口：Puppet::Parser::Parser#parse</p>
 <p>这时候，所有Puppet manifests开始为文本文件，解析器的工作就是理解这些文件。解析器只做了很少的工作-它将文本转换为一种文本直接映射回文本的格式，创建解析树本质上等价于（创建）文本自身。这时的验证仅仅是语法的验证。</p>
 <p>这阶段无论是否使用节点，无论使用stand-alone Puppet解释器或者客户端/服务端系统。一旦启动Puppet，解析过程就会发生。</p>
-<h1 id="-2-">编译阶段2：解释</h1>
+<h1 id="编译阶段2：解释">编译阶段2：解释</h1>
 <p>输入：解析树(AST对象实例)和客户端信息（由Facter收集的facts）</p>
 <p>输出：Trees of TransObject and TransBucket instances</p>
 <p>入口：Puppet::Parser::AST#evaluate</p>
@@ -348,17 +344,17 @@ Puppet工作流程图
 <p>许多配置需要依赖客户端信息来决定。当Puppet客户端开始运行，它会加载Facter库，收集所有能够收集的facts,并且将这些facts传给解释器。当你通过网络使用Puppet，这些facts会经过网络传输到服务端，然后服务端会利用这些信息来编译客户端配置。</p>
 <p>这阶段传递给服务端的信息(像操作系统和硬件体系结构等)，既让服务端能够对客户端配置做出决定，同时它也能让服务端向配置中插入客户端信息，像IP地址和MAC地址这些信息。</p>
 <p>解释器将解析树和客户端信息合并为一个简单可传输对象树。这个可传输对象映射manifeasts定义的配置，它仍是一个树，但是它是一个类树，而资源包含在这些类中。</p>
-<h1 id="-">节点和无节点</h1>
+<h1 id="节点和无节点">节点和无节点</h1>
 <p>当你使用Puppet时，有选项选择是否使用节点资源。如果不使用节点资源，每次一个客户端连接都需要解释整个配置，自顶向下解释解析树。在这种情况下，你必须有某种明确的选择机制来指定哪个代码适用哪个节点。</p>
 <p>如果你使用节点资源，那么，解释器就会预编译所有与特定节点无关的代码。当一个节点连接时，解释器就会寻找此节点名（从Facter facts中检索）相关的代码然后仅仅编译这些相关代码。</p>
-<h1 id="-">配置传输</h1>
+<h1 id="配置传输">配置传输</h1>
 <p>输入：可传输对象</p>
 <p>输出：可传输对象</p>
 <p>入口：Puppet::Network::Server::Master#getconfig</p>
 <p>出口：Puppet::Network::Client::Master#getconfig</p>
 <p>如果使用stand-alone Puppet，那么就没有配置传输，因为客户端和服务端是同一进程。如果使用基于网络的Puppetd客户端和Puppetmasterd服务端，那么这些配置一旦编译完毕，就必须发送到客户端。</p>
 <p>Puppet目前是将这些可传输对象转变为YAML，它经过CGI转义然后使用XMLRPC通过HTTPS发送。客户端接收配置，反转义，缓存到磁盘以免下次服务端不可用，然后使用YAML再将它转换为普通ruby可传输对象。</p>
-<h1 id="-">实例化阶段</h1>
+<h1 id="实例化阶段">实例化阶段</h1>
 <p>输入：可传输对象</p>
 <p>输出： Puppet::Type instances</p>
 <p>入口：Puppet::Network::Client::Master#run</p>
@@ -366,20 +362,20 @@ Puppet工作流程图
 <p>为了创建Puppet 库对象(Puppet::Type子类实例)，在可传输对象顶层调用to_trans。所有的容器对象转换为Puppet::Type::Component实例，所有普通对象转变为Puppet资源类型实例。</p>
 <p>这是所有输入验证发生地而且经常在这里值转换为更可用形式。例如，文件系统始终返回用户IDs，而不是用户名，因此Puppet对象将它们适当转换。(顺便提及下，有时候Puppet会在对文件chown时创建用户，意味着只要有可能Puppet会忽略验证错误直到最后一刻)。</p>
 <p>一旦所有资源建立在一个类似图的组件和资源树时，这个树转变为一个GRATR图像。然后这个图像传递给一个新的事务实例。</p>
-<h1 id="-">配置阶段</h1>
+<h1 id="配置阶段">配置阶段</h1>
 <p>输入：GRATR图</p>
 <p>输出：事物报告</p>
 <p>入口：Puppet::Transaction#evaluate</p>
 <p>出口：Puppet::Transaction#generate_report</p>
 <p>在这个阶段，所有工作的完成，由一个事务控制。</p>
-<h1 id="-">资源生成</h1>
+<h1 id="资源生成">资源生成</h1>
 <p>一些资源管理其他资源实例，例如递归文件操作。在这个阶段，任何静态生成的资源都被生成。然后这些生成的资源被添加到资源图。</p>
-<h1 id="-">关系</h1>
+<h1 id="关系">关系</h1>
 <p>配置进程的下一阶段创建一个图来为资源依赖建模。Puppet语言的目标之一就是使文件顺序问题尽可能少；这意味着一个需要依赖其他资源的Puppet资源在manifest中会被列在它依赖的资源之后，也就是说被依赖的资源将会在它依赖的资源之后被实例化。最后依赖关系图会和原始资源图进行合并来创建一个完整的有着所有资源和所有关系的图。</p>
-<h1 id="-">评估</h1>
+<h1 id="评估">评估</h1>
 <p>配置事务会对最终关系图做一个拓扑排序并且遍历结果列表，按顺序评价每个资源。每个资源的每个非同步属性都会生成一个Puppet::StateChange对象。事务使用该对象严格控制这些资源需要做哪些改变和在什么时候改变，当然也会确保提供日志。</p>
 <p>报告 随着事务的进行，它会收集日志和度量指标。在评估的最后，将这些信息转变为报告，发送给服务端。</p>
-<h1 id="-">总结</h1>
+<h1 id="总结">总结</h1>
 <p>这是Puppet Manifest转变为一个完整配置的完整流程。对于Puppet系统，还有更多，例如FileBuckets，但是这些更多是支持角色而不是主要魅力所在。</p>
 ]]></content>
     <summary type="html"><![CDATA[<p>本文档目标是描述Puppet的 manifest在系统上是如何工作。此过程相当复杂，但是一般也不需要了解其中太多的细节。整理此文档也正是为了那些想了解更多关于Puppet内部机制人更方便更直接理解。]]></summary>
@@ -397,23 +393,18 @@ Puppet工作流程图
     <published>2013-11-11T03:40:41.000Z</published>
     <updated>2014-02-18T08:31:34.000Z</updated>
     <content type="html"><![CDATA[<hr>
-<h1 id="-">概述</h1>
-<p>Markdown 的目标是实现「易读易写」。不过最需要强调的便是它的可读性。
-一份使用 Markdown 格式撰写的文档应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。
-因此 Markdown 的语法全由标点符号所组成，并经过严谨慎选，是为了让它们看起来就像所要表达的意思。
-像是在文字两旁加上星号，看起来就像<em>强调</em>。
-Markdown 的列表看起来，嗯，就是列表。假如你用过电子邮件，区块引言看起来就真的像是引用一段文字。<a id="more"></a></p>
-<h1 id="-">一、 标题</h1>
+<h1 id="概述">概述</h1>
+<p>Markdown 的目标是实现「易读易写」。不过最需要强调的便是它的可读性。<br>一份使用 Markdown 格式撰写的文档应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。<br>因此 Markdown 的语法全由标点符号所组成，并经过严谨慎选，是为了让它们看起来就像所要表达的意思。<br>像是在文字两旁加上星号，看起来就像<em>强调</em>。<br>Markdown 的列表看起来，嗯，就是列表。假如你用过电子邮件，区块引言看起来就真的像是引用一段文字。<a id="more"></a></p>
+<h1 id="一、_标题">一、 标题</h1>
 <p>使用井号代表一级标题，以此类推，总共支持六级标题，即：6个#，例如以下：</p>
-<h1 id="-">一级标题</h1>
-<h2 id="-">二级标题</h2>
-<h3 id="-">三级标题</h3>
-<h4 id="-">四级标题</h4>
-<h5 id="-">五级标题</h5>
-<h6 id="-">六级标题</h6>
-<h1 id="-">二、列表</h1>
-<p>列表格式也很常用，在 Markdown 中，你只需要在文字前面加上一些符号就可以了，例如：
-无序和有序分别显示效果：</p>
+<h1 id="一级标题">一级标题</h1>
+<h2 id="二级标题">二级标题</h2>
+<h3 id="三级标题">三级标题</h3>
+<h4 id="四级标题">四级标题</h4>
+<h5 id="五级标题">五级标题</h5>
+<h6 id="六级标题">六级标题</h6>
+<h1 id="二、列表">二、列表</h1>
+<p>列表格式也很常用，在 Markdown 中，你只需要在文字前面加上一些符号就可以了，例如：<br>无序和有序分别显示效果：</p>
 <p>使用-的效果如下：</p>
 <ul>
 <li>列表一</li>
@@ -432,20 +423,19 @@ Markdown 的列表看起来，嗯，就是列表。假如你用过电子邮件�
 <li>列表二</li>
 <li>列表三</li>
 </ul>
-<p>或者使用1，2，3....序列号，效果如下：</p>
+<p>或者使用1，2，3….序列号，效果如下：</p>
 <ol>
 <li>列表一</li>
 <li>列表二</li>
 <li>列表三</li>
 </ol>
 <p>注：-、1.和文本之间要保留一个字符的空格。</p>
-<h1 id="-">三、链接图片</h1>
+<h1 id="三、链接图片">三、链接图片</h1>
 <p>在 Markdown 中，插入链接不需要其他按钮，你只需要使用<code>[说明](超链接)</code> 这样的语法即可，例如：</p>
 <p><code>![我的空间照片](http://ww4.sinaimg.cn/large/b7ec873bgw1eaigtsdeutj20im0cddjb.jpg)</code> 效果如下：</p>
 <p><img src="http://ww4.sinaimg.cn/large/b7ec873bgw1eaigtsdeutj20im0cddjb.jpg" alt="我的空间照片"></p>
-<h1 id="-">四、 引用和代码</h1>
-<p>在一般的段落文字中，你可以使用反引号来标记代码区段，区段内的 &amp;、&lt; 和 &gt; 都会被自动的转换成 HTML 实体，
-这项特性让你可以很容易的在代码区段内插入 HTML 码：</p>
+<h1 id="四、_引用和代码">四、 引用和代码</h1>
+<p>在一般的段落文字中，你可以使用反引号来标记代码区段，区段内的 &amp;、&lt; 和 &gt; 都会被自动的转换成 HTML 实体，<br>这项特性让你可以很容易的在代码区段内插入 HTML 码：</p>
 <p><code>这是插入的第一段代码
     这是插入的第二行代码
     这是插入的第二行代码
@@ -453,104 +443,81 @@ Markdown 的列表看起来，嗯，就是列表。假如你用过电子邮件�
     这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码</code></p>
 <p>隔开标志</p>
 <p>C#代码:</p>
-<pre><code>//这里显示一些代码，在正文显示中会自动识别语言，进行代码染色，这是一段C#代码
-public class Blog
+<pre><code><span class="comment">//这里显示一些代码，在正文显示中会自动识别语言，进行代码染色，这是一段C#代码</span>
+<span class="keyword">public</span> <span class="keyword">class</span> Blog
 {
-     public int Id { get; set; }
-     public string Subject { get; set; }
+     <span class="keyword">public</span> <span class="keyword">int</span> Id { <span class="keyword">get</span>; <span class="keyword">set</span>; }
+     <span class="keyword">public</span> <span class="keyword">string</span> Subject { <span class="keyword">get</span>; <span class="keyword">set</span>; }
 }
 </code></pre><p>  python代码:</p>
-<pre><code>for i in range(0,4):
-print i,
+<pre><code><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">4</span>):
+<span class="built_in">print</span> i,
 </code></pre><p>  C++代码:</p>
-<pre><code>for（i=0;i&lt;4;i++)
-printf i
-</code></pre><h1 id="-">五、分割线</h1>
-<p>你可以在一行中用三个或以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。
-你也可以在星号中间插入空白。下面每种写法都可以建立分隔线：</p>
+<pre><code><span class="keyword">for</span>（<span class="built_in">i</span>=<span class="number">0</span>;<span class="built_in">i</span>&lt;<span class="number">4</span>;<span class="built_in">i</span>++)
+printf <span class="built_in">i</span>
+</code></pre><h1 id="五、分割线">五、分割线</h1>
+<p>你可以在一行中用三个或以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。<br>你也可以在星号中间插入空白。下面每种写法都可以建立分隔线：</p>
 <p>1、星号（<em>*</em>）</p>
 <hr>
-<h2 id="2-">2、减号（---）</h2>
-<h2 id="3-">3、底线（---------------）</h2>
+<h2 id="2、减号（—-）">2、减号（—-）</h2>
+<h2 id="3、底线（———————-）">3、底线（———————-）</h2>
 <p>4、再次星号（<strong><em>**</em></strong>）</p>
 <hr>
-<h1 id="-">六、 区段元素</h1>
-<p>1、链接
-Markdown 支持两种形式的链接语法： 行内和参考两种形式。不管是哪一种，链接的文字都是用 [方括号] 来标记。
-要建立一个行内形式的链接，只要在方块括号后面马上接着括号并插入网址链接即可，
-如果你还想要加上链接的 title 文字，只要在网址后面，用双引号把 title 文字包起来即可.
-例如：</p>
-<pre><code>this is [我的blog](http://loveliuli.github.io) 效果如下：
+<h1 id="六、_区段元素">六、 区段元素</h1>
+<p>1、链接<br>Markdown 支持两种形式的链接语法： 行内和参考两种形式。不管是哪一种，链接的文字都是用 [方括号] 来标记。<br>要建立一个行内形式的链接，只要在方块括号后面马上接着括号并插入网址链接即可，<br>如果你还想要加上链接的 title 文字，只要在网址后面，用双引号把 title 文字包起来即可.<br>例如：</p>
+<pre><code>this is [<span class="link_label">我的blog</span>](<span class="link_url">http://loveliuli.github.io</span>) 效果如下：
 </code></pre><p>this is <a href="http://loveliuli.github.io" target="_blank">我的blog</a></p>
-<h1 id="-">七、强调</h1>
-<pre><code>Markdown 使用星号（*）和底线（_）作为标记强调字词的符号，被 * 或 _ 包围的字词会被转成用 &lt;em&gt; 标签包围，用两个 * 或 _ 包起来的话，则会被转成 &lt;strong&gt;，例如：
+<h1 id="七、强调">七、强调</h1>
+<pre><code>Markdown 使用星号（*）和底线（_）作为标记强调字词的符号，被 * 或 _ 包围的字词会被转成用 <span class="tag">&lt;<span class="title">em</span>&gt;</span> 标签包围，用两个 * 或 _ 包起来的话，则会被转成 <span class="tag">&lt;<span class="title">strong</span>&gt;</span>，例如：
 </code></pre><p>1、斜线（*）</p>
-<p><em>我是斜线</em>
- <em>斜体</em> ：斜的字体</p>
+<p><em>我是斜线</em><br> <em>斜体</em> ：斜的字体</p>
 <p>2、加粗（**）</p>
 <p><strong>我是粗体</strong><br> <strong> 粗体</strong> ：粗暴的字体</p>
-<h1 id="-">八、程序代码</h1>
+<h1 id="八、程序代码">八、程序代码</h1>
 <p>如果要标记一小段行内程序代码，可以用反引号把它包起来（`），例如：</p>
-<pre><code>我们需要打印变量$var1，则如下方式书写：
-我们需要`print $var1`
-</code></pre><p>得到的效果如下：
-我们需要<code>print $var1</code></p>
-<h1 id="-">九、链接</h1>
+<pre><code>我们需要打印变量<span class="variable">$var1</span>，则如下方式书写：
+我们需要`<span class="keyword">print</span> <span class="variable">$var1</span>`
+</code></pre><p>得到的效果如下：<br>我们需要<code>print $var1</code></p>
+<h1 id="九、链接">九、链接</h1>
 <p>1、Markdown 使用一种和链接很相似的语法来标记图片，同样也允许两种样式： 行内和参考。</p>
-<h3 id="-"><strong>行内式图片的语法如下</strong>:</h3>
+<h3 id="<strong>行内式图片的语法如下</strong>:"><strong>行内式图片的语法如下</strong>:</h3>
 <pre><code>一个惊叹号
 接着一个方括号，里面放图片的说明文字
 接着一个圆括号，里面放图片的url
-![文本](url)
-![我的空间照片](http://user.qzone.qq.com/505711559/infocenter)
-</code></pre><p>效果如下：
-<img src="http://ww2.sinaimg.cn/large/b7ec873bgw1eaigtal1xbj20im0ce418.jpg" alt="我的空间照片"></p>
-<h3 id="-"><strong>连接定义语法</strong>：</h3>
-<pre><code>[foo]: http://example.com/  &#39;Optional Title Here&#39;
-</code></pre><h3 id="-">例如:</h3>
-<pre><code>[myblog]: http://loveliuli.github.io/ &#39;Optional Title Here&#39;
-</code></pre><h3 id="-">效果如下：</h3>
-<p>[myblog]: <a href="http://loveliuli.github.io/" target="_blank">http://loveliuli.github.io/</a>  &#39;我的blog&#39;</p>
+![<span class="link_label">文本</span>](<span class="link_url">url</span>)
+![<span class="link_label">我的空间照片</span>](<span class="link_url">http://user.qzone.qq.com/505711559/infocenter</span>)
+</code></pre><p>效果如下：<br><img src="http://ww2.sinaimg.cn/large/b7ec873bgw1eaigtal1xbj20im0ce418.jpg" alt="我的空间照片"></p>
+<h3 id="<strong>连接定义语法</strong>："><strong>连接定义语法</strong>：</h3>
+<pre><code>[<span class="link_reference">foo</span>]:<span class="link_url"> http://example.com/  'Optional Title Here'</span>
+</code></pre><h3 id="例如:">例如:</h3>
+<pre><code>[<span class="link_reference">myblog</span>]:<span class="link_url"> http://loveliuli.github.io/ 'Optional Title Here'</span>
+</code></pre><h3 id="效果如下：">效果如下：</h3>
+<p>[myblog]: <a href="http://loveliuli.github.io/" target="_blank">http://loveliuli.github.io/</a>  ‘我的blog’</p>
 <p>参考的语法如下:</p>
-<pre><code>This is [an example][id] reference-style link.
-[id]: http://example.com/  &#39;Optional Title Here&#39;
-</code></pre><h1 id="-">十、其他</h1>
-<p>1、自动链接
-<code>&lt;http://loveliuli.github.io&gt;,效果如下</code>：
-    <a href="http://loveliuli.github.io" target="_blank">http://loveliuli.github.io</a></p>
-<p>2、转义字符
-Markdown 可以利用反斜杠来插入一些在语法中有其它意义的符号，
-例如：如果想要用星号加在文字旁边的方式来做出强调效果（但不用\<em\> 标签），可以在星号的前面加上反斜杠。
-如果我们需要输出星号，则需要转义：
-例如：<code>\*我不是斜线\*</code> 效果如下：
-*我不是斜线*</p>
-<p><code>*我又变成斜线啦*</code>
-<em>我又变成斜线啦</em>
-3、Markdown 支持在下面这些符号前面加上反斜杠来帮助插入普通的符号：</p>
+<pre><code>This is [<span class="link_label">an example</span>][<span class="link_reference">id</span>] reference-style link.
+[<span class="link_reference">id</span>]:<span class="link_url"> http://example.com/  'Optional Title Here'</span>
+</code></pre><h1 id="十、其他">十、其他</h1>
+<p>1、自动链接<br><code>&lt;http://loveliuli.github.io&gt;,效果如下</code>：<br>    <a href="http://loveliuli.github.io" target="_blank">http://loveliuli.github.io</a></p>
+<p>2、转义字符<br>Markdown 可以利用反斜杠来插入一些在语法中有其它意义的符号，<br>例如：如果想要用星号加在文字旁边的方式来做出强调效果（但不用\<em\> 标签），可以在星号的前面加上反斜杠。<br>如果我们需要输出星号，则需要转义：<br>例如：<code>\*我不是斜线\*</code> 效果如下：<br>*我不是斜线*</p>
+<p><code>*我又变成斜线啦*</code><br><em>我又变成斜线啦</em><br>3、Markdown 支持在下面这些符号前面加上反斜杠来帮助插入普通的符号：</p>
 <pre><code>\   反斜杠
 `   反引号
-*   星号
+<span class="bullet">*   </span>星号
 _   底线
 {}  大括号
 []  方括号
 ()  括号
-#   井字号
-+    加号
--    减号
+<span class="header">#   井字号</span>
+<span class="bullet">+    </span>加号
+<span class="bullet">-    </span>减号
 .   英文句点
 !   惊叹号
-</code></pre><h1 id="-">十一、结束语</h1>
-<p>以上几种格式是比较常用的格式，所以我们针对这些语法做了比较详细的说明。
-除这些之外，Markdown 还有其他语法，如想了解和学习更多，可以参考：
-<a href="http://wowubuntu.com/markdown/" target="_blank">『Markdown 语法说明-官方翻译』</a>。<br><a href="http://www.ituring.com.cn/article/504" target="_blank">『Markdown 语法详细说明-图灵社区』</a>。  </p>
+</code></pre><h1 id="十一、结束语">十一、结束语</h1>
+<p>以上几种格式是比较常用的格式，所以我们针对这些语法做了比较详细的说明。<br>除这些之外，Markdown 还有其他语法，如想了解和学习更多，可以参考：<br><a href="http://wowubuntu.com/markdown/" target="_blank">『Markdown 语法说明-官方翻译』</a>。<br><a href="http://www.ituring.com.cn/article/504" target="_blank">『Markdown 语法详细说明-图灵社区』</a>。  </p>
 ]]></content>
     <summary type="html"><![CDATA[<hr>
-<h1 id="-">概述</h1>
-<p>Markdown 的目标是实现「易读易写」。不过最需要强调的便是它的可读性。
-一份使用 Markdown 格式撰写的文档应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。
-因此 Markdown 的语法全由标点符号所组成，并经过严谨慎选，是为了让它们看起来就像所要表达的意思。
-像是在文字两旁加上星号，看起来就像<em>强调</em>。
-Markdown 的列表看起来，嗯，就是列表。假如你用过电子邮件，区块引言看起来就真的像是引用一段文字。]]></summary>
+<h1 id="概述">概述</h1>
+<p>Markdown 的目标是实现「易读易写」。不过最需要强调的便是它的可读性。<br>一份使用 Markdown 格式撰写的文档应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。<br>因此 Markdown 的语法全由标点符号所组成，并经过严谨慎选，是为了让它们看起来就像所要表达的意思。<br>像是在文字两旁加上星号，看起来就像<em>强调</em>。<br>Markdown 的列表看起来，嗯，就是列表。假如你用过电子邮件，区块引言看起来就真的像是引用一段文字。]]></summary>
     
       <category term="markdown" scheme="http://loveliuli.com/tags/markdown/"/>
     

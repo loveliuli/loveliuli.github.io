@@ -230,23 +230,18 @@
     <div class="entry">
       
         <hr>
-<h1 id="-">概述</h1>
-<p>Markdown 的目标是实现「易读易写」。不过最需要强调的便是它的可读性。
-一份使用 Markdown 格式撰写的文档应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。
-因此 Markdown 的语法全由标点符号所组成，并经过严谨慎选，是为了让它们看起来就像所要表达的意思。
-像是在文字两旁加上星号，看起来就像<em>强调</em>。
-Markdown 的列表看起来，嗯，就是列表。假如你用过电子邮件，区块引言看起来就真的像是引用一段文字。<a id="more"></a></p>
-<h1 id="-">一、 标题</h1>
+<h1 id="概述">概述</h1>
+<p>Markdown 的目标是实现「易读易写」。不过最需要强调的便是它的可读性。<br>一份使用 Markdown 格式撰写的文档应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。<br>因此 Markdown 的语法全由标点符号所组成，并经过严谨慎选，是为了让它们看起来就像所要表达的意思。<br>像是在文字两旁加上星号，看起来就像<em>强调</em>。<br>Markdown 的列表看起来，嗯，就是列表。假如你用过电子邮件，区块引言看起来就真的像是引用一段文字。<a id="more"></a></p>
+<h1 id="一、_标题">一、 标题</h1>
 <p>使用井号代表一级标题，以此类推，总共支持六级标题，即：6个#，例如以下：</p>
-<h1 id="-">一级标题</h1>
-<h2 id="-">二级标题</h2>
-<h3 id="-">三级标题</h3>
-<h4 id="-">四级标题</h4>
-<h5 id="-">五级标题</h5>
-<h6 id="-">六级标题</h6>
-<h1 id="-">二、列表</h1>
-<p>列表格式也很常用，在 Markdown 中，你只需要在文字前面加上一些符号就可以了，例如：
-无序和有序分别显示效果：</p>
+<h1 id="一级标题">一级标题</h1>
+<h2 id="二级标题">二级标题</h2>
+<h3 id="三级标题">三级标题</h3>
+<h4 id="四级标题">四级标题</h4>
+<h5 id="五级标题">五级标题</h5>
+<h6 id="六级标题">六级标题</h6>
+<h1 id="二、列表">二、列表</h1>
+<p>列表格式也很常用，在 Markdown 中，你只需要在文字前面加上一些符号就可以了，例如：<br>无序和有序分别显示效果：</p>
 <p>使用-的效果如下：</p>
 <ul>
 <li>列表一</li>
@@ -265,20 +260,19 @@ Markdown 的列表看起来，嗯，就是列表。假如你用过电子邮件�
 <li>列表二</li>
 <li>列表三</li>
 </ul>
-<p>或者使用1，2，3....序列号，效果如下：</p>
+<p>或者使用1，2，3….序列号，效果如下：</p>
 <ol>
 <li>列表一</li>
 <li>列表二</li>
 <li>列表三</li>
 </ol>
 <p>注：-、1.和文本之间要保留一个字符的空格。</p>
-<h1 id="-">三、链接图片</h1>
+<h1 id="三、链接图片">三、链接图片</h1>
 <p>在 Markdown 中，插入链接不需要其他按钮，你只需要使用<code>[说明](超链接)</code> 这样的语法即可，例如：</p>
 <p><code>![我的空间照片](http://ww4.sinaimg.cn/large/b7ec873bgw1eaigtsdeutj20im0cddjb.jpg)</code> 效果如下：</p>
 <p><img src="http://ww4.sinaimg.cn/large/b7ec873bgw1eaigtsdeutj20im0cddjb.jpg" alt="我的空间照片"></p>
-<h1 id="-">四、 引用和代码</h1>
-<p>在一般的段落文字中，你可以使用反引号来标记代码区段，区段内的 &amp;、&lt; 和 &gt; 都会被自动的转换成 HTML 实体，
-这项特性让你可以很容易的在代码区段内插入 HTML 码：</p>
+<h1 id="四、_引用和代码">四、 引用和代码</h1>
+<p>在一般的段落文字中，你可以使用反引号来标记代码区段，区段内的 &amp;、&lt; 和 &gt; 都会被自动的转换成 HTML 实体，<br>这项特性让你可以很容易的在代码区段内插入 HTML 码：</p>
 <p><code>这是插入的第一段代码
     这是插入的第二行代码
     这是插入的第二行代码
@@ -286,96 +280,77 @@ Markdown 的列表看起来，嗯，就是列表。假如你用过电子邮件�
     这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码</code></p>
 <p>隔开标志</p>
 <p>C#代码:</p>
-<pre><code>//这里显示一些代码，在正文显示中会自动识别语言，进行代码染色，这是一段C#代码
-public class Blog
+<pre><code><span class="comment">//这里显示一些代码，在正文显示中会自动识别语言，进行代码染色，这是一段C#代码</span>
+<span class="keyword">public</span> <span class="keyword">class</span> Blog
 {
-     public int Id { get; set; }
-     public string Subject { get; set; }
+     <span class="keyword">public</span> <span class="keyword">int</span> Id { <span class="keyword">get</span>; <span class="keyword">set</span>; }
+     <span class="keyword">public</span> <span class="keyword">string</span> Subject { <span class="keyword">get</span>; <span class="keyword">set</span>; }
 }
 </code></pre><p>  python代码:</p>
-<pre><code>for i in range(0,4):
-print i,
+<pre><code><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">4</span>):
+<span class="built_in">print</span> i,
 </code></pre><p>  C++代码:</p>
-<pre><code>for（i=0;i&lt;4;i++)
-printf i
-</code></pre><h1 id="-">五、分割线</h1>
-<p>你可以在一行中用三个或以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。
-你也可以在星号中间插入空白。下面每种写法都可以建立分隔线：</p>
+<pre><code><span class="keyword">for</span>（<span class="built_in">i</span>=<span class="number">0</span>;<span class="built_in">i</span>&lt;<span class="number">4</span>;<span class="built_in">i</span>++)
+printf <span class="built_in">i</span>
+</code></pre><h1 id="五、分割线">五、分割线</h1>
+<p>你可以在一行中用三个或以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。<br>你也可以在星号中间插入空白。下面每种写法都可以建立分隔线：</p>
 <p>1、星号（<em>*</em>）</p>
 <hr>
-<h2 id="2-">2、减号（---）</h2>
-<h2 id="3-">3、底线（---------------）</h2>
+<h2 id="2、减号（—-）">2、减号（—-）</h2>
+<h2 id="3、底线（———————-）">3、底线（———————-）</h2>
 <p>4、再次星号（<strong><em>**</em></strong>）</p>
 <hr>
-<h1 id="-">六、 区段元素</h1>
-<p>1、链接
-Markdown 支持两种形式的链接语法： 行内和参考两种形式。不管是哪一种，链接的文字都是用 [方括号] 来标记。
-要建立一个行内形式的链接，只要在方块括号后面马上接着括号并插入网址链接即可，
-如果你还想要加上链接的 title 文字，只要在网址后面，用双引号把 title 文字包起来即可.
-例如：</p>
-<pre><code>this is [我的blog](http://loveliuli.github.io) 效果如下：
+<h1 id="六、_区段元素">六、 区段元素</h1>
+<p>1、链接<br>Markdown 支持两种形式的链接语法： 行内和参考两种形式。不管是哪一种，链接的文字都是用 [方括号] 来标记。<br>要建立一个行内形式的链接，只要在方块括号后面马上接着括号并插入网址链接即可，<br>如果你还想要加上链接的 title 文字，只要在网址后面，用双引号把 title 文字包起来即可.<br>例如：</p>
+<pre><code>this is [<span class="link_label">我的blog</span>](<span class="link_url">http://loveliuli.github.io</span>) 效果如下：
 </code></pre><p>this is <a href="http://loveliuli.github.io" target="_blank">我的blog</a></p>
-<h1 id="-">七、强调</h1>
-<pre><code>Markdown 使用星号（*）和底线（_）作为标记强调字词的符号，被 * 或 _ 包围的字词会被转成用 &lt;em&gt; 标签包围，用两个 * 或 _ 包起来的话，则会被转成 &lt;strong&gt;，例如：
+<h1 id="七、强调">七、强调</h1>
+<pre><code>Markdown 使用星号（*）和底线（_）作为标记强调字词的符号，被 * 或 _ 包围的字词会被转成用 <span class="tag">&lt;<span class="title">em</span>&gt;</span> 标签包围，用两个 * 或 _ 包起来的话，则会被转成 <span class="tag">&lt;<span class="title">strong</span>&gt;</span>，例如：
 </code></pre><p>1、斜线（*）</p>
-<p><em>我是斜线</em>
- <em>斜体</em> ：斜的字体</p>
+<p><em>我是斜线</em><br> <em>斜体</em> ：斜的字体</p>
 <p>2、加粗（**）</p>
 <p><strong>我是粗体</strong><br> <strong> 粗体</strong> ：粗暴的字体</p>
-<h1 id="-">八、程序代码</h1>
+<h1 id="八、程序代码">八、程序代码</h1>
 <p>如果要标记一小段行内程序代码，可以用反引号把它包起来（`），例如：</p>
-<pre><code>我们需要打印变量$var1，则如下方式书写：
-我们需要`print $var1`
-</code></pre><p>得到的效果如下：
-我们需要<code>print $var1</code></p>
-<h1 id="-">九、链接</h1>
+<pre><code>我们需要打印变量<span class="variable">$var1</span>，则如下方式书写：
+我们需要`<span class="keyword">print</span> <span class="variable">$var1</span>`
+</code></pre><p>得到的效果如下：<br>我们需要<code>print $var1</code></p>
+<h1 id="九、链接">九、链接</h1>
 <p>1、Markdown 使用一种和链接很相似的语法来标记图片，同样也允许两种样式： 行内和参考。</p>
-<h3 id="-"><strong>行内式图片的语法如下</strong>:</h3>
+<h3 id="<strong>行内式图片的语法如下</strong>:"><strong>行内式图片的语法如下</strong>:</h3>
 <pre><code>一个惊叹号
 接着一个方括号，里面放图片的说明文字
 接着一个圆括号，里面放图片的url
-![文本](url)
-![我的空间照片](http://user.qzone.qq.com/505711559/infocenter)
-</code></pre><p>效果如下：
-<img src="http://ww2.sinaimg.cn/large/b7ec873bgw1eaigtal1xbj20im0ce418.jpg" alt="我的空间照片"></p>
-<h3 id="-"><strong>连接定义语法</strong>：</h3>
-<pre><code>[foo]: http://example.com/  &#39;Optional Title Here&#39;
-</code></pre><h3 id="-">例如:</h3>
-<pre><code>[myblog]: http://loveliuli.github.io/ &#39;Optional Title Here&#39;
-</code></pre><h3 id="-">效果如下：</h3>
-<p>[myblog]: <a href="http://loveliuli.github.io/" target="_blank">http://loveliuli.github.io/</a>  &#39;我的blog&#39;</p>
+![<span class="link_label">文本</span>](<span class="link_url">url</span>)
+![<span class="link_label">我的空间照片</span>](<span class="link_url">http://user.qzone.qq.com/505711559/infocenter</span>)
+</code></pre><p>效果如下：<br><img src="http://ww2.sinaimg.cn/large/b7ec873bgw1eaigtal1xbj20im0ce418.jpg" alt="我的空间照片"></p>
+<h3 id="<strong>连接定义语法</strong>："><strong>连接定义语法</strong>：</h3>
+<pre><code>[<span class="link_reference">foo</span>]:<span class="link_url"> http://example.com/  'Optional Title Here'</span>
+</code></pre><h3 id="例如:">例如:</h3>
+<pre><code>[<span class="link_reference">myblog</span>]:<span class="link_url"> http://loveliuli.github.io/ 'Optional Title Here'</span>
+</code></pre><h3 id="效果如下：">效果如下：</h3>
+<p>[myblog]: <a href="http://loveliuli.github.io/" target="_blank">http://loveliuli.github.io/</a>  ‘我的blog’</p>
 <p>参考的语法如下:</p>
-<pre><code>This is [an example][id] reference-style link.
-[id]: http://example.com/  &#39;Optional Title Here&#39;
-</code></pre><h1 id="-">十、其他</h1>
-<p>1、自动链接
-<code>&lt;http://loveliuli.github.io&gt;,效果如下</code>：
-    <a href="http://loveliuli.github.io" target="_blank">http://loveliuli.github.io</a></p>
-<p>2、转义字符
-Markdown 可以利用反斜杠来插入一些在语法中有其它意义的符号，
-例如：如果想要用星号加在文字旁边的方式来做出强调效果（但不用\<em\> 标签），可以在星号的前面加上反斜杠。
-如果我们需要输出星号，则需要转义：
-例如：<code>\*我不是斜线\*</code> 效果如下：
-*我不是斜线*</p>
-<p><code>*我又变成斜线啦*</code>
-<em>我又变成斜线啦</em>
-3、Markdown 支持在下面这些符号前面加上反斜杠来帮助插入普通的符号：</p>
+<pre><code>This is [<span class="link_label">an example</span>][<span class="link_reference">id</span>] reference-style link.
+[<span class="link_reference">id</span>]:<span class="link_url"> http://example.com/  'Optional Title Here'</span>
+</code></pre><h1 id="十、其他">十、其他</h1>
+<p>1、自动链接<br><code>&lt;http://loveliuli.github.io&gt;,效果如下</code>：<br>    <a href="http://loveliuli.github.io" target="_blank">http://loveliuli.github.io</a></p>
+<p>2、转义字符<br>Markdown 可以利用反斜杠来插入一些在语法中有其它意义的符号，<br>例如：如果想要用星号加在文字旁边的方式来做出强调效果（但不用\<em\> 标签），可以在星号的前面加上反斜杠。<br>如果我们需要输出星号，则需要转义：<br>例如：<code>\*我不是斜线\*</code> 效果如下：<br>*我不是斜线*</p>
+<p><code>*我又变成斜线啦*</code><br><em>我又变成斜线啦</em><br>3、Markdown 支持在下面这些符号前面加上反斜杠来帮助插入普通的符号：</p>
 <pre><code>\   反斜杠
 `   反引号
-*   星号
+<span class="bullet">*   </span>星号
 _   底线
 {}  大括号
 []  方括号
 ()  括号
-#   井字号
-+    加号
--    减号
+<span class="header">#   井字号</span>
+<span class="bullet">+    </span>加号
+<span class="bullet">-    </span>减号
 .   英文句点
 !   惊叹号
-</code></pre><h1 id="-">十一、结束语</h1>
-<p>以上几种格式是比较常用的格式，所以我们针对这些语法做了比较详细的说明。
-除这些之外，Markdown 还有其他语法，如想了解和学习更多，可以参考：
-<a href="http://wowubuntu.com/markdown/" target="_blank">『Markdown 语法说明-官方翻译』</a>。<br><a href="http://www.ituring.com.cn/article/504" target="_blank">『Markdown 语法详细说明-图灵社区』</a>。  </p>
+</code></pre><h1 id="十一、结束语">十一、结束语</h1>
+<p>以上几种格式是比较常用的格式，所以我们针对这些语法做了比较详细的说明。<br>除这些之外，Markdown 还有其他语法，如想了解和学习更多，可以参考：<br><a href="http://wowubuntu.com/markdown/" target="_blank">『Markdown 语法说明-官方翻译』</a>。<br><a href="http://www.ituring.com.cn/article/504" target="_blank">『Markdown 语法详细说明-图灵社区』</a>。  </p>
 
       
     </div>
