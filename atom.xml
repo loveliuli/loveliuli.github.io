@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Where there is a will, there is way。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://loveliuli.com/"/>
-  <updated>2014-04-13T03:43:01.548Z</updated>
+  <updated>2014-05-08T11:03:07.889Z</updated>
   <id>http://loveliuli.com/</id>
   
   <author>
@@ -13,6 +13,56 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[NFS报错：rpc.rquotad: unable to register service]]></title>
+    <link href="http://loveliuli.com/2014/05/08/nfs_error/"/>
+    <id>http://loveliuli.com/2014/05/08/nfs_error/</id>
+    <published>2014-05-08T10:40:56.000Z</published>
+    <updated>2014-05-08T11:02:29.000Z</updated>
+    <content type="html"><![CDATA[<p>今天准备在正式环境测试一下puppet,搭建仓库后,需要搭建一个nfs来进行文件共享,让下面发agnet通过nfs安装.<br>yum install nfs-utils成功后,启动nfs服务时,发现有如下报错信息:</p>
+<pre><code>[root@master ~]<span class="preprocessor"># service nfsd start</span>
+nfsd: unrecognized service
+[root@master ~]<span class="preprocessor"># service nfs start</span>
+Starting NFS services:  [  OK  ]
+Starting NFS quotas: Cannot register service: RPC: Unable <span class="keyword">to</span> receive; errno = Connection refused
+rpc.rquotad: unable <span class="keyword">to</span> register (RQUOTAPROG, RQUOTAVERS, udp).
+[FAILED]
+Starting NFS mountd: [FAILED]
+Starting NFS daemon: rpc.nfsd: writing fd <span class="keyword">to</span> kernel failed: errno <span class="number">111</span> (Connection refused)
+rpc.nfsd: unable <span class="keyword">to</span> <span class="keyword">set</span> any sockets <span class="keyword">for</span> nfsd
+[FAILED]
+</code></pre><p>从原因来看是由于不能注册服务,RPC不能接收.网上一查,发现原因如下:</p>
+<p>Redhat系列在6.0版本之后没有portmap服务控制rpc的启动，NFS和nfslock的启动需要向rpc进行注册，rpc不启动的话就会报错。</p>
+<hr>
+<p>解决方法：启动rpcbind&amp;rpcidmap rpcbind是6.0版本后默认的RPC服务，所以要先于nfs启动。<br>如果不启动rpcidmap则会造成用户权限的映射错误，用户的权限看起来是一串数字。<br>具体解决如下:</p>
+<pre><code>[root<span class="variable">@master</span> ~]<span class="comment"># service nfs start</span>
+<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">services:</span>  [  <span class="constant">OK</span>  ]
+<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">quotas:</span> <span class="constant">Cannot</span> register <span class="symbol">service:</span> <span class="constant">RPC</span><span class="symbol">:</span> <span class="constant">Unable</span> to receive; errno = <span class="constant">Connection</span> refused
+rpc.<span class="symbol">rquotad:</span> unable to register (<span class="constant">RQUOTAPROG</span>, <span class="constant">RQUOTAVERS</span>, udp).
+[<span class="constant">FAILED</span>]
+<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">mountd:</span> [<span class="constant">FAILED</span>]
+<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">daemon:</span> rpc.<span class="symbol">nfsd:</span> writing fd to kernel <span class="symbol">failed:</span> errno <span class="number">111</span> (<span class="constant">Connection</span> refused)
+rpc.<span class="symbol">nfsd:</span> unable to set any sockets <span class="keyword">for</span> nfsd
+[<span class="constant">FAILED</span>]
+[root<span class="variable">@master</span> ~]<span class="comment"># /etc/init.d/rpcbind start</span>
+<span class="constant">Starting</span> <span class="symbol">rpcbind:</span> [  <span class="constant">OK</span>  ]
+[root<span class="variable">@master</span> ~]<span class="comment"># /etc/init.d/rpcidmapd start</span>
+<span class="constant">Starting</span> <span class="constant">RPC</span> <span class="symbol">idmapd:</span> [  <span class="constant">OK</span>  ]
+[root<span class="variable">@master</span> ~]<span class="comment"># service nfs start</span>
+<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">services:</span>  [  <span class="constant">OK</span>  ]
+<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">quotas:</span> [  <span class="constant">OK</span>  ]
+<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">mountd:</span> [  <span class="constant">OK</span>  ]
+<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">daemon:</span> [  <span class="constant">OK</span>  ]
+[root<span class="variable">@master</span> ~]<span class="comment"># </span>
+</code></pre>]]></content>
+    
+    
+      <category term="NFS" scheme="http://loveliuli.com/tags/NFS/"/>
+    
+      <category term="linux服务" scheme="http://loveliuli.com/categories/linux%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
@@ -35,9 +85,8 @@
     <link href="http://loveliuli.com/2014/02/18/php_mcrypt/"/>
     <id>http://loveliuli.com/2014/02/18/php_mcrypt/</id>
     <published>2014-02-18T01:27:46.000Z</published>
-    <updated>2014-02-21T09:35:40.000Z</updated>
+    <updated>2014-05-08T11:00:21.000Z</updated>
     <content type="html"><![CDATA[<hr>
-<h2 id="问题的出现">问题的出现</h2>
 <p> 由于最近需要对php的模块进行扩展，所以进行了简单整理，过程如下。<a id="more"></a></p>
 <h2 id="问题的解决">问题的解决</h2>
 <pre><code><span class="shebang">#!/bin/bash</span>
@@ -128,7 +177,6 @@ mbstring
 <span class="tag">Zend</span> <span class="tag">Guard</span> <span class="tag">Loader</span>
 </code></pre>]]></content>
     <summary type="html"><![CDATA[<hr>
-<h2 id="问题的出现">问题的出现</h2>
 <p> 由于最近需要对php的模块进行扩展，所以进行了简单整理，过程如下。]]></summary>
     
       <category term="php_modules" scheme="http://loveliuli.com/tags/php_modules/"/>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>php_problem | Time Memory</title>
+  <title>NFS报错：rpc.rquotad: unable to register service | Time Memory</title>
   <meta name="author" content="Copyright By Qun.Xue  版权所有">
   
   <meta name="description" content="where there is will there is way">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="NFS报错：rpc.rquotad: unable to register service"/>
   <meta property="og:site_name" content="Time Memory"/>
 
   
@@ -201,25 +201,125 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title tag">php_problem</h2>
-
-
-  <div class="archive">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2014-01-27T01:27:46.000Z"><a href="/2014/01/27/php_problem/">1月 27 2014</a></time>
-            
-              <h1 class="title"><a href="/2014/01/27/php_problem/">php5.3.28 类型冲突</a></h1>
-            
-          </header>
-        </div>
-      </article>
+      <img src="">
     
   </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-05-08T10:40:56.000Z"><a href="/2014/05/08/nfs_error/">5月 8 2014</a></time>
+      
+      
+  
+    <h1 class="title">NFS报错：rpc.rquotad: unable to register service</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今天准备在正式环境测试一下puppet,搭建仓库后,需要搭建一个nfs来进行文件共享,让下面发agnet通过nfs安装.<br>yum install nfs-utils成功后,启动nfs服务时,发现有如下报错信息:</p>
+<pre><code>[root@master ~]<span class="preprocessor"># service nfsd start</span>
+nfsd: unrecognized service
+[root@master ~]<span class="preprocessor"># service nfs start</span>
+Starting NFS services:  [  OK  ]
+Starting NFS quotas: Cannot register service: RPC: Unable <span class="keyword">to</span> receive; errno = Connection refused
+rpc.rquotad: unable <span class="keyword">to</span> register (RQUOTAPROG, RQUOTAVERS, udp).
+[FAILED]
+Starting NFS mountd: [FAILED]
+Starting NFS daemon: rpc.nfsd: writing fd <span class="keyword">to</span> kernel failed: errno <span class="number">111</span> (Connection refused)
+rpc.nfsd: unable <span class="keyword">to</span> <span class="keyword">set</span> any sockets <span class="keyword">for</span> nfsd
+[FAILED]
+</code></pre><p>从原因来看是由于不能注册服务,RPC不能接收.网上一查,发现原因如下:</p>
+<p>Redhat系列在6.0版本之后没有portmap服务控制rpc的启动，NFS和nfslock的启动需要向rpc进行注册，rpc不启动的话就会报错。</p>
+<hr>
+<p>解决方法：启动rpcbind&amp;rpcidmap rpcbind是6.0版本后默认的RPC服务，所以要先于nfs启动。<br>如果不启动rpcidmap则会造成用户权限的映射错误，用户的权限看起来是一串数字。<br>具体解决如下:</p>
+<pre><code>[root<span class="variable">@master</span> ~]<span class="comment"># service nfs start</span>
+<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">services:</span>  [  <span class="constant">OK</span>  ]
+<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">quotas:</span> <span class="constant">Cannot</span> register <span class="symbol">service:</span> <span class="constant">RPC</span><span class="symbol">:</span> <span class="constant">Unable</span> to receive; errno = <span class="constant">Connection</span> refused
+rpc.<span class="symbol">rquotad:</span> unable to register (<span class="constant">RQUOTAPROG</span>, <span class="constant">RQUOTAVERS</span>, udp).
+[<span class="constant">FAILED</span>]
+<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">mountd:</span> [<span class="constant">FAILED</span>]
+<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">daemon:</span> rpc.<span class="symbol">nfsd:</span> writing fd to kernel <span class="symbol">failed:</span> errno <span class="number">111</span> (<span class="constant">Connection</span> refused)
+rpc.<span class="symbol">nfsd:</span> unable to set any sockets <span class="keyword">for</span> nfsd
+[<span class="constant">FAILED</span>]
+[root<span class="variable">@master</span> ~]<span class="comment"># /etc/init.d/rpcbind start</span>
+<span class="constant">Starting</span> <span class="symbol">rpcbind:</span> [  <span class="constant">OK</span>  ]
+[root<span class="variable">@master</span> ~]<span class="comment"># /etc/init.d/rpcidmapd start</span>
+<span class="constant">Starting</span> <span class="constant">RPC</span> <span class="symbol">idmapd:</span> [  <span class="constant">OK</span>  ]
+[root<span class="variable">@master</span> ~]<span class="comment"># service nfs start</span>
+<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">services:</span>  [  <span class="constant">OK</span>  ]
+<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">quotas:</span> [  <span class="constant">OK</span>  ]
+<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">mountd:</span> [  <span class="constant">OK</span>  ]
+<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">daemon:</span> [  <span class="constant">OK</span>  ]
+[root<span class="variable">@master</span> ~]<span class="comment"># </span>
+</code></pre>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/linux服务/">linux服务</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/NFS/">NFS</a>
+  </div>
+
+        <!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_tsina"></a>
+<a class="bds_qzone"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6861768" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"loveliuli"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+</section>
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
