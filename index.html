@@ -224,7 +224,7 @@
       
       
   
-    <h1 class="title"><a href="/2014/05/08/nfs_error/">NFS报错：rpc.rquotad: unable to register service</a></h1>
+    <h1 class="title"><a href="/2014/05/08/nfs_error/">NFS报错：rpc.rquotad: unable to register service|mount: wrong fs type, bad option, bad superblock</a></h1>
   
 
     </header>
@@ -265,6 +265,30 @@ rpc.<span class="symbol">nfsd:</span> unable to set any sockets <span class="key
 <span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">mountd:</span> [  <span class="constant">OK</span>  ]
 <span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">daemon:</span> [  <span class="constant">OK</span>  ]
 [root<span class="variable">@master</span> ~]<span class="comment"># </span>
+</code></pre><hr>
+<p>在客户端挂载nfs时,发现有如下问题:</p>
+<pre><code>root@agent1 media]<span class="preprocessor"># /bin/mount -t nfs 10.20.102.154:/puppet /media/</span>
+mount: wrong fs type, bad <span class="keyword">option</span>, bad superblock <span class="keyword">on</span> <span class="number">10.20</span><span class="number">.102</span><span class="number">.154</span>:/puppet,
+   missing codepage <span class="keyword">or</span> helper program, <span class="keyword">or</span> other <span class="keyword">error</span>
+   (<span class="keyword">for</span> several filesystems (e.g. nfs, cifs) you might
+   need a /sbin/mount.&lt;type&gt; helper program)
+   <span class="keyword">In</span> some cases useful info <span class="keyword">is</span> found <span class="keyword">in</span> syslog - <span class="keyword">try</span>
+   dmesg | tail  <span class="keyword">or</span> so
+</code></pre><p>解决方法是在客户端也需要启动rpcbind和rpcidmapd服务.</p>
+<pre><code>[root<span class="property">@agent1</span> ~]<span class="comment"># /etc/init.d/rpcbind start</span>
+Starting <span class="attribute">rpcbind</span>: [  OK  ]
+[root<span class="property">@agent1</span> ~]<span class="comment"># /etc/init.d/rpcidmapd start</span>
+Starting RPC <span class="attribute">idmapd</span>: [  OK  ]    
+[root<span class="property">@agent1</span> ~]<span class="comment"># mount -t nfs 10.20.102.154:/puppet /media</span>
+[root<span class="property">@agent1</span> ~]<span class="comment"># df -h</span>
+Filesystem            Size  Used Avail Use% Mounted <span class="literal">on</span>
+/dev/mapper/vg_centos6264-lv_root
+                   <span class="number">25</span>G   <span class="number">17</span>G  <span class="number">6.2</span>G  <span class="number">74</span>% /
+tmpfs                 <span class="number">1.5</span>G     <span class="number">0</span>  <span class="number">1.5</span>G   <span class="number">0</span>% /dev/shm
+/dev/vda1             <span class="number">485</span>M   <span class="number">51</span>M  <span class="number">409</span>M  <span class="number">11</span>% /boot
+<span class="number">10.20</span><span class="number">.102</span><span class="number">.154</span>:/puppet
+                   <span class="number">26</span>G   <span class="number">17</span>G  <span class="number">7.7</span>G  <span class="number">68</span>% /media
+[root<span class="property">@agent1</span> ~]<span class="comment"># </span>
 </code></pre>
       
     </div>
