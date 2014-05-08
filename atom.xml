@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Where there is a will, there is way。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://loveliuli.com/"/>
-  <updated>2014-05-08T11:38:59.082Z</updated>
+  <updated>2014-05-08T11:40:07.370Z</updated>
   <id>http://loveliuli.com/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <link href="http://loveliuli.com/2014/05/08/nfs_error/"/>
     <id>http://loveliuli.com/2014/05/08/nfs_error/</id>
     <published>2014-05-08T10:40:56.000Z</published>
-    <updated>2014-05-08T11:38:20.000Z</updated>
-    <content type="html"><![CDATA[<p>今天准备在正式环境测试一下puppet,搭建仓库后,需要搭建一个nfs来进行文件共享,让下面发agnet通过nfs安装.<br>yum install nfs-utils成功后,启动nfs服务时,发现有如下报错信息:</p>
+    <updated>2014-05-08T11:39:57.000Z</updated>
+    <content type="html"><![CDATA[<p>今天准备在正式环境测试一下puppet,搭建仓库后,需要搭建一个nfs来进行文件共享,让下面发agnet通过nfs安装.<a id="more"></a><br>yum install nfs-utils成功后,启动nfs服务时,发现有如下报错信息:</p>
 <pre><code>[root@master ~]<span class="preprocessor"># service nfsd start</span>
 nfsd: unrecognized service
 [root@master ~]<span class="preprocessor"># service nfs start</span>
@@ -80,7 +80,7 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
                    <span class="number">26</span>G   <span class="number">17</span>G  <span class="number">7.7</span>G  <span class="number">68</span>% /media
 [root<span class="property">@agent1</span> ~]<span class="comment"># </span>
 </code></pre>]]></content>
-    
+    <summary type="html"><![CDATA[<p>今天准备在正式环境测试一下puppet,搭建仓库后,需要搭建一个nfs来进行文件共享,让下面发agnet通过nfs安装.]]></summary>
     
       <category term="NFS" scheme="http://loveliuli.com/tags/NFS/"/>
     
