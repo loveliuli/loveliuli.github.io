@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Where there is a will, there is way。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://loveliuli.com/"/>
-  <updated>2014-05-08T11:40:52.840Z</updated>
+  <updated>2014-05-12T13:02:50.811Z</updated>
   <id>http://loveliuli.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://loveliuli.com/2014/05/08/nfs_error/"/>
     <id>http://loveliuli.com/2014/05/08/nfs_error/</id>
     <published>2014-05-08T10:40:56.000Z</published>
-    <updated>2014-05-08T11:39:57.000Z</updated>
+    <updated>2014-05-12T13:01:31.000Z</updated>
     <content type="html"><![CDATA[<p>今天准备在正式环境测试一下puppet,搭建仓库后,需要搭建一个nfs来进行文件共享,让下面发agnet通过nfs安装.<a id="more"></a><br>yum install nfs-utils成功后,启动nfs服务时,发现有如下报错信息:</p>
 <pre><code>[root@master ~]<span class="preprocessor"># service nfsd start</span>
 nfsd: unrecognized service
@@ -82,9 +82,73 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
 </code></pre>]]></content>
     <summary type="html"><![CDATA[<p>今天准备在正式环境测试一下puppet,搭建仓库后,需要搭建一个nfs来进行文件共享,让下面发agnet通过nfs安装.]]></summary>
     
-      <category term="NFS" scheme="http://loveliuli.com/tags/NFS/"/>
+      <category term="Nfs_error" scheme="http://loveliuli.com/tags/Nfs_error/"/>
     
-      <category term="linux服务" scheme="http://loveliuli.com/categories/linux%E6%9C%8D%E5%8A%A1/"/>
+      <category term="Linux应用服务" scheme="http://loveliuli.com/categories/Linux%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/hello-world8/"/>
+    <id>http://loveliuli.com/2014/02/21/hello-world8/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-12T13:00:18.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="安全" scheme="http://loveliuli.com/tags/%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="Linux网络安全" scheme="http://loveliuli.com/categories/Linux%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/hello-world5/"/>
+    <id>http://loveliuli.com/2014/02/21/hello-world5/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-12T12:59:15.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="集群" scheme="http://loveliuli.com/tags/%E9%9B%86%E7%BE%A4/"/>
+    
+      <category term="Linux集群管理" scheme="http://loveliuli.com/categories/Linux%E9%9B%86%E7%BE%A4%E7%AE%A1%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/hello-world4/"/>
+    <id>http://loveliuli.com/2014/02/21/hello-world4/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-12T12:57:47.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="性能" scheme="http://loveliuli.com/tags/%E6%80%A7%E8%83%BD/"/>
+    
+      <category term="Linux性能调优" scheme="http://loveliuli.com/categories/Linux%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/hello-world3/"/>
+    <id>http://loveliuli.com/2014/02/21/hello-world3/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-12T12:57:56.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="命令" scheme="http://loveliuli.com/tags/%E5%91%BD%E4%BB%A4/"/>
+    
+      <category term="Linux常用命令" scheme="http://loveliuli.com/categories/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
     
   </entry>
   
@@ -105,11 +169,59 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
   </entry>
   
   <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/hello-world2/"/>
+    <id>http://loveliuli.com/2014/02/21/hello-world2/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-12T12:58:02.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="基础" scheme="http://loveliuli.com/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="Linux基础知识" scheme="http://loveliuli.com/categories/Linux%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/hello-world7/"/>
+    <id>http://loveliuli.com/2014/02/21/hello-world7/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-12T13:00:01.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="网络" scheme="http://loveliuli.com/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="Linux网络知识" scheme="http://loveliuli.com/categories/Linux%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/hello-world6/"/>
+    <id>http://loveliuli.com/2014/02/21/hello-world6/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-12T12:59:39.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="编程" scheme="http://loveliuli.com/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Linux脚本编程" scheme="http://loveliuli.com/categories/Linux%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[php5.3上扩展mcrypt模块]]></title>
     <link href="http://loveliuli.com/2014/02/18/php_mcrypt/"/>
     <id>http://loveliuli.com/2014/02/18/php_mcrypt/</id>
     <published>2014-02-18T01:27:46.000Z</published>
-    <updated>2014-05-08T11:00:21.000Z</updated>
+    <updated>2014-05-12T12:52:30.000Z</updated>
     <content type="html"><![CDATA[<hr>
 <p> 由于最近需要对php的模块进行扩展，所以进行了简单整理，过程如下。<a id="more"></a></p>
 <h2 id="问题的解决">问题的解决</h2>
@@ -205,7 +317,7 @@ mbstring
     
       <category term="php_modules" scheme="http://loveliuli.com/tags/php_modules/"/>
     
-      <category term="php" scheme="http://loveliuli.com/categories/php/"/>
+      <category term="Linux应用服务" scheme="http://loveliuli.com/categories/Linux%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1/"/>
     
   </entry>
   
@@ -214,7 +326,7 @@ mbstring
     <link href="http://loveliuli.com/2014/01/27/php_problem/"/>
     <id>http://loveliuli.com/2014/01/27/php_problem/</id>
     <published>2014-01-27T01:27:46.000Z</published>
-    <updated>2014-03-20T07:58:39.000Z</updated>
+    <updated>2014-05-12T12:52:58.000Z</updated>
     <content type="html"><![CDATA[<hr>
 <h1 id="问题出现">问题出现</h1>
 <h4 id="由于最近公司扫描发现php和apache版本过低，有几个比较严重的漏洞，所以准备对php和apache进行升级。<!-more->">由于最近公司扫描发现php和apache版本过低，有几个比较严重的漏洞，所以准备对php和apache进行升级。<a id="more"></a></h4>
@@ -250,7 +362,7 @@ mbstring
     
       <category term="php_problem" scheme="http://loveliuli.com/tags/php_problem/"/>
     
-      <category term="php" scheme="http://loveliuli.com/categories/php/"/>
+      <category term="Linux应用服务" scheme="http://loveliuli.com/categories/Linux%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1/"/>
     
   </entry>
   
@@ -259,7 +371,7 @@ mbstring
     <link href="http://loveliuli.com/2013/11/29/laugh/"/>
     <id>http://loveliuli.com/2013/11/29/laugh/</id>
     <published>2013-11-29T02:48:19.000Z</published>
-    <updated>2014-04-11T02:34:20.000Z</updated>
+    <updated>2014-05-12T12:52:44.000Z</updated>
     <content type="html"><![CDATA[<h3 id="当你生活不如意时,当你工作不顺心时,当你遇到烦心事时……-">当你生活不如意时,当你工作不顺心时,当你遇到烦心事时…….</h3>
 <h3 id="请仔细阅读以下文字,也许可以帮助你走出困境-<!-more->">请仔细阅读以下文字,也许可以帮助你走出困境.<a id="more"></a></h3>
 <h3 id="<strong>我要笑遍世界。</strong>"><strong>我要笑遍世界。</strong></h3>
@@ -388,7 +500,7 @@ I will be <span class="keyword">the</span> greatest salesman <span class="keywor
     <link href="http://loveliuli.com/2013/11/11/puppet-01/"/>
     <id>http://loveliuli.com/2013/11/11/puppet-01/</id>
     <published>2013-11-11T14:35:44.000Z</published>
-    <updated>2014-02-18T08:35:28.000Z</updated>
+    <updated>2014-05-12T12:58:11.000Z</updated>
     <content type="html"><![CDATA[<p>本文档目标是描述Puppet的 manifest在系统上是如何工作。此过程相当复杂，但是一般也不需要了解其中太多的细节。整理此文档也正是为了那些想了解更多关于Puppet内部机制人更方便更直接理解。<a id="more"></a></p>
 <p>在介绍之前，我们先看两个关于Puppet的经典图。一方面希望这两幅图能帮助理解，另一方面也希望下面的解释能帮助理解这两幅图。<br>Puppet架构图</p>
 <p><img src="http://ww3.sinaimg.cn/large/b7ec873bgw1ednlygdpeuj209p04vjrk.jpg" alt="Puppet架构图"><br>Puppet工作流程图<br><img src="http://ww3.sinaimg.cn/large/b7ec873bgw1ednm9apav3j20j90a7dh8.jpg" alt="Puppet工作流程图"></p>
@@ -458,7 +570,7 @@ I will be <span class="keyword">the</span> greatest salesman <span class="keywor
     
       <category term="puppet" scheme="http://loveliuli.com/tags/puppet/"/>
     
-      <category term="puppet" scheme="http://loveliuli.com/categories/puppet/"/>
+      <category term="Linux常用工具" scheme="http://loveliuli.com/categories/Linux%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
@@ -467,7 +579,7 @@ I will be <span class="keyword">the</span> greatest salesman <span class="keywor
     <link href="http://loveliuli.com/2013/11/11/markdownsytax/"/>
     <id>http://loveliuli.com/2013/11/11/markdownsytax/</id>
     <published>2013-11-11T03:40:41.000Z</published>
-    <updated>2014-02-18T08:31:34.000Z</updated>
+    <updated>2014-05-12T12:55:06.000Z</updated>
     <content type="html"><![CDATA[<hr>
 <h1 id="概述">概述</h1>
 <p>Markdown 的目标是实现「易读易写」。不过最需要强调的便是它的可读性。<br>一份使用 Markdown 格式撰写的文档应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。<br>因此 Markdown 的语法全由标点符号所组成，并经过严谨慎选，是为了让它们看起来就像所要表达的意思。<br>像是在文字两旁加上星号，看起来就像<em>强调</em>。<br>Markdown 的列表看起来，嗯，就是列表。假如你用过电子邮件，区块引言看起来就真的像是引用一段文字。<a id="more"></a></p>
@@ -597,7 +709,7 @@ _   底线
     
       <category term="markdown" scheme="http://loveliuli.com/tags/markdown/"/>
     
-      <category term="Markdown" scheme="http://loveliuli.com/categories/Markdown/"/>
+      <category term="其他杂项" scheme="http://loveliuli.com/categories/%E5%85%B6%E4%BB%96%E6%9D%82%E9%A1%B9/"/>
     
   </entry>
   
