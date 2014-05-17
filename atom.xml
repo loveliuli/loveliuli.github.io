@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Where there is a will, there is way。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://loveliuli.com/"/>
-  <updated>2014-05-12T13:02:50.811Z</updated>
+  <updated>2014-05-17T14:25:07.491Z</updated>
   <id>http://loveliuli.com/</id>
   
   <author>
@@ -90,17 +90,33 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/hello-world8/"/>
-    <id>http://loveliuli.com/2014/02/21/hello-world8/</id>
+    <link href="http://loveliuli.com/2014/02/21/hello-world9/"/>
+    <id>http://loveliuli.com/2014/02/21/hello-world9/</id>
     <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-12T13:00:18.000Z</updated>
+    <updated>2014-05-13T01:58:05.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
 ]]></content>
     
     
-      <category term="安全" scheme="http://loveliuli.com/tags/%E5%AE%89%E5%85%A8/"/>
+      <category term="虚拟化" scheme="http://loveliuli.com/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
     
-      <category term="Linux网络安全" scheme="http://loveliuli.com/categories/Linux%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+      <category term="Linux虚拟化" scheme="http://loveliuli.com/categories/Linux%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/hello-world6/"/>
+    <id>http://loveliuli.com/2014/02/21/hello-world6/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-12T12:59:39.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="编程" scheme="http://loveliuli.com/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Linux脚本编程" scheme="http://loveliuli.com/categories/Linux%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
@@ -138,38 +154,6 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/hello-world3/"/>
-    <id>http://loveliuli.com/2014/02/21/hello-world3/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-12T12:57:56.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="命令" scheme="http://loveliuli.com/tags/%E5%91%BD%E4%BB%A4/"/>
-    
-      <category term="Linux常用命令" scheme="http://loveliuli.com/categories/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/hello-world/"/>
-    <id>http://loveliuli.com/2014/02/21/hello-world/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-04-11T03:27:20.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="生活领悟" scheme="http://loveliuli.com/tags/%E7%94%9F%E6%B4%BB%E9%A2%86%E6%82%9F/"/>
-    
-      <category term="生活领悟" scheme="http://loveliuli.com/categories/%E7%94%9F%E6%B4%BB%E9%A2%86%E6%82%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
     <link href="http://loveliuli.com/2014/02/21/hello-world2/"/>
     <id>http://loveliuli.com/2014/02/21/hello-world2/</id>
     <published>2014-02-21T08:36:12.000Z</published>
@@ -186,6 +170,38 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/hello-world3/"/>
+    <id>http://loveliuli.com/2014/02/21/hello-world3/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-12T12:57:56.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="命令" scheme="http://loveliuli.com/tags/%E5%91%BD%E4%BB%A4/"/>
+    
+      <category term="Linux常用命令" scheme="http://loveliuli.com/categories/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/hello-world8/"/>
+    <id>http://loveliuli.com/2014/02/21/hello-world8/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-12T13:00:18.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="安全" scheme="http://loveliuli.com/tags/%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="Linux网络安全" scheme="http://loveliuli.com/categories/Linux%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
     <link href="http://loveliuli.com/2014/02/21/hello-world7/"/>
     <id>http://loveliuli.com/2014/02/21/hello-world7/</id>
     <published>2014-02-21T08:36:12.000Z</published>
@@ -197,22 +213,6 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
       <category term="网络" scheme="http://loveliuli.com/tags/%E7%BD%91%E7%BB%9C/"/>
     
       <category term="Linux网络知识" scheme="http://loveliuli.com/categories/Linux%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/hello-world6/"/>
-    <id>http://loveliuli.com/2014/02/21/hello-world6/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-12T12:59:39.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="编程" scheme="http://loveliuli.com/tags/%E7%BC%96%E7%A8%8B/"/>
-    
-      <category term="Linux脚本编程" scheme="http://loveliuli.com/categories/Linux%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/"/>
     
   </entry>
   
@@ -371,9 +371,10 @@ mbstring
     <link href="http://loveliuli.com/2013/11/29/laugh/"/>
     <id>http://loveliuli.com/2013/11/29/laugh/</id>
     <published>2013-11-29T02:48:19.000Z</published>
-    <updated>2014-05-12T12:52:44.000Z</updated>
+    <updated>2014-05-13T01:44:42.000Z</updated>
     <content type="html"><![CDATA[<h3 id="当你生活不如意时,当你工作不顺心时,当你遇到烦心事时……-">当你生活不如意时,当你工作不顺心时,当你遇到烦心事时…….</h3>
 <h3 id="请仔细阅读以下文字,也许可以帮助你走出困境-<!-more->">请仔细阅读以下文字,也许可以帮助你走出困境.<a id="more"></a></h3>
+<h3 id="英文原文是来自美国作家”Og_Mandino”的畅销书”The_Greatest_Salesman_in_the_World-”-">英文原文是来自美国作家”Og Mandino”的畅销书”The Greatest Salesman in the World.”.</h3>
 <h3 id="<strong>我要笑遍世界。</strong>"><strong>我要笑遍世界。</strong></h3>
 <pre><code>只有人类才会笑。树木受伤时也会流“血”，禽兽也会 因痛苦和饥饿而哭嚎哀鸣，
 然而，只有我才具备笑的天赋，可以随时开怀大笑。
@@ -417,7 +418,7 @@ mbstring
 我要快乐。
 我要成功。
 我要成为世上最伟大的推销员。
-</code></pre><h1 id="英文版本">英文版本</h1>
+</code></pre><h1 id="英文版本,原文是来自美国作家”Og_Mandino”的畅销书”The_Greatest_Salesman_in_the_World-”">英文版本,原文是来自美国作家”Og Mandino”的畅销书”The Greatest Salesman in the World.”</h1>
 <h3 id="原文如下">原文如下</h3>
 <h3 id="<strong>I_will_laugh_at_the_world-</strong>"><strong>I will laugh at the world.</strong></h3>
 <pre><code>No living creature can laugh except humans.  
@@ -500,7 +501,7 @@ I will be <span class="keyword">the</span> greatest salesman <span class="keywor
     <link href="http://loveliuli.com/2013/11/11/puppet-01/"/>
     <id>http://loveliuli.com/2013/11/11/puppet-01/</id>
     <published>2013-11-11T14:35:44.000Z</published>
-    <updated>2014-05-12T12:58:11.000Z</updated>
+    <updated>2014-05-13T02:03:30.000Z</updated>
     <content type="html"><![CDATA[<p>本文档目标是描述Puppet的 manifest在系统上是如何工作。此过程相当复杂，但是一般也不需要了解其中太多的细节。整理此文档也正是为了那些想了解更多关于Puppet内部机制人更方便更直接理解。<a id="more"></a></p>
 <p>在介绍之前，我们先看两个关于Puppet的经典图。一方面希望这两幅图能帮助理解，另一方面也希望下面的解释能帮助理解这两幅图。<br>Puppet架构图</p>
 <p><img src="http://ww3.sinaimg.cn/large/b7ec873bgw1ednlygdpeuj209p04vjrk.jpg" alt="Puppet架构图"><br>Puppet工作流程图<br><img src="http://ww3.sinaimg.cn/large/b7ec873bgw1ednm9apav3j20j90a7dh8.jpg" alt="Puppet工作流程图"></p>
@@ -570,7 +571,7 @@ I will be <span class="keyword">the</span> greatest salesman <span class="keywor
     
       <category term="puppet" scheme="http://loveliuli.com/tags/puppet/"/>
     
-      <category term="Linux常用工具" scheme="http://loveliuli.com/categories/Linux%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/"/>
+      <category term="Linux应用工具" scheme="http://loveliuli.com/categories/Linux%E5%BA%94%E7%94%A8%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
