@@ -220,30 +220,18 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-02-21T08:36:12.000Z"><a href="/2014/02/21/monitor/monitor_01/">2月 21 2014</a></time>
+        <time datetime="2014-02-21T08:36:12.000Z"><a href="/2014/02/21/virtual/virtual_01/">2月 21 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2014/02/21/monitor/monitor_01/">Not all processes could be identified</a></h1>
+    <h1 class="title"><a href="/2014/02/21/virtual/virtual_01/">Welcome to my blog</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p><strong>Zabbix log里面发现”Not all processes could be identified”报错</strong><br>在zabbix_agentd.conf里添加了一条监控项:</p>
-<pre><code>UserParameter=linux.people[<span class="variable">*]</span>,netstat -antp|<span class="keyword">grep</span> <span class="string">'$1'</span>|<span class="keyword">grep</span> -v LISTEN|wc -l
-</code></pre><p>重启代理进程后,发现监控里的值为0，看了下日志发现不停地输出如下的log:</p>
-<pre><code>(<span class="keyword">Not</span> <span class="keyword">all</span> processes could be identified, non-owned <span class="keyword">process</span> info 
-will <span class="keyword">not</span> be shown, you would have <span class="keyword">to</span> be root <span class="keyword">to</span> see it <span class="keyword">all</span>.)
-</code></pre><p>一直没找到问题所在,虽然在server端采集数据是没有任何问题,但是客户端的log中会一直报这个错误,后来su到zabbix用户执行了一下该命令,才发现了问题所在.<br>原来是netstat -lantup里的<strong>-p</strong>参数需要<strong>root</strong>用户才能使用,所以结果值总是为0.<br>修改如下:<br>UserParameter=linux.people[*],netstat -ant|grep ‘$1’|grep -v LISTEN|wc -l<br>重启后正常了.</p>
-<p>不能使用root,有时候执行一些命令还确实不方便.为了能让zabbix执行一些需要root才能支持的命令、参数等，只有使用sudo，解决步骤如下：</p>
-<pre><code><span class="comment"># groupadd monitor</span>
-<span class="comment"># usermod -G zabbix</span>
-<span class="comment"># visudo -f /etc/sudoers                   #增加最后两行,并且注释掉Defaults    requiretty</span>
-<span class="comment">#Defaults    requiretty          #一定要注释掉</span>
-<span class="constant">Cmnd_Alias</span> <span class="constant">MONITORING</span> = <span class="regexp">/bin/netstat</span>,<span class="regexp">/sbin/sudo</span>   <span class="comment">#以后还需要添加什么命令添加到后面即可</span>
-%monitor        <span class="constant">ALL</span>=(root) <span class="constant">NOPASSWD</span><span class="symbol">:MONITORING</span>
-</code></pre>
+        <p>Welcome to my blog!.</p>
+
       
     </div>
     <footer>
@@ -276,11 +264,11 @@ will <span class="keyword">not</span> be shown, you would have <span class="keyw
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-02-21T08:36:12.000Z"><a href="/2014/02/21/command/commd_01/">2月 21 2014</a></time>
+        <time datetime="2014-02-21T08:36:12.000Z"><a href="/2014/02/21/datebase/datebase_01/">2月 21 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2014/02/21/command/commd_01/">Welcome to my blog</a></h1>
+    <h1 class="title"><a href="/2014/02/21/datebase/datebase_01/">Welcome to my blog</a></h1>
   
 
     </header>

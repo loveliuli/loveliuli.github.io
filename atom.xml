@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Where there is a will, there is way。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://loveliuli.com/"/>
-  <updated>2014-07-31T06:08:19.239Z</updated>
+  <updated>2014-07-31T06:15:01.810Z</updated>
   <id>http://loveliuli.com/</id>
   
   <author>
@@ -19,9 +19,9 @@
     <link href="http://loveliuli.com/2014/07/31/monitor/monitor_02/"/>
     <id>http://loveliuli.com/2014/07/31/monitor/monitor_02/</id>
     <published>2014-07-31T05:11:12.000Z</published>
-    <updated>2014-07-31T06:05:31.000Z</updated>
+    <updated>2014-07-31T06:12:16.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-下载安装包(zabbix-2-2-4-tar-gz)">1.下载安装包(zabbix-2.2.4.tar.gz)</h3>
-<p><a href="http://www.zabbix.com/download.php" target="_blank">http://www.zabbix.com/download.php</a><br>由于目前server安装的最新稳定版本2.2.4,所以agent端安装不得高于server端版本,且agent端一般改动比较小,所以安装2.2.1(stable)和2.2.4(stable)都行.<br>说明:由于线上已经安装了一套agent环境,为了不引起冲突,所以本次安装时,选择了源码编译,自己指定安装路径和进程启动用户.正常情况下建议使用rpm安装.</p>
+<p><a href="http://www.zabbix.com/download.php" target="_blank">http://www.zabbix.com/download.php</a><br>由于目前server安装的最新稳定版本2.2.4,所以agent端安装不得高于server端版本,且agent端一般改动比较小,所以安装2.2.1(stable)和2.2.4(stable)都行.<a id="more"></a><br>说明:由于线上已经安装了一套agent环境,为了不引起冲突,所以本次安装时,选择了源码编译,自己指定安装路径和进程启动用户.正常情况下建议使用rpm安装.</p>
 <h3 id="2-安装">2.安装</h3>
 <h4 id="2-1_zabbix安装目录:_/etc/zabbix_agentd_om">2.1 zabbix安装目录: /etc/zabbix_agentd_om</h4>
 <pre><code><span class="keyword">mkdir</span> -p /etc/zabbix_agentd_om
@@ -115,7 +115,36 @@ chkconfig zabbix_agent_om <span class="command"><span class="keyword">on</span><
 </code></pre><h3 id="7-防火墙设置">7.防火墙设置</h3>
 <p>在agent需要允许能和server端通讯,记得保存iptables.</p>
 ]]></content>
+    <summary type="html"><![CDATA[<h3 id="1-下载安装包(zabbix-2-2-4-tar-gz)">1.下载安装包(zabbix-2.2.4.tar.gz)</h3>
+<p><a href="http://www.zabbix.com/download.php" target="_blank">http://www.zabbix.com/download.php</a><br>由于目前server安装的最新稳定版本2.2.4,所以agent端安装不得高于server端版本,且agent端一般改动比较小,所以安装2.2.1(stable)和2.2.4(stable)都行.]]></summary>
     
+      <category term="monitor" scheme="http://loveliuli.com/tags/monitor/"/>
+    
+      <category term="监控" scheme="http://loveliuli.com/categories/%E7%9B%91%E6%8E%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Not all processes could be identified]]></title>
+    <link href="http://loveliuli.com/2014/07/30/monitor/monitor_01/"/>
+    <id>http://loveliuli.com/2014/07/30/monitor/monitor_01/</id>
+    <published>2014-07-30T08:36:12.000Z</published>
+    <updated>2014-07-31T06:13:56.000Z</updated>
+    <content type="html"><![CDATA[<p><strong>Zabbix log里面发现”Not all processes could be identified”报错</strong><br>在zabbix_agentd.conf里添加了一条监控项:<a id="more"></a></p>
+<pre><code>UserParameter=linux.people[<span class="variable">*]</span>,netstat -antp|<span class="keyword">grep</span> <span class="string">'$1'</span>|<span class="keyword">grep</span> -v LISTEN|wc -l
+</code></pre><p>重启代理进程后,发现监控里的值为0，看了下日志发现不停地输出如下的log:</p>
+<pre><code>(<span class="keyword">Not</span> <span class="keyword">all</span> processes could be identified, non-owned <span class="keyword">process</span> info 
+will <span class="keyword">not</span> be shown, you would have <span class="keyword">to</span> be root <span class="keyword">to</span> see it <span class="keyword">all</span>.)
+</code></pre><p>一直没找到问题所在,虽然在server端采集数据是没有任何问题,但是客户端的log中会一直报这个错误,后来su到zabbix用户执行了一下该命令,才发现了问题所在.<br>原来是netstat -lantup里的<strong>-p</strong>参数需要<strong>root</strong>用户才能使用,所以结果值总是为0.<br>修改如下:<br>UserParameter=linux.people[*],netstat -ant|grep ‘$1’|grep -v LISTEN|wc -l<br>重启后正常了.</p>
+<p>不能使用root,有时候执行一些命令还确实不方便.为了能让zabbix执行一些需要root才能支持的命令、参数等，只有使用sudo，解决步骤如下：</p>
+<pre><code><span class="comment"># groupadd monitor</span>
+<span class="comment"># usermod -G zabbix</span>
+<span class="comment"># visudo -f /etc/sudoers                   #增加最后两行,并且注释掉Defaults    requiretty</span>
+<span class="comment">#Defaults    requiretty          #一定要注释掉</span>
+<span class="constant">Cmnd_Alias</span> <span class="constant">MONITORING</span> = <span class="regexp">/bin/netstat</span>,<span class="regexp">/sbin/sudo</span>   <span class="comment">#以后还需要添加什么命令添加到后面即可</span>
+%monitor        <span class="constant">ALL</span>=(root) <span class="constant">NOPASSWD</span><span class="symbol">:MONITORING</span>
+</code></pre>]]></content>
+    <summary type="html"><![CDATA[<p><strong>Zabbix log里面发现”Not all processes could be identified”报错</strong><br>在zabbix_agentd.conf里添加了一条监控项:]]></summary>
     
       <category term="monitor" scheme="http://loveliuli.com/tags/monitor/"/>
     
@@ -199,38 +228,6 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/virtual/virtual_01/"/>
-    <id>http://loveliuli.com/2014/02/21/virtual/virtual_01/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T09:54:20.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="virtualization" scheme="http://loveliuli.com/tags/virtualization/"/>
-    
-      <category term="虚拟化" scheme="http://loveliuli.com/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/datebase/datebase_01/"/>
-    <id>http://loveliuli.com/2014/02/21/datebase/datebase_01/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T09:51:08.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="database" scheme="http://loveliuli.com/tags/database/"/>
-    
-      <category term="数据库" scheme="http://loveliuli.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
     <link href="http://loveliuli.com/2014/02/21/security/security_01/"/>
     <id>http://loveliuli.com/2014/02/21/security/security_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
@@ -279,17 +276,17 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/cluster/cluster_01/"/>
-    <id>http://loveliuli.com/2014/02/21/cluster/cluster_01/</id>
+    <link href="http://loveliuli.com/2014/02/21/command/commd_01/"/>
+    <id>http://loveliuli.com/2014/02/21/command/commd_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T09:53:07.000Z</updated>
+    <updated>2014-05-23T11:35:17.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
 ]]></content>
     
     
-      <category term="cluster" scheme="http://loveliuli.com/tags/cluster/"/>
+      <category term="command" scheme="http://loveliuli.com/tags/command/"/>
     
-      <category term="集群" scheme="http://loveliuli.com/categories/%E9%9B%86%E7%BE%A4/"/>
+      <category term="命令" scheme="http://loveliuli.com/categories/%E5%91%BD%E4%BB%A4/"/>
     
   </entry>
   
@@ -311,6 +308,22 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/cluster/cluster_01/"/>
+    <id>http://loveliuli.com/2014/02/21/cluster/cluster_01/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-23T09:53:07.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="cluster" scheme="http://loveliuli.com/tags/cluster/"/>
+    
+      <category term="集群" scheme="http://loveliuli.com/categories/%E9%9B%86%E7%BE%A4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
     <link href="http://loveliuli.com/2014/02/21/base/base_01/"/>
     <id>http://loveliuli.com/2014/02/21/base/base_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
@@ -326,46 +339,34 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
   </entry>
   
   <entry>
-    <title><![CDATA[Not all processes could be identified]]></title>
-    <link href="http://loveliuli.com/2014/02/21/monitor/monitor_01/"/>
-    <id>http://loveliuli.com/2014/02/21/monitor/monitor_01/</id>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/virtual/virtual_01/"/>
+    <id>http://loveliuli.com/2014/02/21/virtual/virtual_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-07-31T05:10:07.000Z</updated>
-    <content type="html"><![CDATA[<p><strong>Zabbix log里面发现”Not all processes could be identified”报错</strong><br>在zabbix_agentd.conf里添加了一条监控项:</p>
-<pre><code>UserParameter=linux.people[<span class="variable">*]</span>,netstat -antp|<span class="keyword">grep</span> <span class="string">'$1'</span>|<span class="keyword">grep</span> -v LISTEN|wc -l
-</code></pre><p>重启代理进程后,发现监控里的值为0，看了下日志发现不停地输出如下的log:</p>
-<pre><code>(<span class="keyword">Not</span> <span class="keyword">all</span> processes could be identified, non-owned <span class="keyword">process</span> info 
-will <span class="keyword">not</span> be shown, you would have <span class="keyword">to</span> be root <span class="keyword">to</span> see it <span class="keyword">all</span>.)
-</code></pre><p>一直没找到问题所在,虽然在server端采集数据是没有任何问题,但是客户端的log中会一直报这个错误,后来su到zabbix用户执行了一下该命令,才发现了问题所在.<br>原来是netstat -lantup里的<strong>-p</strong>参数需要<strong>root</strong>用户才能使用,所以结果值总是为0.<br>修改如下:<br>UserParameter=linux.people[*],netstat -ant|grep ‘$1’|grep -v LISTEN|wc -l<br>重启后正常了.</p>
-<p>不能使用root,有时候执行一些命令还确实不方便.为了能让zabbix执行一些需要root才能支持的命令、参数等，只有使用sudo，解决步骤如下：</p>
-<pre><code><span class="comment"># groupadd monitor</span>
-<span class="comment"># usermod -G zabbix</span>
-<span class="comment"># visudo -f /etc/sudoers                   #增加最后两行,并且注释掉Defaults    requiretty</span>
-<span class="comment">#Defaults    requiretty          #一定要注释掉</span>
-<span class="constant">Cmnd_Alias</span> <span class="constant">MONITORING</span> = <span class="regexp">/bin/netstat</span>,<span class="regexp">/sbin/sudo</span>   <span class="comment">#以后还需要添加什么命令添加到后面即可</span>
-%monitor        <span class="constant">ALL</span>=(root) <span class="constant">NOPASSWD</span><span class="symbol">:MONITORING</span>
-</code></pre>]]></content>
+    <updated>2014-05-23T09:54:20.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
     
     
-      <category term="monitor" scheme="http://loveliuli.com/tags/monitor/"/>
+      <category term="virtualization" scheme="http://loveliuli.com/tags/virtualization/"/>
     
-      <category term="监控" scheme="http://loveliuli.com/categories/%E7%9B%91%E6%8E%A7/"/>
+      <category term="虚拟化" scheme="http://loveliuli.com/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/command/commd_01/"/>
-    <id>http://loveliuli.com/2014/02/21/command/commd_01/</id>
+    <link href="http://loveliuli.com/2014/02/21/datebase/datebase_01/"/>
+    <id>http://loveliuli.com/2014/02/21/datebase/datebase_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T11:35:17.000Z</updated>
+    <updated>2014-05-23T09:51:08.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
 ]]></content>
     
     
-      <category term="command" scheme="http://loveliuli.com/tags/command/"/>
+      <category term="database" scheme="http://loveliuli.com/tags/database/"/>
     
-      <category term="命令" scheme="http://loveliuli.com/categories/%E5%91%BD%E4%BB%A4/"/>
+      <category term="数据库" scheme="http://loveliuli.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
