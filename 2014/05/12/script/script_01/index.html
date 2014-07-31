@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Welcome to my blog | Time Memory</title>
+  <title>linux测试即时网速 | Time Memory</title>
   <meta name="author" content="Copyright By Qun.Xue  版权所有">
   
   <meta name="description" content="where there is will there is way">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Welcome to my blog"/>
+  <meta property="og:title" content="linux测试即时网速"/>
   <meta property="og:site_name" content="Time Memory"/>
 
   
@@ -219,18 +219,48 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-02-21T08:36:12.000Z"><a href="/2014/02/21/script/script_01/">2月 21 2014</a></time>
+        <time datetime="2014-05-12T12:59:19.000Z"><a href="/2014/05/12/script/script_01/">5月 12 2014</a></time>
       
       
   
-    <h1 class="title">Welcome to my blog</h1>
+    <h1 class="title">linux测试即时网速</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>Welcome to my blog!.</p>
+        <h3 id="平时在测试客户端网速时,linux上没有好的工具,只好自己写脚本来进行测试,以下是我平时实用的一个测试脚本工具,比较简单,仅供参考-<!-more->">平时在测试客户端网速时,linux上没有好的工具,只好自己写脚本来进行测试,以下是我平时实用的一个测试脚本工具,比较简单,仅供参考.<a id="more"></a></h3>
+<h3 id="Cat_bw_test-sh">Cat bw_test.sh</h3>
+<pre><code><span class="shebang">#!/bin/bash</span>
+<span class="function"><span class="title">out</span></span>()
+{
+<span class="keyword">exit</span>
+}
 
+trap <span class="string">"out"</span> <span class="number">2</span>
+
+<span class="keyword">while</span> <span class="literal">true</span>
+<span class="keyword">do</span>
+string1=`ifconfig <span class="variable">$1</span> | grep <span class="string">"bytes"</span> | awk <span class="string">'{printf $2}'</span>`
+rx1=<span class="variable">${string1##bytes:}</span>
+string2=`ifconfig <span class="variable">$1</span> | grep <span class="string">"bytes"</span> | awk <span class="string">'{printf $6}'</span>`
+tx1=<span class="variable">${string2##bytes:}</span>
+sleep <span class="number">1</span>
+clear
+string3=`ifconfig <span class="variable">$1</span> | grep <span class="string">"bytes"</span> | awk <span class="string">'{printf $2}'</span>`
+rx2=<span class="variable">${string3##bytes:}</span>
+string4=`ifconfig <span class="variable">$1</span> | grep <span class="string">"bytes"</span> | awk <span class="string">'{printf $6}'</span>`
+tx2=<span class="variable">${string4##bytes:}</span>
+<span class="comment">#echo $rx1</span>
+<span class="comment">#echo $rx2</span>
+temp=`expr <span class="variable">$rx2</span> - <span class="variable">$rx1</span>`
+r1=`expr <span class="variable">$temp</span> / <span class="number">1024</span>`
+<span class="built_in">echo</span> 当前下载速度:<span class="variable">$r1</span> kB/s
+temp=`expr <span class="variable">$tx2</span> - <span class="variable">$tx1</span>`
+r2=`expr <span class="variable">$temp</span> / <span class="number">1024</span>`
+<span class="built_in">echo</span> 当前上传速度:<span class="variable">$r2</span> KB/s
+<span class="keyword">done</span>
+</code></pre>
       
     </div>
     <footer>

@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Where there is a will, there is way。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://loveliuli.com/"/>
-  <updated>2014-07-31T06:18:10.594Z</updated>
+  <updated>2014-07-31T14:24:04.478Z</updated>
   <id>http://loveliuli.com/</id>
   
   <author>
@@ -153,6 +153,52 @@ will <span class="keyword">not</span> be shown, you would have <span class="keyw
   </entry>
   
   <entry>
+    <title><![CDATA[linux测试即时网速]]></title>
+    <link href="http://loveliuli.com/2014/05/12/script/script_01/"/>
+    <id>http://loveliuli.com/2014/05/12/script/script_01/</id>
+    <published>2014-05-12T12:59:19.000Z</published>
+    <updated>2014-07-31T14:22:47.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="平时在测试客户端网速时,linux上没有好的工具,只好自己写脚本来进行测试,以下是我平时实用的一个测试脚本工具,比较简单,仅供参考-<!-more->">平时在测试客户端网速时,linux上没有好的工具,只好自己写脚本来进行测试,以下是我平时实用的一个测试脚本工具,比较简单,仅供参考.<a id="more"></a></h3>
+<h3 id="Cat_bw_test-sh">Cat bw_test.sh</h3>
+<pre><code><span class="shebang">#!/bin/bash</span>
+<span class="function"><span class="title">out</span></span>()
+{
+<span class="keyword">exit</span>
+}
+
+trap <span class="string">"out"</span> <span class="number">2</span>
+
+<span class="keyword">while</span> <span class="literal">true</span>
+<span class="keyword">do</span>
+string1=`ifconfig <span class="variable">$1</span> | grep <span class="string">"bytes"</span> | awk <span class="string">'{printf $2}'</span>`
+rx1=<span class="variable">${string1##bytes:}</span>
+string2=`ifconfig <span class="variable">$1</span> | grep <span class="string">"bytes"</span> | awk <span class="string">'{printf $6}'</span>`
+tx1=<span class="variable">${string2##bytes:}</span>
+sleep <span class="number">1</span>
+clear
+string3=`ifconfig <span class="variable">$1</span> | grep <span class="string">"bytes"</span> | awk <span class="string">'{printf $2}'</span>`
+rx2=<span class="variable">${string3##bytes:}</span>
+string4=`ifconfig <span class="variable">$1</span> | grep <span class="string">"bytes"</span> | awk <span class="string">'{printf $6}'</span>`
+tx2=<span class="variable">${string4##bytes:}</span>
+<span class="comment">#echo $rx1</span>
+<span class="comment">#echo $rx2</span>
+temp=`expr <span class="variable">$rx2</span> - <span class="variable">$rx1</span>`
+r1=`expr <span class="variable">$temp</span> / <span class="number">1024</span>`
+<span class="built_in">echo</span> 当前下载速度:<span class="variable">$r1</span> kB/s
+temp=`expr <span class="variable">$tx2</span> - <span class="variable">$tx1</span>`
+r2=`expr <span class="variable">$temp</span> / <span class="number">1024</span>`
+<span class="built_in">echo</span> 当前上传速度:<span class="variable">$r2</span> KB/s
+<span class="keyword">done</span>
+</code></pre>]]></content>
+    <summary type="html"><![CDATA[<h3 id="平时在测试客户端网速时,linux上没有好的工具,只好自己写脚本来进行测试,以下是我平时实用的一个测试脚本工具,比较简单,仅供参考-<!-more->">平时在测试客户端网速时,linux上没有好的工具,只好自己写脚本来进行测试,以下是我平时实用的一个测试脚本工具,比较简单,仅供参考.]]></summary>
+    
+      <category term="script" scheme="http://loveliuli.com/tags/script/"/>
+    
+      <category term="脚本" scheme="http://loveliuli.com/categories/%E8%84%9A%E6%9C%AC/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[NFS报错：rpc.rquotad: unable to register service|mount: wrong fs type, bad option, bad superblock]]></title>
     <link href="http://loveliuli.com/2014/05/08/app/app_01_nfs_error/"/>
     <id>http://loveliuli.com/2014/05/08/app/app_01_nfs_error/</id>
@@ -228,17 +274,17 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/command/commd_01/"/>
-    <id>http://loveliuli.com/2014/02/21/command/commd_01/</id>
+    <link href="http://loveliuli.com/2014/02/21/virtual/virtual_01/"/>
+    <id>http://loveliuli.com/2014/02/21/virtual/virtual_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T11:35:17.000Z</updated>
+    <updated>2014-05-23T09:54:20.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
 ]]></content>
     
     
-      <category term="command" scheme="http://loveliuli.com/tags/command/"/>
+      <category term="virtualization" scheme="http://loveliuli.com/tags/virtualization/"/>
     
-      <category term="命令" scheme="http://loveliuli.com/categories/%E5%91%BD%E4%BB%A4/"/>
+      <category term="虚拟化" scheme="http://loveliuli.com/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
     
   </entry>
   
@@ -260,22 +306,6 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/script/script_01/"/>
-    <id>http://loveliuli.com/2014/02/21/script/script_01/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T11:35:13.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="script" scheme="http://loveliuli.com/tags/script/"/>
-    
-      <category term="脚本" scheme="http://loveliuli.com/categories/%E8%84%9A%E6%9C%AC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
     <link href="http://loveliuli.com/2014/02/21/performance/Performance_01/"/>
     <id>http://loveliuli.com/2014/02/21/performance/Performance_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
@@ -287,22 +317,6 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
       <category term="Performance tuning" scheme="http://loveliuli.com/tags/Performance%20tuning/"/>
     
       <category term="优化" scheme="http://loveliuli.com/categories/%E4%BC%98%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/cluster/cluster_01/"/>
-    <id>http://loveliuli.com/2014/02/21/cluster/cluster_01/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T09:53:07.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="cluster" scheme="http://loveliuli.com/tags/cluster/"/>
-    
-      <category term="集群" scheme="http://loveliuli.com/categories/%E9%9B%86%E7%BE%A4/"/>
     
   </entry>
   
@@ -324,17 +338,33 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/virtual/virtual_01/"/>
-    <id>http://loveliuli.com/2014/02/21/virtual/virtual_01/</id>
+    <link href="http://loveliuli.com/2014/02/21/cluster/cluster_01/"/>
+    <id>http://loveliuli.com/2014/02/21/cluster/cluster_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T09:54:20.000Z</updated>
+    <updated>2014-05-23T09:53:07.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
 ]]></content>
     
     
-      <category term="virtualization" scheme="http://loveliuli.com/tags/virtualization/"/>
+      <category term="cluster" scheme="http://loveliuli.com/tags/cluster/"/>
     
-      <category term="虚拟化" scheme="http://loveliuli.com/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+      <category term="集群" scheme="http://loveliuli.com/categories/%E9%9B%86%E7%BE%A4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/network/network_01/"/>
+    <id>http://loveliuli.com/2014/02/21/network/network_01/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-23T09:54:04.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="network" scheme="http://loveliuli.com/tags/network/"/>
+    
+      <category term="网络" scheme="http://loveliuli.com/categories/%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
@@ -356,17 +386,17 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/network/network_01/"/>
-    <id>http://loveliuli.com/2014/02/21/network/network_01/</id>
+    <link href="http://loveliuli.com/2014/02/21/command/commd_01/"/>
+    <id>http://loveliuli.com/2014/02/21/command/commd_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T09:54:04.000Z</updated>
+    <updated>2014-05-23T11:35:17.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
 ]]></content>
     
     
-      <category term="network" scheme="http://loveliuli.com/tags/network/"/>
+      <category term="command" scheme="http://loveliuli.com/tags/command/"/>
     
-      <category term="网络" scheme="http://loveliuli.com/categories/%E7%BD%91%E7%BB%9C/"/>
+      <category term="命令" scheme="http://loveliuli.com/categories/%E5%91%BD%E4%BB%A4/"/>
     
   </entry>
   
