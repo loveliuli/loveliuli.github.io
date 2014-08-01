@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Where there is a will, there is way。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://loveliuli.com/"/>
-  <updated>2014-08-01T13:33:54.496Z</updated>
+  <updated>2014-08-01T13:40:08.670Z</updated>
   <id>http://loveliuli.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://loveliuli.com/2014/08/01/monitor/monitor_03/"/>
     <id>http://loveliuli.com/2014/08/01/monitor/monitor_03/</id>
     <published>2014-08-01T13:36:12.000Z</published>
-    <updated>2014-08-01T13:32:13.000Z</updated>
+    <updated>2014-08-01T13:37:56.000Z</updated>
     <content type="html"><![CDATA[<h2 id="一-zabbix的zatree插件安装">一.zabbix的zatree插件安装</h2>
 <p>zabbix最近出了个比较有用的插件zatree,能够将所有的graph总体显示,而且可以根据关键字和时间进行查询以及汇总.<a id="more"></a><br>以下是zabbix-2.2.*版本的zatree安装,其他方式大家也可以去github项目获取安装方式.<br>    [github项目链接]: <a href="https://github.com/spide4k/zatree/tree/master/zabbix-2.2.x" target="_blank">https://github.com/spide4k/zatree/tree/master/zabbix-2.2.x</a>  嘿嘿,下面开始插件安装吧.</p>
 <h3 id="1-下载文件">1.下载文件</h3>
@@ -49,8 +49,10 @@ cd $ZABBIX_PATH/zatree/addfile
 
 <span class="string">'passowrd'</span>=&gt;<span class="string">'xxx'</span>, <span class="comment">//web登陆的密码</span>
 </code></pre><h2 id="二-zatree优化之左侧栏目按照主机组显示">二.zatree优化之左侧栏目按照主机组显示</h2>
-<p>admin用户效果图:<br><img src="http://ww4.sinaimg.cn/large/b7ec873bgw1eixfrybl7kj20gr04vjru.jpg" alt="admin用户看到的组效果"></p>
-<p>普通用户效果图:<br><img src="http://ww1.sinaimg.cn/large/b7ec873bgw1eixg0haajlj20h5038gls.jpg" alt="普通用户看到的组效果"></p>
+<p>admin用户效果图:</p>
+<p><img src="http://ww4.sinaimg.cn/large/b7ec873bgw1eixfrybl7kj20gr04vjru.jpg" alt="admin用户看到的组效果"></p>
+<p>普通用户效果图:</p>
+<p><img src="http://ww1.sinaimg.cn/large/b7ec873bgw1eixg0haajlj20h5038gls.jpg" alt="普通用户看到的组效果"></p>
 <p>优化法如下，这里针对zatree的zabbix-2.2.x版本做修改，方法同样适合zabbix-2.0.x版本：<br>进入zatree目录，修改以下两个文件：<br><strong>第一步：zabbix_ajax.php</strong><br>传递$_COOKIE[‘zbx_sessionid’]给hostgroupGet()，获取当前用户具有readable权限的主机组列表。</p>
 <pre><code><span class="variable">$groups</span> = <span class="variable">$zabbixApi</span>-&gt;hostgroupGet(<span class="keyword">array</span>(<span class="string">"output"</span> =&gt; <span class="string">"extend"</span>, <span class="string">"monitored_hosts"</span> =&gt; <span class="keyword">true</span>)
 </code></pre><p>修改为：</p>
@@ -81,7 +83,7 @@ cd $ZABBIX_PATH/zatree/addfile
 }
 </code></pre><h3 id="三-优化zatree支持HTTP_Basic_Authorization认证访问zabbix_API">三.优化zatree支持HTTP Basic Authorization认证访问zabbix API</h3>
 <p>考虑到让zabbix更加安全,所以采用了https的方式进行访问,但是这是zatree标签页打开时,出现了一堆错误.如下图所示:</p>
-<p><img src="http://ww4.sinaimg.cn/large/b7ec873bgw1eixg86gkn0j215502ptag.jpg" alt="报错如下"></p>
+<p><img src="http://ww4.sinaimg.cn/large/b7ec873bgw1eixg86gkn0j215502ptag.jpg" alt="报错"></p>
 <h2 id="优化过程如下:">优化过程如下:</h2>
 <p>进入zatree目录，修改以下四个文件：<br><strong>步骤一、修改zabbix_config.php</strong><br>添加HTTP Basic Authorization认证用户名和密码参数。如果没有设置HTTP Basic Authorization认证，http_user和http_password的值为空就行。</p>
 <pre><code><span class="php"><span class="preprocessor">&lt;?php</span> 
