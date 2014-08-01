@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Where there is a will, there is way。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://loveliuli.com/"/>
-  <updated>2014-07-31T14:24:04.478Z</updated>
+  <updated>2014-08-01T13:33:54.496Z</updated>
   <id>http://loveliuli.com/</id>
   
   <author>
@@ -13,6 +13,120 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[ZABBIX的zatree插件安装和优化]]></title>
+    <link href="http://loveliuli.com/2014/08/01/monitor/monitor_03/"/>
+    <id>http://loveliuli.com/2014/08/01/monitor/monitor_03/</id>
+    <published>2014-08-01T13:36:12.000Z</published>
+    <updated>2014-08-01T13:32:13.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="一-zabbix的zatree插件安装">一.zabbix的zatree插件安装</h2>
+<p>zabbix最近出了个比较有用的插件zatree,能够将所有的graph总体显示,而且可以根据关键字和时间进行查询以及汇总.<a id="more"></a><br>以下是zabbix-2.2.*版本的zatree安装,其他方式大家也可以去github项目获取安装方式.<br>    [github项目链接]: <a href="https://github.com/spide4k/zatree/tree/master/zabbix-2.2.x" target="_blank">https://github.com/spide4k/zatree/tree/master/zabbix-2.2.x</a>  嘿嘿,下面开始插件安装吧.</p>
+<h3 id="1-下载文件">1.下载文件</h3>
+<pre><code>git <span class="keyword">clone</span> https:<span class="comment">//github.com/spide4k/zatree.git zatree</span>
+</code></pre><h3 id="2-复制相关文件">2.复制相关文件</h3>
+<p>假如zabbix web目录位置在/var/www/zabbix,定义zabbix目录</p>
+<pre><code><span class="attribute">ZABBIX_PATH</span>=<span class="string">/var/www/zabbix</span>
+</code></pre><p>复制相关文件和目录</p>
+<pre><code><span class="keyword">cp</span> -rf zatree/zabbix-<span class="number">2.2</span><span class="preprocessor">.x</span> $ZABBIX_PATH/zatree
+
+cd $ZABBIX_PATH/zatree/addfile
+
+<span class="keyword">cp</span> -f CLineGraphDraw_Zabbix<span class="preprocessor">.php</span> CGraphDraw_Zabbix<span class="preprocessor">.php</span> CImageTextTable_Zabbix<span class="preprocessor">.php</span> $ZABBIX_PATH/include/classes/graphdraw/
+
+<span class="keyword">cp</span> -f zabbix<span class="preprocessor">.php</span> zabbix_chart<span class="preprocessor">.php</span> $ZABBIX_PATH/
+
+<span class="keyword">cp</span> -f CItemValue<span class="preprocessor">.php</span> $ZABBIX_PATH/api/classes/
+
+<span class="keyword">cp</span> -f menu<span class="preprocessor">.inc</span><span class="preprocessor">.php</span> $ZABBIX_PATH/include/
+<span class="keyword">cp</span> -f main<span class="preprocessor">.js</span> $ZABBIX_PATH/js/
+
+<span class="keyword">cp</span> -f API<span class="preprocessor">.php</span> $ZABBIX_PATH/include/classes/api/
+</code></pre><h3 id="3-支持web_interface,修改配置文件">3.支持web interface,修改配置文件</h3>
+<pre><code>vi <span class="variable">$ZABBIX_PATH</span>/zatree/zabbix_config.php
+
+<span class="string">'user'</span>=&gt;<span class="string">'xxx'</span>, <span class="comment">//web登陆的用户名</span>
+
+<span class="string">'passowrd'</span>=&gt;<span class="string">'xxx'</span>, <span class="comment">//web登陆的密码</span>
+</code></pre><h2 id="二-zatree优化之左侧栏目按照主机组显示">二.zatree优化之左侧栏目按照主机组显示</h2>
+<p>admin用户效果图:<br><img src="http://ww4.sinaimg.cn/large/b7ec873bgw1eixfrybl7kj20gr04vjru.jpg" alt="admin用户看到的组效果"></p>
+<p>普通用户效果图:<br><img src="http://ww1.sinaimg.cn/large/b7ec873bgw1eixg0haajlj20h5038gls.jpg" alt="普通用户看到的组效果"></p>
+<p>优化法如下，这里针对zatree的zabbix-2.2.x版本做修改，方法同样适合zabbix-2.0.x版本：<br>进入zatree目录，修改以下两个文件：<br><strong>第一步：zabbix_ajax.php</strong><br>传递$_COOKIE[‘zbx_sessionid’]给hostgroupGet()，获取当前用户具有readable权限的主机组列表。</p>
+<pre><code><span class="variable">$groups</span> = <span class="variable">$zabbixApi</span>-&gt;hostgroupGet(<span class="keyword">array</span>(<span class="string">"output"</span> =&gt; <span class="string">"extend"</span>, <span class="string">"monitored_hosts"</span> =&gt; <span class="keyword">true</span>)
+</code></pre><p>修改为：</p>
+<pre><code><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_COOKIE</span>[<span class="string">'zbx_sessionid'</span>])){
+    <span class="variable">$groups</span> = <span class="variable">$zabbixApi</span>-&gt;hostgroupGet(<span class="keyword">array</span>(<span class="string">"output"</span> =&gt; <span class="string">"extend"</span>, <span class="string">"monitored_hosts"</span> =&gt; <span class="keyword">true</span>), <span class="string">''</span>, <span class="variable">$_COOKIE</span>[<span class="string">'zbx_sessionid'</span>]);
+        } <span class="keyword">else</span> {
+        <span class="variable">$groups</span> = <span class="variable">$zabbixApi</span>-&gt;hostgroupGet(<span class="keyword">array</span>(<span class="string">"output"</span> =&gt; <span class="string">"extend"</span>, <span class="string">"monitored_hosts"</span> =&gt; <span class="keyword">true</span>));
+    }
+</code></pre><p><strong>第二步：ZabbixApiAbstract.class.php</strong><br>修改2594行hostgroupGet方法，添加$sessionid形参。当传入$sessionid参数时，设置$this-&gt;auth的值为$sessionid。</p>
+<pre><code><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hostgroupGet</span><span class="params">(<span class="variable">$params</span>=array<span class="params">()</span>, <span class="variable">$arrayKeyProperty</span>=<span class="string">''</span>)</span>
+{</span>
+    <span class="comment">// get params array for request</span>
+    <span class="variable">$params</span> = <span class="variable">$this</span>-&gt;getRequestParamsArray(<span class="variable">$params</span>);
+
+    <span class="comment">// request</span>
+    <span class="keyword">return</span> <span class="variable">$this</span>-&gt;request(<span class="string">'hostgroup.get'</span>, <span class="variable">$params</span>, <span class="variable">$arrayKeyProperty</span>);
+}
+</code></pre><p>修改为：</p>
+<pre><code><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hostgroupGet</span><span class="params">(<span class="variable">$params</span>=array<span class="params">()</span>, <span class="variable">$arrayKeyProperty</span>=<span class="string">''</span>, <span class="variable">$sessionid</span>=<span class="string">''</span>)</span>
+{</span>
+    <span class="comment">// get params array for request</span>
+    <span class="variable">$params</span> = <span class="variable">$this</span>-&gt;getRequestParamsArray(<span class="variable">$params</span>);
+
+    <span class="comment">// request</span>
+    <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$sessionid</span>))
+        <span class="variable">$this</span>-&gt;auth = <span class="variable">$sessionid</span>;
+    <span class="keyword">return</span> <span class="variable">$this</span>-&gt;request(<span class="string">'hostgroup.get'</span>, <span class="variable">$params</span>, <span class="variable">$arrayKeyProperty</span>);
+}
+</code></pre><h3 id="三-优化zatree支持HTTP_Basic_Authorization认证访问zabbix_API">三.优化zatree支持HTTP Basic Authorization认证访问zabbix API</h3>
+<p>考虑到让zabbix更加安全,所以采用了https的方式进行访问,但是这是zatree标签页打开时,出现了一堆错误.如下图所示:</p>
+<p><img src="http://ww4.sinaimg.cn/large/b7ec873bgw1eixg86gkn0j215502ptag.jpg" alt="报错如下"></p>
+<h2 id="优化过程如下:">优化过程如下:</h2>
+<p>进入zatree目录，修改以下四个文件：<br><strong>步骤一、修改zabbix_config.php</strong><br>添加HTTP Basic Authorization认证用户名和密码参数。如果没有设置HTTP Basic Authorization认证，http_user和http_password的值为空就行。</p>
+<pre><code><span class="php"><span class="preprocessor">&lt;?php</span> 
+<span class="keyword">global</span> <span class="variable">$zabbix_api_config</span>;
+
+<span class="variable">$zabbix_api_config</span>=<span class="keyword">array</span>(
+<span class="string">'api_url'</span>=&gt;<span class="string">'api_jsonrpc.php'</span>,
+<span class="string">'http_user'</span>=&gt;<span class="string">'xxxxx'</span>,
+<span class="string">'http_password'</span>=&gt;<span class="string">'xxxxx'</span>,
+<span class="string">'user'</span>=&gt;<span class="string">'Admin'</span>,
+<span class="string">'passowrd'</span>=&gt;<span class="string">'xxxxx'</span>,
+<span class="string">'graph_url'</span>=&gt;<span class="string">'zabbix_chart.php'</span>,
+);
+
+<span class="preprocessor">?&gt;</span></span>
+</code></pre><p><strong>步骤二、修改zabbix_ajax.php第33行，添加当有HTTP认证时的$url_http。</strong><br>    $url_http = dirname(dirname(‘http://‘ . $_SERVER[‘HTTP_HOST’] . $_SERVER[“REQUEST_URI”]));</p>
+<p>修改为：</p>
+<pre><code><span class="keyword">if</span> (!empty(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_user'</span>]) &amp;&amp; !empty(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_password'</span>])) {
+            <span class="variable">$url_http</span> = <span class="keyword">dirname</span>(<span class="keyword">dirname</span>(<span class="string">'https://'</span> . <span class="keyword">trim</span>(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_user'</span>]) . <span class="string">':'</span> . <span class="keyword">trim</span>(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_password'</span>]) . <span class="string">'@'</span> . <span class="variable">$_SERVER</span>[<span class="string">'HTTP_HOST'</span>] . <span class="variable">$_SERVER</span>[<span class="string">"REQUEST_URI"</span>]));
+    } <span class="keyword">else</span> {
+            <span class="variable">$url_http</span> = <span class="keyword">dirname</span>(<span class="keyword">dirname</span>(<span class="string">'https://'</span> . <span class="variable">$_SERVER</span>[<span class="string">'HTTP_HOST'</span>] . <span class="variable">$_SERVER</span>[<span class="string">"REQUEST_URI"</span>]));
+    }
+</code></pre><p><strong>步骤三、修改graph.php第141行，添加当有HTTP认证时的$url_http。</strong><br>    $url_http = dirname(dirname(‘http://‘ . $_SERVER[‘HTTP_HOST’] . $_SERVER[“REQUEST_URI”]));</p>
+<p>修改为：</p>
+<pre><code><span class="keyword">if</span> (!empty(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_user'</span>]) &amp;&amp; !empty(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_password'</span>])) {
+            <span class="variable">$url_http</span> = <span class="keyword">dirname</span>(<span class="keyword">dirname</span>(<span class="string">'https://'</span> . <span class="keyword">trim</span>(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_user'</span>]) . <span class="string">':'</span> . <span class="keyword">trim</span>(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_password'</span>]) . <span class="string">'@'</span> . <span class="variable">$_SERVER</span>[<span class="string">'HTTP_HOST'</span>] . <span class="variable">$_SERVER</span>[<span class="string">"REQUEST_URI"</span>]));
+    } <span class="keyword">else</span> {
+            <span class="variable">$url_http</span> = <span class="keyword">dirname</span>(<span class="keyword">dirname</span>(<span class="string">'https://'</span> . <span class="variable">$_SERVER</span>[<span class="string">'HTTP_HOST'</span>] . <span class="variable">$_SERVER</span>[<span class="string">"REQUEST_URI"</span>]));
+    }
+</code></pre><p><strong>步骤四、修改big_graph.php第88行，添加当有HTTP认证时的$url_http。</strong><br>    $url_http = dirname(dirname(‘http://‘ . $_SERVER[‘HTTP_HOST’] . $_SERVER[“REQUEST_URI”]));</p>
+<p>修改为：</p>
+<pre><code><span class="keyword">if</span> (!empty(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_user'</span>]) &amp;&amp; !empty(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_password'</span>])) {
+            <span class="variable">$url_http</span> = <span class="keyword">dirname</span>(<span class="keyword">dirname</span>(<span class="string">'https://'</span> . <span class="keyword">trim</span>(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_user'</span>]) . <span class="string">':'</span> . <span class="keyword">trim</span>(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_password'</span>]) . <span class="string">'@'</span> . <span class="variable">$_SERVER</span>[<span class="string">'HTTP_HOST'</span>] . <span class="variable">$_SERVER</span>[<span class="string">"REQUEST_URI"</span>]));
+    } <span class="keyword">else</span> {
+            <span class="variable">$url_http</span> = <span class="keyword">dirname</span>(<span class="keyword">dirname</span>(<span class="string">'https://'</span> . <span class="variable">$_SERVER</span>[<span class="string">'HTTP_HOST'</span>] . <span class="variable">$_SERVER</span>[<span class="string">"REQUEST_URI"</span>]));
+    } 
+</code></pre>]]></content>
+    <summary type="html"><![CDATA[<h2 id="一-zabbix的zatree插件安装">一.zabbix的zatree插件安装</h2>
+<p>zabbix最近出了个比较有用的插件zatree,能够将所有的graph总体显示,而且可以根据关键字和时间进行查询以及汇总.]]></summary>
+    
+      <category term="monitor" scheme="http://loveliuli.com/tags/monitor/"/>
+    
+      <category term="监控" scheme="http://loveliuli.com/categories/%E7%9B%91%E6%8E%A7/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Zabbix Agent安装和配置]]></title>
@@ -274,38 +388,6 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/virtual/virtual_01/"/>
-    <id>http://loveliuli.com/2014/02/21/virtual/virtual_01/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T09:54:20.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="virtualization" scheme="http://loveliuli.com/tags/virtualization/"/>
-    
-      <category term="虚拟化" scheme="http://loveliuli.com/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/security/security_01/"/>
-    <id>http://loveliuli.com/2014/02/21/security/security_01/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T10:39:32.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="security" scheme="http://loveliuli.com/tags/security/"/>
-    
-      <category term="安全" scheme="http://loveliuli.com/categories/%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
     <link href="http://loveliuli.com/2014/02/21/performance/Performance_01/"/>
     <id>http://loveliuli.com/2014/02/21/performance/Performance_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
@@ -322,33 +404,17 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/base/base_01/"/>
-    <id>http://loveliuli.com/2014/02/21/base/base_01/</id>
+    <link href="http://loveliuli.com/2014/02/21/command/commd_01/"/>
+    <id>http://loveliuli.com/2014/02/21/command/commd_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T11:35:21.000Z</updated>
+    <updated>2014-05-23T11:35:17.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
 ]]></content>
     
     
-      <category term="base" scheme="http://loveliuli.com/tags/base/"/>
+      <category term="command" scheme="http://loveliuli.com/tags/command/"/>
     
-      <category term="基础" scheme="http://loveliuli.com/categories/%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/cluster/cluster_01/"/>
-    <id>http://loveliuli.com/2014/02/21/cluster/cluster_01/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T09:53:07.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="cluster" scheme="http://loveliuli.com/tags/cluster/"/>
-    
-      <category term="集群" scheme="http://loveliuli.com/categories/%E9%9B%86%E7%BE%A4/"/>
+      <category term="命令" scheme="http://loveliuli.com/categories/%E5%91%BD%E4%BB%A4/"/>
     
   </entry>
   
@@ -370,6 +436,70 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/security/security_01/"/>
+    <id>http://loveliuli.com/2014/02/21/security/security_01/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-23T10:39:32.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="security" scheme="http://loveliuli.com/tags/security/"/>
+    
+      <category term="安全" scheme="http://loveliuli.com/categories/%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/cluster/cluster_01/"/>
+    <id>http://loveliuli.com/2014/02/21/cluster/cluster_01/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-23T09:53:07.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="cluster" scheme="http://loveliuli.com/tags/cluster/"/>
+    
+      <category term="集群" scheme="http://loveliuli.com/categories/%E9%9B%86%E7%BE%A4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/base/base_01/"/>
+    <id>http://loveliuli.com/2014/02/21/base/base_01/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-23T11:35:21.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="base" scheme="http://loveliuli.com/tags/base/"/>
+    
+      <category term="基础" scheme="http://loveliuli.com/categories/%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/virtual/virtual_01/"/>
+    <id>http://loveliuli.com/2014/02/21/virtual/virtual_01/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-23T09:54:20.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="virtualization" scheme="http://loveliuli.com/tags/virtualization/"/>
+    
+      <category term="虚拟化" scheme="http://loveliuli.com/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
     <link href="http://loveliuli.com/2014/02/21/datebase/datebase_01/"/>
     <id>http://loveliuli.com/2014/02/21/datebase/datebase_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
@@ -381,22 +511,6 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
       <category term="database" scheme="http://loveliuli.com/tags/database/"/>
     
       <category term="数据库" scheme="http://loveliuli.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/command/commd_01/"/>
-    <id>http://loveliuli.com/2014/02/21/command/commd_01/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T11:35:17.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="command" scheme="http://loveliuli.com/tags/command/"/>
-    
-      <category term="命令" scheme="http://loveliuli.com/categories/%E5%91%BD%E4%BB%A4/"/>
     
   </entry>
   
