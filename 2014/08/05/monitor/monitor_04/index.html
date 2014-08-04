@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>第 2 页 | Time Memory</title>
+  <title>Zabbix低层次发现初体验 | Time Memory</title>
   <meta name="author" content="Copyright By Qun.Xue  版权所有">
   
   <meta name="description" content="where there is will there is way">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="Zabbix低层次发现初体验"/>
   <meta property="og:site_name" content="Time Memory"/>
 
   
@@ -201,8 +201,7 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-  <article class="post">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
     <div class="gallery">
   <div class="photoset">
@@ -220,71 +219,94 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-05-08T10:40:56.000Z"><a href="/2014/05/08/app/app_01_nfs_error/">5月 8 2014</a></time>
+        <time datetime="2014-08-05T09:36:12.000Z"><a href="/2014/08/05/monitor/monitor_04/">8月 5 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2014/05/08/app/app_01_nfs_error/">NFS报错：rpc.rquotad: unable to register service|mount: wrong fs type, bad option, bad superblock</a></h1>
+    <h1 class="title">Zabbix低层次发现初体验</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>今天准备在正式环境测试一下puppet,搭建仓库后,需要搭建一个nfs来进行文件共享,让下面发agnet通过nfs安装.
+        <p>本文主要讲述zabbix低层次发现硬盘设备.详细过程如下.<a id="more"></a></p>
+<h3 id="1-创建模板">1.创建模板</h3>
+<p><img src="http://ww4.sinaimg.cn/large/b7ec873bgw1ej0qvz7acjj21hb06mdip.jpg" alt="创建模板"></p>
+<h3 id="2-创建item_prototypes">2.创建item prototypes</h3>
+<p><img src="http://ww3.sinaimg.cn/large/b7ec873bgw1ej0qwfju8lj21g20g0adf.jpg" alt="创建item prototypes"></p>
+<h3 id="3-创建graph_prototypes">3.创建graph prototypes</h3>
+<p><img src="http://ww2.sinaimg.cn/large/b7ec873bgw1ej0qwx6898j21hc0ag43r.jpg" alt="创建graph prototypes">    </p>
+<h3 id="4-Agent端配置">4.Agent端配置</h3>
+<p>agent端的配置文件需要进行如下配置:</p>
+<pre><code>UserParameter=custom.vfs.dev.discovery,<span class="regexp">/bin/sh</span> /opt/zabbix/disk.sh
+<span class="comment"># reads completed successfully</span>
+UserParameter=custom.vfs.dev.<span class="keyword">read</span>.ops[<span class="variable">*]</span>,cat /proc/diskstats | egrep <span class="variable">$1</span> | head -<span class="number">1</span> | awk <span class="string">'{print $$4}'</span>
+<span class="comment"># sectors read</span>
+UserParameter=custom.vfs.dev.<span class="keyword">read</span>.sectors[<span class="variable">*]</span>,cat /proc/diskstats | egrep <span class="variable">$1</span> | head -<span class="number">1</span> | awk <span class="string">'{print $$6}'</span>
+<span class="comment"># time spent reading (ms)</span>
+UserParameter=custom.vfs.dev.<span class="keyword">read</span>.ms[<span class="variable">*]</span>,cat /proc/diskstats | egrep <span class="variable">$1</span> | head -<span class="number">1</span> | awk <span class="string">'{print $$7}'</span>
+<span class="comment"># writes completed</span>
+UserParameter=custom.vfs.dev.<span class="keyword">write</span>.ops[<span class="variable">*]</span>,cat /proc/diskstats | egrep <span class="variable">$1</span> | head -<span class="number">1</span> | awk <span class="string">'{print $$8}'</span>
+<span class="comment"># sectors written</span>
+UserParameter=custom.vfs.dev.<span class="keyword">write</span>.sectors[<span class="variable">*]</span>,cat /proc/diskstats | egrep <span class="variable">$1</span> | head -<span class="number">1</span> | awk <span class="string">'{print $$10}'</span>
+<span class="comment"># time spent writing (ms)</span>
+UserParameter=custom.vfs.dev.<span class="keyword">write</span>.ms[<span class="variable">*]</span>,cat /proc/diskstats | egrep <span class="variable">$1</span> | head -<span class="number">1</span> | awk <span class="string">'{print $$11}'</span>
+<span class="comment"># I/Os currently in progress</span>
+UserParameter=custom.vfs.dev.io.active[<span class="variable">*]</span>,cat /proc/diskstats | egrep <span class="variable">$1</span> | head -<span class="number">1</span> | awk <span class="string">'{print $$12}'</span>
+<span class="comment"># time spent doing I/Os (ms)</span>
+UserParameter=custom.vfs.dev.io.ms[<span class="variable">*]</span>,cat /proc/diskstats | egrep <span class="variable">$1</span> | head -<span class="number">1</span> | awk <span class="string">'{print $$13}'</span>
+</code></pre><p>[root@pay-03-vmain:/opt/zabbix]# cat disk.sh </p>
+<pre><code><span class="shebang">#!/bin/bash</span>
+diskarray=(`cat /proc/diskstats |grep -E <span class="string">"\bvd[abcdefg]\b|\bsd[abcdefg]\b|\bc0d0p[0~9]\b"</span>|grep -i <span class="string">"\b<span class="variable">$1</span>\b"</span>|awk <span class="string">'{print $3}'</span>|sort|uniq   <span class="number">2</span>&gt;/dev/null`)
+length=<span class="variable">${#diskarray[@]}</span>
+<span class="built_in">printf</span> <span class="string">"{\n"</span>
+<span class="built_in">printf</span>  <span class="string">'\t'</span><span class="string">"\"data\":["</span>
+<span class="keyword">for</span> ((i=<span class="number">0</span>;i&lt;<span class="variable">$length</span>;i++))
+<span class="keyword">do</span>
+    <span class="built_in">printf</span> <span class="string">'\n\t\t{'</span>
+    <span class="built_in">printf</span> <span class="string">"\"{#DISK}\":\"<span class="variable">${diskarray[$i]}</span>\"}"</span>
+    <span class="keyword">if</span> [ <span class="variable">$i</span> <span class="operator">-lt</span> $[<span class="variable">$length</span>-<span class="number">1</span>] ];<span class="keyword">then</span>
+            <span class="built_in">printf</span> <span class="string">','</span>
+    <span class="keyword">fi</span>
+<span class="keyword">done</span>
+<span class="built_in">printf</span>  <span class="string">"\n\t]\n"</span>
+<span class="built_in">printf</span> <span class="string">"}\n"</span>
+</code></pre><p>注意chown -R zabbix:zabbix /opt/zabbix/disk.sh</p>
+<h3 id="5-效果图">5.效果图</h3>
+<p><img src="http://ww4.sinaimg.cn/large/b7ec873bgw1ej0qz0o7uoj21gr0f647j.jpg" alt="自动发现效果图"></p>
+
       
     </div>
     <footer>
       
         
-          <div class="alignleft">
-            <a href="/2014/05/08/app/app_01_nfs_error/#more" class="more-link">阅读全文</a>
-          </div>
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
   
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
+  <div class="categories">
+    <a href="/categories/监控/">监控</a>
   </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/monitor/">monitor</a>
   </div>
+
+        <!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
+<a class="bds_tsina"></a>
+<a class="bds_qzone"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more"></span>
+<a class="shareCount"></a>
 </div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-02-21T08:36:12.000Z"><a href="/2014/02/21/performance/Performance_01/">2月 21 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/02/21/performance/Performance_01/">Welcome to my blog</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Welcome to my blog!.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6861768" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
       
       <div class="clearfix"></div>
     </footer>
@@ -292,149 +314,23 @@
 </article>
 
 
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-02-21T08:36:12.000Z"><a href="/2014/02/21/security/security_01/">2月 21 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/02/21/security/security_01/">Welcome to my blog</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Welcome to my blog!.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-02-21T08:36:12.000Z"><a href="/2014/02/21/cluster/cluster_01/">2月 21 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/02/21/cluster/cluster_01/">Welcome to my blog</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Welcome to my blog!.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-  <article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-02-21T08:36:12.000Z"><a href="/2014/02/21/base/base_01/">2月 21 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/02/21/base/base_01/">Welcome to my blog</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>Welcome to my blog!.</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-<nav id="pagination">
-  
-    <a href="/" class="alignleft prev">上一页</a>
-  
-  
-    <a href="/page/3/" class="alignright next">下一页</a>
-  
-  <div class="clearfix"></div>
-</nav></div></div>
+<section id="comment">
+  <!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"loveliuli"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = 'http://static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- Duoshuo Comment END -->
+</section>
+</div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
