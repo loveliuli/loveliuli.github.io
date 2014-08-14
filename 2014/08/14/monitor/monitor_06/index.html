@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Time Memory</title>
+  <title>Zabbix远程执行命令 | Time Memory</title>
   <meta name="author" content="Copyright By Qun.Xue  版权所有">
   
   <meta name="description" content="where there is will there is way">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="Zabbix远程执行命令"/>
   <meta property="og:site_name" content="Time Memory"/>
 
   
@@ -201,48 +201,71 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="page">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+    <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
   
   <div class="post-content">
     <header>
       
+        <div class="icon"></div>
+        <time datetime="2014-08-14T05:09:12.000Z"><a href="/2014/08/14/monitor/monitor_06/">8月 14 2014</a></time>
+      
       
   
-    <h1 class="title"></h1>
+    <h1 class="title">Zabbix远程执行命令</h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="<strong>Excellent_Blog</strong>"><strong>Excellent Blog</strong></h1>
-<h3 id="经常看到一些好的文章，关闭后就忘记了，好记性比不了烂笔头,先记下,以便下次接着拜读。">经常看到一些好的文章，关闭后就忘记了，好记性比不了烂笔头,先记下,以便下次接着拜读。</h3>
-<h3 id="<strong>Python</strong>"><strong>Python</strong></h3>
-<ul>
-<li><a href="http://www.dongwm.com/" target="_blank">董伟民的blog</a></li>
-</ul>
-<h3 id="<strong>虚拟化</strong>"><strong>虚拟化</strong></h3>
-<ul>
-<li><a href="http://smilejay.com/" target="_blank">《KVM虚拟化技术：实战与原理解析》作者的blog</a></li>
-</ul>
-<h3 id="<strong>性能调优</strong>"><strong>性能调优</strong></h3>
-<ul>
-<li><a href="http://os.51cto.com/art/201005/200672_1.htm" target="_blank">飞哥的文章</a></li>
-</ul>
-<h3 id="<strong>五脏俱全</strong>"><strong>五脏俱全</strong></h3>
-<ul>
-<li><a href="http://zhumeng8337797.blog.163.com/" target="_blank">五事九思</a></li>
-</ul>
-<h3 id="<strong>正则表达式</strong>"><strong>正则表达式</strong></h3>
-<ul>
-<li><a href="http://deerchao.net/tutorials/regex/regex.htm#lookaround" target="_blank">正则表达式30分钟入门教程</a></li>
-</ul>
+        <p>本文主要讲述Zabbix远程执行命令.<a id="more"></a></p>
+<p>本教程是测试zabbix的远程执行功能,比较简单,点拨思路,自己发散.</p>
+<h3 id="一-创建item和触发器">一.创建item和触发器</h3>
+<p>1.1 创建item<br>我这里是测试服务irqbalance,当服务irqbalance停止后,zabbix触发后,会自动拉起irqbalance服务.<br>Item:<br>UserParameter=xsj.irq.sum,ps xua|grep -w  “irqbalance”|grep -v grep|wc -l<br>1.2 创建触发器:</p>
+<p><img src="http://ww1.sinaimg.cn/large/b7ec873bgw1ejbzxgcgeoj20pa0dl75a.jpg" alt="创建触发器"></p>
+<h3 id="二-创建脚本或者命令">二.创建脚本或者命令</h3>
+<p>2.1 如果你使用脚本,需要提前写好脚本,记得chmod755以及chow zabbix.命令的话,直接使用sudo执行.考虑到安全问题,这里的sudo控制最好细化.<br>2.2 本例使用sudo /etc/init.d/irqbalance start来进行测试</p>
+<h3 id="三-开启sudo权限">三.开启sudo权限</h3>
+<p>下例是授权zabbix无密码允许netstat命令:<br><strong>授权zabbix用户无密码运行netstat命令</strong></p>
+<pre><code><span class="keyword">chmod</span> +w /etc/sudoers 
+sed -i <span class="string">'s/^\(Defaults\s\+requiretty\)/#\1/'</span> /etc/sudoers
+<span class="keyword">grep</span> -<span class="keyword">q</span> <span class="string">'^zabbix ALL=(ALL).*netstat'</span> /etc/sudoers || echo <span class="string">'zabbix ALL=(ALL)       NOPASSWD: /bin/netstat'</span> &gt;&gt; <span class="regexp">/etc/sudoers</span>
+<span class="keyword">chmod</span> <span class="number">440</span> /etc/sudoers
+</code></pre><p>我们只是使用irqbalance 服务来测试,所以比较简单,visudo最后添加一行:</p>
+<pre><code>zabbix <span class="keyword">ALL</span>=(<span class="keyword">ALL</span>)       NOPASSWD: /etc/init.d/irqbalance start
+</code></pre><h3 id="四-创建action">四.创建action</h3>
+<p><img src="http://ww2.sinaimg.cn/large/b7ec873bgw1ejc029sm4rj20uy0argnh.jpg" alt="创建action"></p>
+<p><img src="http://ww1.sinaimg.cn/large/b7ec873bgw1ejc045a5crj20uu0lf41z.jpg" alt="创建action"></p>
+<h3 id="五-测试">五.测试</h3>
+<p>测试过程:关闭irqbalance服务,web界面查看告警以及命令执行情况.<br><strong>注意事项</strong>:<br>1.On some systems sudoers file will prevent non-local users from executing commands. To change this, comment out <strong>requiretty</strong> option in /etc/sudoers.<br>2.Make sure that the <strong>EnableRemoteCommands</strong> parameter is <strong>set to 1</strong> and uncommented. Restart agent daemon if changing this parameter.</p>
 
       
     </div>
     <footer>
       
         
+  
+  <div class="categories">
+    <a href="/categories/监控/">监控</a>
+  </div>
+
         
+  
+  <div class="tags">
+    <a href="/tags/monitor/">monitor</a>
+  </div>
+
         <!-- Baidu Button BEGIN -->
 <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
 <a class="bds_tsina"></a>

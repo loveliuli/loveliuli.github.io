@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Where there is a will, there is way。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://loveliuli.com/"/>
-  <updated>2014-08-11T01:13:12.980Z</updated>
+  <updated>2014-08-14T03:37:29.017Z</updated>
   <id>http://loveliuli.com/</id>
   
   <author>
@@ -13,6 +13,41 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Zabbix远程执行命令]]></title>
+    <link href="http://loveliuli.com/2014/08/14/monitor/monitor_06/"/>
+    <id>http://loveliuli.com/2014/08/14/monitor/monitor_06/</id>
+    <published>2014-08-14T05:09:12.000Z</published>
+    <updated>2014-08-14T03:37:18.000Z</updated>
+    <content type="html"><![CDATA[<p>本文主要讲述Zabbix远程执行命令.<a id="more"></a></p>
+<p>本教程是测试zabbix的远程执行功能,比较简单,点拨思路,自己发散.</p>
+<h3 id="一-创建item和触发器">一.创建item和触发器</h3>
+<p>1.1 创建item<br>我这里是测试服务irqbalance,当服务irqbalance停止后,zabbix触发后,会自动拉起irqbalance服务.<br>Item:<br>UserParameter=xsj.irq.sum,ps xua|grep -w  “irqbalance”|grep -v grep|wc -l<br>1.2 创建触发器:</p>
+<p><img src="http://ww1.sinaimg.cn/large/b7ec873bgw1ejbzxgcgeoj20pa0dl75a.jpg" alt="创建触发器"></p>
+<h3 id="二-创建脚本或者命令">二.创建脚本或者命令</h3>
+<p>2.1 如果你使用脚本,需要提前写好脚本,记得chmod755以及chow zabbix.命令的话,直接使用sudo执行.考虑到安全问题,这里的sudo控制最好细化.<br>2.2 本例使用sudo /etc/init.d/irqbalance start来进行测试</p>
+<h3 id="三-开启sudo权限">三.开启sudo权限</h3>
+<p>下例是授权zabbix无密码允许netstat命令:<br><strong>授权zabbix用户无密码运行netstat命令</strong></p>
+<pre><code><span class="keyword">chmod</span> +w /etc/sudoers 
+sed -i <span class="string">'s/^\(Defaults\s\+requiretty\)/#\1/'</span> /etc/sudoers
+<span class="keyword">grep</span> -<span class="keyword">q</span> <span class="string">'^zabbix ALL=(ALL).*netstat'</span> /etc/sudoers || echo <span class="string">'zabbix ALL=(ALL)       NOPASSWD: /bin/netstat'</span> &gt;&gt; <span class="regexp">/etc/sudoers</span>
+<span class="keyword">chmod</span> <span class="number">440</span> /etc/sudoers
+</code></pre><p>我们只是使用irqbalance 服务来测试,所以比较简单,visudo最后添加一行:</p>
+<pre><code>zabbix <span class="keyword">ALL</span>=(<span class="keyword">ALL</span>)       NOPASSWD: /etc/init.d/irqbalance start
+</code></pre><h3 id="四-创建action">四.创建action</h3>
+<p><img src="http://ww2.sinaimg.cn/large/b7ec873bgw1ejc029sm4rj20uy0argnh.jpg" alt="创建action"></p>
+<p><img src="http://ww1.sinaimg.cn/large/b7ec873bgw1ejc045a5crj20uu0lf41z.jpg" alt="创建action"></p>
+<h3 id="五-测试">五.测试</h3>
+<p>测试过程:关闭irqbalance服务,web界面查看告警以及命令执行情况.<br><strong>注意事项</strong>:<br>1.On some systems sudoers file will prevent non-local users from executing commands. To change this, comment out <strong>requiretty</strong> option in /etc/sudoers.<br>2.Make sure that the <strong>EnableRemoteCommands</strong> parameter is <strong>set to 1</strong> and uncommented. Restart agent daemon if changing this parameter.</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>本文主要讲述Zabbix远程执行命令.]]></summary>
+    
+      <category term="monitor" scheme="http://loveliuli.com/tags/monitor/"/>
+    
+      <category term="监控" scheme="http://loveliuli.com/categories/%E7%9B%91%E6%8E%A7/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Zabbix触发器函数学习]]></title>
@@ -663,49 +698,17 @@ tmpfs                 <span class="number">1.5</span>G     <span class="number">
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/security/security_01/"/>
-    <id>http://loveliuli.com/2014/02/21/security/security_01/</id>
+    <link href="http://loveliuli.com/2014/02/21/network/network_01/"/>
+    <id>http://loveliuli.com/2014/02/21/network/network_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T10:39:32.000Z</updated>
+    <updated>2014-05-23T09:54:04.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
 ]]></content>
     
     
-      <category term="security" scheme="http://loveliuli.com/tags/security/"/>
+      <category term="network" scheme="http://loveliuli.com/tags/network/"/>
     
-      <category term="安全" scheme="http://loveliuli.com/categories/%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/performance/Performance_01/"/>
-    <id>http://loveliuli.com/2014/02/21/performance/Performance_01/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T11:45:36.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="Performance tuning" scheme="http://loveliuli.com/tags/Performance%20tuning/"/>
-    
-      <category term="优化" scheme="http://loveliuli.com/categories/%E4%BC%98%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/cluster/cluster_01/"/>
-    <id>http://loveliuli.com/2014/02/21/cluster/cluster_01/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T09:53:07.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="cluster" scheme="http://loveliuli.com/tags/cluster/"/>
-    
-      <category term="集群" scheme="http://loveliuli.com/categories/%E9%9B%86%E7%BE%A4/"/>
+      <category term="网络" scheme="http://loveliuli.com/categories/%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
@@ -987,33 +990,49 @@ sed -n <span class="string">'51q;45,50p'</span> filename       <span class="comm
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/base/base_01/"/>
-    <id>http://loveliuli.com/2014/02/21/base/base_01/</id>
+    <link href="http://loveliuli.com/2014/02/21/performance/Performance_01/"/>
+    <id>http://loveliuli.com/2014/02/21/performance/Performance_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T11:35:21.000Z</updated>
+    <updated>2014-05-23T11:45:36.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
 ]]></content>
     
     
-      <category term="base" scheme="http://loveliuli.com/tags/base/"/>
+      <category term="Performance tuning" scheme="http://loveliuli.com/tags/Performance%20tuning/"/>
     
-      <category term="基础" scheme="http://loveliuli.com/categories/%E5%9F%BA%E7%A1%80/"/>
+      <category term="优化" scheme="http://loveliuli.com/categories/%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/virtual/virtual_01/"/>
-    <id>http://loveliuli.com/2014/02/21/virtual/virtual_01/</id>
+    <link href="http://loveliuli.com/2014/02/21/security/security_01/"/>
+    <id>http://loveliuli.com/2014/02/21/security/security_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T09:54:20.000Z</updated>
+    <updated>2014-05-23T10:39:32.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
 ]]></content>
     
     
-      <category term="virtualization" scheme="http://loveliuli.com/tags/virtualization/"/>
+      <category term="security" scheme="http://loveliuli.com/tags/security/"/>
     
-      <category term="虚拟化" scheme="http://loveliuli.com/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+      <category term="安全" scheme="http://loveliuli.com/categories/%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/cluster/cluster_01/"/>
+    <id>http://loveliuli.com/2014/02/21/cluster/cluster_01/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-23T09:53:07.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="cluster" scheme="http://loveliuli.com/tags/cluster/"/>
+    
+      <category term="集群" scheme="http://loveliuli.com/categories/%E9%9B%86%E7%BE%A4/"/>
     
   </entry>
   
@@ -1035,17 +1054,33 @@ sed -n <span class="string">'51q;45,50p'</span> filename       <span class="comm
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/network/network_01/"/>
-    <id>http://loveliuli.com/2014/02/21/network/network_01/</id>
+    <link href="http://loveliuli.com/2014/02/21/virtual/virtual_01/"/>
+    <id>http://loveliuli.com/2014/02/21/virtual/virtual_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T09:54:04.000Z</updated>
+    <updated>2014-05-23T09:54:20.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
 ]]></content>
     
     
-      <category term="network" scheme="http://loveliuli.com/tags/network/"/>
+      <category term="virtualization" scheme="http://loveliuli.com/tags/virtualization/"/>
     
-      <category term="网络" scheme="http://loveliuli.com/categories/%E7%BD%91%E7%BB%9C/"/>
+      <category term="虚拟化" scheme="http://loveliuli.com/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/base/base_01/"/>
+    <id>http://loveliuli.com/2014/02/21/base/base_01/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-23T11:35:21.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="base" scheme="http://loveliuli.com/tags/base/"/>
+    
+      <category term="基础" scheme="http://loveliuli.com/categories/%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
@@ -1405,145 +1440,6 @@ I will be <span class="keyword">the</span> greatest salesman <span class="keywor
       <category term="puppet" scheme="http://loveliuli.com/tags/puppet/"/>
     
       <category term="工具" scheme="http://loveliuli.com/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Markdown：syntax]]></title>
-    <link href="http://loveliuli.com/2013/11/11/others/other_01_markdownsytax/"/>
-    <id>http://loveliuli.com/2013/11/11/others/other_01_markdownsytax/</id>
-    <published>2013-11-11T03:40:41.000Z</published>
-    <updated>2014-05-23T10:32:18.000Z</updated>
-    <content type="html"><![CDATA[<hr>
-<h1 id="概述">概述</h1>
-<p>Markdown 的目标是实现「易读易写」。不过最需要强调的便是它的可读性。<br>一份使用 Markdown 格式撰写的文档应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。<br>因此 Markdown 的语法全由标点符号所组成，并经过严谨慎选，是为了让它们看起来就像所要表达的意思。<br>像是在文字两旁加上星号，看起来就像<em>强调</em>。<br>Markdown 的列表看起来，嗯，就是列表。假如你用过电子邮件，区块引言看起来就真的像是引用一段文字。<a id="more"></a></p>
-<h1 id="一、_标题">一、 标题</h1>
-<p>使用井号代表一级标题，以此类推，总共支持六级标题，即：6个#，例如以下：</p>
-<h1 id="一级标题">一级标题</h1>
-<h2 id="二级标题">二级标题</h2>
-<h3 id="三级标题">三级标题</h3>
-<h4 id="四级标题">四级标题</h4>
-<h5 id="五级标题">五级标题</h5>
-<h6 id="六级标题">六级标题</h6>
-<h1 id="二、列表">二、列表</h1>
-<p>列表格式也很常用，在 Markdown 中，你只需要在文字前面加上一些符号就可以了，例如：<br>无序和有序分别显示效果：</p>
-<p>使用-的效果如下：</p>
-<ul>
-<li>列表一</li>
-<li>列表二</li>
-<li>列表三</li>
-</ul>
-<p>或者使用+，效果如下：</p>
-<ul>
-<li>列表一</li>
-<li>列表二</li>
-<li>列表三</li>
-</ul>
-<p>或者使用*，效果如下：</p>
-<ul>
-<li>列表一</li>
-<li>列表二</li>
-<li>列表三</li>
-</ul>
-<p>或者使用1，2，3….序列号，效果如下：</p>
-<ol>
-<li>列表一</li>
-<li>列表二</li>
-<li>列表三</li>
-</ol>
-<p>注：-、1.和文本之间要保留一个字符的空格。</p>
-<h1 id="三、链接图片">三、链接图片</h1>
-<p>在 Markdown 中，插入链接不需要其他按钮，你只需要使用<code>[说明](超链接)</code> 这样的语法即可，例如：</p>
-<p><code>![我的空间照片](http://ww4.sinaimg.cn/large/b7ec873bgw1eaigtsdeutj20im0cddjb.jpg)</code> 效果如下：</p>
-<p><img src="http://ww4.sinaimg.cn/large/b7ec873bgw1eaigtsdeutj20im0cddjb.jpg" alt="我的空间照片"></p>
-<h1 id="四、_引用和代码">四、 引用和代码</h1>
-<p>在一般的段落文字中，你可以使用反引号来标记代码区段，区段内的 &amp;、&lt; 和 &gt; 都会被自动的转换成 HTML 实体，<br>这项特性让你可以很容易的在代码区段内插入 HTML 码：</p>
-<p><code>这是插入的第一段代码
-    这是插入的第二行代码
-    这是插入的第二行代码
-    这是插入的第二行代码
-    这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码这是插入的第二行代码</code></p>
-<p>隔开标志</p>
-<p>C#代码:</p>
-<pre><code><span class="comment">//这里显示一些代码，在正文显示中会自动识别语言，进行代码染色，这是一段C#代码</span>
-<span class="keyword">public</span> <span class="keyword">class</span> Blog
-{
-     <span class="keyword">public</span> <span class="keyword">int</span> Id { <span class="keyword">get</span>; <span class="keyword">set</span>; }
-     <span class="keyword">public</span> <span class="keyword">string</span> Subject { <span class="keyword">get</span>; <span class="keyword">set</span>; }
-}
-</code></pre><p>  python代码:</p>
-<pre><code><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">4</span>):
-<span class="built_in">print</span> i,
-</code></pre><p>  C++代码:</p>
-<pre><code><span class="keyword">for</span>（<span class="built_in">i</span>=<span class="number">0</span>;<span class="built_in">i</span>&lt;<span class="number">4</span>;<span class="built_in">i</span>++)
-printf <span class="built_in">i</span>
-</code></pre><h1 id="五、分割线">五、分割线</h1>
-<p>你可以在一行中用三个或以上的星号、减号、底线来建立一个分隔线，行内不能有其他东西。<br>你也可以在星号中间插入空白。下面每种写法都可以建立分隔线：</p>
-<p>1、星号（<em>*</em>）</p>
-<hr>
-<h2 id="2、减号（—-）">2、减号（—-）</h2>
-<h2 id="3、底线（———————-）">3、底线（———————-）</h2>
-<p>4、再次星号（<strong><em>**</em></strong>）</p>
-<hr>
-<h1 id="六、_区段元素">六、 区段元素</h1>
-<p>1、链接<br>Markdown 支持两种形式的链接语法： 行内和参考两种形式。不管是哪一种，链接的文字都是用 [方括号] 来标记。<br>要建立一个行内形式的链接，只要在方块括号后面马上接着括号并插入网址链接即可，<br>如果你还想要加上链接的 title 文字，只要在网址后面，用双引号把 title 文字包起来即可.<br>例如：</p>
-<pre><code>this is [<span class="link_label">我的blog</span>](<span class="link_url">http://loveliuli.github.io</span>) 效果如下：
-</code></pre><p>this is <a href="http://loveliuli.github.io" target="_blank">我的blog</a></p>
-<h1 id="七、强调">七、强调</h1>
-<pre><code>Markdown 使用星号（*）和底线（_）作为标记强调字词的符号，被 * 或 _ 包围的字词会被转成用 <span class="tag">&lt;<span class="title">em</span>&gt;</span> 标签包围，用两个 * 或 _ 包起来的话，则会被转成 <span class="tag">&lt;<span class="title">strong</span>&gt;</span>，例如：
-</code></pre><p>1、斜线（*）</p>
-<p><em>我是斜线</em><br> <em>斜体</em> ：斜的字体</p>
-<p>2、加粗（**）</p>
-<p><strong>我是粗体</strong><br> <strong> 粗体</strong> ：粗暴的字体</p>
-<h1 id="八、程序代码">八、程序代码</h1>
-<p>如果要标记一小段行内程序代码，可以用反引号把它包起来（`），例如：</p>
-<pre><code>我们需要打印变量<span class="variable">$var1</span>，则如下方式书写：
-我们需要`<span class="keyword">print</span> <span class="variable">$var1</span>`
-</code></pre><p>得到的效果如下：<br>我们需要<code>print $var1</code></p>
-<h1 id="九、链接">九、链接</h1>
-<p>1、Markdown 使用一种和链接很相似的语法来标记图片，同样也允许两种样式： 行内和参考。</p>
-<h3 id="<strong>行内式图片的语法如下</strong>:"><strong>行内式图片的语法如下</strong>:</h3>
-<pre><code>一个惊叹号
-接着一个方括号，里面放图片的说明文字
-接着一个圆括号，里面放图片的url
-![<span class="link_label">文本</span>](<span class="link_url">url</span>)
-![<span class="link_label">我的空间照片</span>](<span class="link_url">http://user.qzone.qq.com/505711559/infocenter</span>)
-</code></pre><p>效果如下：<br><img src="http://ww2.sinaimg.cn/large/b7ec873bgw1eaigtal1xbj20im0ce418.jpg" alt="我的空间照片"></p>
-<h3 id="<strong>连接定义语法</strong>："><strong>连接定义语法</strong>：</h3>
-<pre><code>[<span class="link_reference">foo</span>]:<span class="link_url"> http://example.com/  'Optional Title Here'</span>
-</code></pre><h3 id="例如:">例如:</h3>
-<pre><code>[<span class="link_reference">myblog</span>]:<span class="link_url"> http://loveliuli.github.io/ 'Optional Title Here'</span>
-</code></pre><h3 id="效果如下：">效果如下：</h3>
-<p>[myblog]: <a href="http://loveliuli.github.io/" target="_blank">http://loveliuli.github.io/</a>  ‘我的blog’</p>
-<p>参考的语法如下:</p>
-<pre><code>This is [<span class="link_label">an example</span>][<span class="link_reference">id</span>] reference-style link.
-[<span class="link_reference">id</span>]:<span class="link_url"> http://example.com/  'Optional Title Here'</span>
-</code></pre><h1 id="十、其他">十、其他</h1>
-<p>1、自动链接<br><code>&lt;http://loveliuli.github.io&gt;,效果如下</code>：<br>    <a href="http://loveliuli.github.io" target="_blank">http://loveliuli.github.io</a></p>
-<p>2、转义字符<br>Markdown 可以利用反斜杠来插入一些在语法中有其它意义的符号，<br>例如：如果想要用星号加在文字旁边的方式来做出强调效果（但不用\<em\> 标签），可以在星号的前面加上反斜杠。<br>如果我们需要输出星号，则需要转义：<br>例如：<code>\*我不是斜线\*</code> 效果如下：<br>*我不是斜线*</p>
-<p><code>*我又变成斜线啦*</code><br><em>我又变成斜线啦</em><br>3、Markdown 支持在下面这些符号前面加上反斜杠来帮助插入普通的符号：</p>
-<pre><code>\   反斜杠
-`   反引号
-<span class="bullet">*   </span>星号
-_   底线
-{}  大括号
-[]  方括号
-()  括号
-<span class="header">#   井字号</span>
-<span class="bullet">+    </span>加号
-<span class="bullet">-    </span>减号
-.   英文句点
-!   惊叹号
-</code></pre><h1 id="十一、结束语">十一、结束语</h1>
-<p>以上几种格式是比较常用的格式，所以我们针对这些语法做了比较详细的说明。<br>除这些之外，Markdown 还有其他语法，如想了解和学习更多，可以参考：<br><a href="http://wowubuntu.com/markdown/" target="_blank">『Markdown 语法说明-官方翻译』</a>。<br><a href="http://www.ituring.com.cn/article/504" target="_blank">『Markdown 语法详细说明-图灵社区』</a>。  </p>
-]]></content>
-    <summary type="html"><![CDATA[<hr>
-<h1 id="概述">概述</h1>
-<p>Markdown 的目标是实现「易读易写」。不过最需要强调的便是它的可读性。<br>一份使用 Markdown 格式撰写的文档应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。<br>因此 Markdown 的语法全由标点符号所组成，并经过严谨慎选，是为了让它们看起来就像所要表达的意思。<br>像是在文字两旁加上星号，看起来就像<em>强调</em>。<br>Markdown 的列表看起来，嗯，就是列表。假如你用过电子邮件，区块引言看起来就真的像是引用一段文字。]]></summary>
-    
-      <category term="markdown" scheme="http://loveliuli.com/tags/markdown/"/>
-    
-      <category term="其他" scheme="http://loveliuli.com/categories/%E5%85%B6%E4%BB%96/"/>
     
   </entry>
   
