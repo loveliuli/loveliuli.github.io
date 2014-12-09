@@ -29,13 +29,177 @@
 
 <body>
   <header id="header" class="inner"><div class="alignleft">
-<div id="logo">
-<a href="/"><img src="<%- config.root %>images/logo.png"></a>
+  <h1><a href="/">Time Memory</a></h1>
+  <h2><a href="/">Where there is a will, there is way。</a></h2>
 </div>
-<div id="title">
-<h1><a href="<%- config.root %>"><%= config.title %></a></h1>
-<h2><a href="<%- config.root %>"><% if (config.subtitle){ %><%= config.subtitle %><% } %></a></h2>
-</div>  </header>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">存档</a></li>
+    
+      <li><a href="/about">关于我</a></li>
+    
+      <li><a href="/study">传送门</a></li>
+    
+ <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+	function c() {
+		var e = document.createElement("link");
+		e.setAttribute("type", "text/css");
+		e.setAttribute("rel", "stylesheet");
+		e.setAttribute("href", f);
+		e.setAttribute("class", l);
+		document.body.appendChild(e)
+	}
+ 
+	function h() {
+		var e = document.getElementsByClassName(l);
+		for (var t = 0; t < e.length; t++) {
+			document.body.removeChild(e[t])
+		}
+	}
+ 
+	function p() {
+		var e = document.createElement("div");
+		e.setAttribute("class", a);
+		document.body.appendChild(e);
+		setTimeout(function() {
+			document.body.removeChild(e)
+		}, 100)
+	}
+ 
+	function d(e) {
+		return {
+			height : e.offsetHeight,
+			width : e.offsetWidth
+		}
+	}
+ 
+	function v(i) {
+		var s = d(i);
+		return s.height > e && s.height < n && s.width > t && s.width < r
+	}
+ 
+	function m(e) {
+		var t = e;
+		var n = 0;
+		while (!!t) {
+			n += t.offsetTop;
+			t = t.offsetParent
+		}
+		return n
+	}
+ 
+	function g() {
+		var e = document.documentElement;
+		if (!!window.innerWidth) {
+			return window.innerHeight
+		} else if (e && !isNaN(e.clientHeight)) {
+			return e.clientHeight
+		}
+		return 0
+	}
+ 
+	function y() {
+		if (window.pageYOffset) {
+			return window.pageYOffset
+		}
+		return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+	}
+ 
+	function E(e) {
+		var t = m(e);
+		return t >= w && t <= b + w
+	}
+ 
+	function S() {
+		var e = document.createElement("audio");
+		e.setAttribute("class", l);
+		e.src = i;
+		e.loop = false;
+		e.addEventListener("canplay", function() {
+			setTimeout(function() {
+				x(k)
+			}, 500);
+			setTimeout(function() {
+				N();
+				p();
+				for (var e = 0; e < O.length; e++) {
+					T(O[e])
+				}
+			}, 15500)
+		}, true);
+		e.addEventListener("ended", function() {
+			N();
+			h()
+		}, true);
+		e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+		document.body.appendChild(e);
+		e.play()
+	}
+ 
+	function x(e) {
+		e.className += " " + s + " " + o
+	}
+ 
+	function T(e) {
+		e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+	}
+ 
+	function N() {
+		var e = document.getElementsByClassName(s);
+		var t = new RegExp("\\b" + s + "\\b");
+		for (var n = 0; n < e.length; ) {
+			e[n].className = e[n].className.replace(t, "")
+		}
+	}
+ 
+	var e = 30;
+	var t = 30;
+	var n = 350;
+	var r = 350;
+	var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+	var s = "mw-harlem_shake_me";
+	var o = "im_first";
+	var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+	var a = "mw-strobe_light";
+	var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+	var l = "mw_added_css";
+	var b = g();
+	var w = y();
+	var C = document.getElementsByTagName("*");
+	var k = null;
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			if (E(A)) {
+				k = A;
+				break
+			}
+		}
+	}
+	if (A === null) {
+		console.warn("Could not find a node of the right size. Please try a different page.");
+		return
+	}
+	c();
+	S();
+	var O = [];
+	for (var L = 0; L < C.length; L++) {
+		var A = C[L];
+		if (v(A)) {
+			O.push(A)
+		}
+	}
+})()    '>High一下</a> </li>   
+    
+   <li> <a href="/atom.xml">RSS</a> </li> 
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper"><article class="page">
   
@@ -84,33 +248,33 @@
 一起慢慢变老
 </code></pre><h3 id="<strong>My_Life</strong>"><strong>My Life</strong></h3>
 <pre><code>虽然我们无法改变人生
-但可以改变人生观。
+但可以改变人生观
 虽然我们无法改变环境
 但我们可以改变心境
 有人缘则有福
-结好人缘就是最大修行。
+结好人缘就是最大修行
 君子为目标，小人为目的
 得理应饶人，理直应气
-欣赏别人，就是庄严自已。
+欣赏别人，就是庄严自已
 原谅别人就是善待自已
-人为善，福虽未至，祸已远离；
+人为善，福虽未至，祸已远离
 人为恶，祸虽未至，福已远
 待人退一步，爱人宽一寸
-改变自已是自救，影响别人是救人。
+改变自已是自救，影响别人是救人
 人生有很多事，需要忍
 人生有很多欲，需要忍
-人生有很多情，需要忍；
-人生有很多苦，需要忍；
-人生有许多痛，需要忍；
-人生有很多话，需要忍。
-人生有很多气，需要忍。
-忍是一种眼光，忍是一种胸怀，
-忍是一种领悟，忍是一种人生的技巧，忍是一种规则的智慧。
-忙他人所闲，珍惜时间。
-学万物杂篇，学识渊源。
-善把握机缘，减少忧患。
-做好自己，坚守信念。
-品世间冷暖，笑看悲欢！
+人生有很多情，需要忍
+人生有很多苦，需要忍
+人生有许多痛，需要忍
+人生有很多话，需要忍
+人生有很多气，需要忍
+忍是一种眼光，忍是一种胸怀
+忍是一种领悟，忍是一种人生的技巧，忍是一种规则的智慧
+忙他人所闲，珍惜时间
+学万物杂篇，学识渊源
+善把握机缘，减少忧患
+做好自己，坚守信念
+品世间冷暖，笑看悲欢
 </code></pre>
       
     </div>
