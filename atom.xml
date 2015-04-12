@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Where there is a will, there is way。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://loveliuli.com/"/>
-  <updated>2015-04-12T01:53:07.943Z</updated>
+  <updated>2015-04-12T02:01:34.533Z</updated>
   <id>http://loveliuli.com/</id>
   
   <author>
@@ -730,22 +730,6 @@ tmpfs                 1.5G     0  1.5G   0% /dev/shm
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/virtual/virtual_01/"/>
-    <id>http://loveliuli.com/2014/02/21/virtual/virtual_01/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T09:54:20.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="virtualization" scheme="http://loveliuli.com/tags/virtualization/"/>
-    
-      <category term="虚拟化" scheme="http://loveliuli.com/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
     <link href="http://loveliuli.com/2014/02/21/network/network_01/"/>
     <id>http://loveliuli.com/2014/02/21/network/network_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
@@ -757,82 +741,6 @@ tmpfs                 1.5G     0  1.5G   0% /dev/shm
       <category term="network" scheme="http://loveliuli.com/tags/network/"/>
     
       <category term="网络" scheme="http://loveliuli.com/categories/%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/base/base_01/"/>
-    <id>http://loveliuli.com/2014/02/21/base/base_01/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T11:35:21.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="base" scheme="http://loveliuli.com/tags/base/"/>
-    
-      <category term="基础" scheme="http://loveliuli.com/categories/%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/performance/Performance_01/"/>
-    <id>http://loveliuli.com/2014/02/21/performance/Performance_01/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T11:45:36.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="Performance tuning" scheme="http://loveliuli.com/tags/Performance%20tuning/"/>
-    
-      <category term="优化" scheme="http://loveliuli.com/categories/%E4%BC%98%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/security/security_01/"/>
-    <id>http://loveliuli.com/2014/02/21/security/security_01/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T10:39:32.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="security" scheme="http://loveliuli.com/tags/security/"/>
-    
-      <category term="安全" scheme="http://loveliuli.com/categories/%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <link href="http://loveliuli.com/2014/02/21/hello-world/"/>
-    <id>http://loveliuli.com/2014/02/21/hello-world/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-02-21T08:36:12.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://zespia.tw/hexo" target="_blank">Hexo</a>! This is your very first post. Check <a href="http://zespia.tw/hexo/docs" target="_blank">documentation</a> to learn how to use.</p>
-]]></content>
-    
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/datebase/datebase_01/"/>
-    <id>http://loveliuli.com/2014/02/21/datebase/datebase_01/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T09:51:08.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="database" scheme="http://loveliuli.com/tags/database/"/>
-    
-      <category term="数据库" scheme="http://loveliuli.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
@@ -1150,6 +1058,22 @@ sed -n &#39;51q;45,50p&#39; filename       # 一样，但快得多
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/performance/Performance_01/"/>
+    <id>http://loveliuli.com/2014/02/21/performance/Performance_01/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-23T11:45:36.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="Performance tuning" scheme="http://loveliuli.com/tags/Performance%20tuning/"/>
+    
+      <category term="优化" scheme="http://loveliuli.com/categories/%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
     <link href="http://loveliuli.com/2014/02/21/cluster/cluster_01/"/>
     <id>http://loveliuli.com/2014/02/21/cluster/cluster_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
@@ -1161,6 +1085,70 @@ sed -n &#39;51q;45,50p&#39; filename       # 一样，但快得多
       <category term="cluster" scheme="http://loveliuli.com/tags/cluster/"/>
     
       <category term="集群" scheme="http://loveliuli.com/categories/%E9%9B%86%E7%BE%A4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/security/security_01/"/>
+    <id>http://loveliuli.com/2014/02/21/security/security_01/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-23T10:39:32.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="security" scheme="http://loveliuli.com/tags/security/"/>
+    
+      <category term="安全" scheme="http://loveliuli.com/categories/%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/base/base_01/"/>
+    <id>http://loveliuli.com/2014/02/21/base/base_01/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-23T11:35:21.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="base" scheme="http://loveliuli.com/tags/base/"/>
+    
+      <category term="基础" scheme="http://loveliuli.com/categories/%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/virtual/virtual_01/"/>
+    <id>http://loveliuli.com/2014/02/21/virtual/virtual_01/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-23T09:54:20.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="virtualization" scheme="http://loveliuli.com/tags/virtualization/"/>
+    
+      <category term="虚拟化" scheme="http://loveliuli.com/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/datebase/datebase_01/"/>
+    <id>http://loveliuli.com/2014/02/21/datebase/datebase_01/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-23T09:51:08.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="database" scheme="http://loveliuli.com/tags/database/"/>
+    
+      <category term="数据库" scheme="http://loveliuli.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
@@ -1270,113 +1258,6 @@ Zend Guard Loader
   </entry>
   
   <entry>
-    <title><![CDATA[php5.3上扩展mcrypt模块]]></title>
-    <link href="http://loveliuli.com/2014/02/18/php_mcrypt/"/>
-    <id>http://loveliuli.com/2014/02/18/php_mcrypt/</id>
-    <published>2014-02-18T01:27:46.000Z</published>
-    <updated>2014-02-21T09:35:40.000Z</updated>
-    <content type="html"><![CDATA[<hr>
-<h2 id="-">问题的出现</h2>
-<p> 由于最近需要对php的模块进行扩展，所以进行了简单整理，过程如下。<a id="more"></a></p>
-<h2 id="-">问题的解决</h2>
-<pre><code>#!/bin/bash
-cur_dir=${pwd}
-tar zxvf libmcrypt-2.5.8.tar.gz
-cd libmcrypt-2.5.8
-./configure
-make &amp;&amp; make install
-
-cd ..
-tar xvf mhash-0.9.9.9.tar.bz2
-cd mhash-0.9.9.9
-./configure
-make &amp;&amp; make install
-
-cd ..
-tar zxvf m4-1.4.9.tar.gz 
-cd m4-1.4.9
-./configure
-make &amp;&amp; make install
-
-cd ..
-tar zxvf autoconf-2.62.tar.gz 
-cd autoconf-2.62
-./configure
-make &amp;&amp; make install
-
-cd ..
-tar zxvf mcrypt-2.6.8.tar.gz
-cd mcrypt-2.6.8
-LD_LIBRARY_PATH=/usr/local/lib ./configure 
-make &amp;&amp; make install
-
-cd ..
-tar zxvf php-5.2.17.tar.gz
-cd php-5.2.17/ext/mcrypt/
-/usr/local/
-php/bin/phpize
-./configure  --with-php-config=/usr/local/php/bin/php-config  
-make &amp;&amp; make test &amp;&amp; make install
-
-
-
-cp /usr/local/php/lib/php/extensions/no-debug-non-zts-20060613/mcrypt.so /usr/local/php
-
-service httpd restart
-</code></pre><p>其他模块的扩展可以依葫芦画瓢，没有难度的。</p>
-<pre><code>[root@chcp-ct01-log01 mcrypt]# php -m
-[PHP Modules]
-bcmath
-Core
-ctype
-curl
-date
-dom
-ereg
-fileinfo
-filter
-gd
-gettext    
-hash
-iconv
-json
-libxml
-mbstring
-</code></pre><p> <strong>mcrypt</strong></p>
-<pre><code>mysql
-pcre
-PDO
-pdo_sqlite
-Phar
-posix
-Reflection
-session
-SimpleXML
-sockets
-SPL
-SQLite
-sqlite3
-standard
-tokenizer
-xml
-xmlreader
-xmlwriter
-Zend Guard Loader
-zlib
-[Zend Modules]
-Zend Guard Loader
-</code></pre>]]></content>
-    <summary type="html"><![CDATA[<hr>
-<h2 id="-">问题的出现</h2>
-<p> 由于最近需要对php的模块进行扩展，所以进行了简单整理，过程如下。]]></summary>
-    
-      <category term="php_modules" scheme="http://loveliuli.com/tags/php_modules/"/>
-    
-      <category term="php" scheme="http://loveliuli.com/categories/php/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[php5.3.28 类型冲突]]></title>
     <link href="http://loveliuli.com/2014/01/27/app/app_03_php_problem/"/>
     <id>http://loveliuli.com/2014/01/27/app/app_03_php_problem/</id>
@@ -1421,6 +1302,218 @@ PS：生产服务器一定三思，此参数的更改可能会影响到您的业
       <category term="php_problem" scheme="http://loveliuli.com/tags/php_problem/"/>
     
       <category term="应用" scheme="http://loveliuli.com/categories/%E5%BA%94%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[我要笑遍世界]]></title>
+    <link href="http://loveliuli.com/2013/11/29/life/life_01_laugh/"/>
+    <id>http://loveliuli.com/2013/11/29/life/life_01_laugh/</id>
+    <published>2013-11-29T02:48:19.000Z</published>
+    <updated>2014-05-23T10:32:25.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="-">当你生活不如意时,当你工作不顺心时,当你遇到烦心事时.......</h3>
+<h3 id="-more-">请仔细阅读以下文字,也许可以帮助你走出困境.<a id="more"></a></h3>
+<h3 id="-og-mandino-the-greatest-salesman-in-the-world-">英文原文是来自美国作家”Og Mandino”的畅销书”The Greatest Salesman in the World.”.</h3>
+<h3 id="-"><strong>我要笑遍世界。</strong></h3>
+<pre><code>只有人类才会笑。树木受伤时也会流“血”，禽兽也会 因痛苦和饥饿而哭嚎哀鸣，
+然而，只有我才具备笑的天赋，可以随时开怀大笑。
+从今往后，我要培养笑的习惯。笑有助于消化，笑能减轻压力，笑，是长寿的秘方。现在我终于掌握了它。
+</code></pre><h3 id="-"><strong>我要笑遍世界。</strong></h3>
+<pre><code>我笑自己，因为自视甚高的人往往显得滑稽。千万不能跌进这个精神陷阶。
+虽说我是造物主最伟大的奇迹，我不也是沧海一栗吗？
+我真的知道自己从哪里来，到哪里去吗？我现在所关心的事情，十年后看来，不会显得愚蠢吗？
+为什么我要让现在发生的微不足道的琐事烦扰我？在这漫漫的历史长河中，能留下多少日落的记忆呢？
+</code></pre><h3 id="-"><strong>我要笑遍世界。</strong></h3>
+<pre><code>当我受到别人的冒犯时，当我遇到不如意的事情时，我只会流泪诅咒，却怎么笑得出来？
+有一句至理名言，我要反复练习，直到它们深入我的骨髓，出口成言，让我永远保持良好的心境。
+这句话，传自远古时代，它们将陪我渡过难关，使我的生活保持平衡。
+这句至理名言就是：这一切都会过去。
+</code></pre><h3 id="-"><strong>我要笑遍世界。</strong></h3>
+<pre><code>世上种种到头来都会成为过去。
+心力衰竭时，我安慰自己，这一切都会过去：当我因成功洋洋得意时，我提醒自己，这一切都会过去。
+穷困潦倒时，我告诉自己，这一切都会过去。腰缠万贯时，我也告诉自己，这一切都会过去。
+是的，昔日修筑金宇塔的人早已作古，埋在冰冷的石头下面，而金宇塔有朝一日，也会埋在沙土下面。
+如果世上种种终必成空，我又为何对今天的得失斤斤计较？
+</code></pre><h3 id="-"><strong>我要笑遍世界。</strong></h3>
+<pre><code>我要用笑声点缀今天，我要用歌声照亮黑夜。
+我不再苦苦寻觅快乐，我要在繁忙的工作中忘记悲伤。
+我要享受今天的快乐，它不像粮食可以贮藏，更不似美酒越陈越香。
+我不是为将来而活。今天播种今天收获。
+</code></pre><h3 id="-"><strong>我要笑遍世界。</strong></h3>
+<pre><code>笑声中，一切都显露本色。我笑自己的失败，它们将化为梦的云彩；我笑自己的成功，它们回复本来面目；
+我笑邪恶，它们远我而去；我笑善良，它们发扬光大。
+我要用我的笑容感染别人，虽然我的目的自私，但这确是成功之道，因为皱起的眉头会让顾客弃我而去。
+</code></pre><h3 id="-"><strong>我要笑遍世界。</strong></h3>
+<pre><code>从今往后，我只因幸福而落泪，因为悲伤、悔恨、挫折的泪水在商场上毫无价值，
+只有微笑可以换来财富，善言可以建起一座城堡。
+我不再允许自己因为变得重要、聪明、体面、强大，而忘记如何嘲笑自己和周围的一切。
+在这一点上，我要永远像小孩子一样，因为只有做回小孩子，我才能尊敬别人，尊敬别人，我才不会自以为是。
+</code></pre><h3 id="-"><strong>我要笑遍世界。</strong></h3>
+<pre><code>只要我能笑，就永远不会贫穷。这也是天赋，我不再浪费它。
+只有在笑声和快乐中，我才能真正体会到成功的滋味。
+只有在笑声和快乐中，我才能享受到劳动的果实。
+如果不是这样的话，我会失败，因为快乐是提味的美酒佳酿。
+要想享受成功，必须先有快乐，而笑声便是那伴娘。
+我要快乐。
+我要成功。
+我要成为世上最伟大的推销员。
+</code></pre><h1 id="-og-mandino-the-greatest-salesman-in-the-world-">英文版本,原文是来自美国作家”Og Mandino”的畅销书”The Greatest Salesman in the World.”</h1>
+<h3 id="-">原文如下</h3>
+<h3 id="-i-will-laugh-at-the-world-"><strong>I will laugh at the world.</strong></h3>
+<pre><code>No living creature can laugh except humans.  
+Trees may bleed when they are wounded, and beasts in the field will cry in pain and hunger, 
+yet only I have the gift of laughter and it is mine to use whenever I choose. 
+Henceforth I will cultivate the habit of laughter.I will smile and my digestion will improve; 
+I will chuckle and my burdens will be lightened;
+I will laugh and my life will be lengthened for this is the great secret of long life and now it is mine.
+</code></pre><h3 id="-i-will-laugh-at-the-world-"><strong>I will laugh at the world.</strong></h3>
+<pre><code>And most of all, 
+I will laugh at myself for humans are most comical when we take ourselves too seriously.  
+Never will I fall into this trap of the mind.
+For though I be nature’s greatest miracle am I not still a mere grain tossed about by the winds of time? 
+Do I truly know whence I came or whither I am bound? 
+Will my concern for this day not seem foolish ten years hence?  
+Why should I permit the petty happenings of today to disturb me? 
+What can take place before this sun sets which will not seem insignificant in the river of centuries?
+</code></pre><h3 id="-i-will-laugh-at-the-world-"><strong>I will laugh at the world.</strong></h3>
+<pre><code>And how can I laugh when confronted with person or deed which offends me so as to bring forth my tears or my curses? 
+Four words I will train myself to say until they become a habit so strong that immediately they will appear in my mind whenever good humor threatens to depart from me.  
+These words, passed down from the ancients, will carry me through every adversity and maintain my life in balance.  
+These four words are:  This too shall pass.
+</code></pre><h3 id="-i-will-laugh-at-the-world-"><strong>I will laugh at the world.</strong></h3>
+<pre><code>For all worldly things shall indeed pass. 
+When I am heavy with heartache I shall console myself that this too shall pass;
+when I am puffed with success I shall warn myself that this too shall pass.  
+When I am strangled in poverty I shall tell myself that this too shall pass; 
+when I am burdened with wealth I shall tell myself that this too shall pass.  
+Yea, verily, where is he who built the pyramid?  Is he not buried within its stone? 
+And will the pyramid, one day, not also be buried under sand? 
+If all things shall pass why should I be of concern for today?
+</code></pre><h3 id="-i-will-laugh-at-the-world-"><strong>I will laugh at the world.</strong></h3>
+<pre><code>I will paint this day with laughter;
+I will frame this night in song.  
+Never will I labor to be happy; 
+rather I will remain too busy to be sad. 
+I will enjoy today’s happiness today. 
+It is not grain to be stored in a box. 
+It is not wine to be saved in a jar.  
+It cannot be saved for the morrow. 
+It must be sown and reaped on the same day and this will I do, henceforth.
+</code></pre><h3 id="-i-will-laugh-at-the-world-"><strong>I will laugh at the world.</strong></h3>
+<pre><code>And with my laughter all things will be reduced to their proper size. 
+I will laugh at my failures and they will vanish in clouds of new dreams.
+I will laugh at my successes and they will shrink to their true value.  
+I will laugh at evil and it will die untasted; I will laugh at goodness and it will thrive and abound. 
+Each day will be triumphant only when my smiles bring forth smiles from others and this I do in selfishness, 
+for those on whom I frown are those who purchase not my goods.
+</code></pre><h3 id="-i-will-laugh-at-the-world-"><strong>I will laugh at the world.</strong></h3>
+<pre><code>Henceforth will I shed only tears of sweat, 
+for those of sadness or remorse or frustration are of no value in the marketplace whilst each smile can be exchanged for gold and each kind word,
+spoken from my heart, can build a castle.
+
+Never will I allow myself to become so important, so wise, so dignified, so powerful, 
+that I forget how to laugh at myself and my world. 
+In this matter I will always remain as a child, for only as a child am I given the ability to look up to others;
+and so long as I look up to another I will never grow too long for my cot.
+</code></pre><h3 id="-i-will-laugh-at-the-world-"><strong>I will laugh at the world.</strong></h3>
+<pre><code>And so long as I can laugh never will I be poor.  
+This then, is one of nature’s greatest gifts, and I will waste it no more.
+Only with laughter and happiness can I truly become a success.  
+Only with laughter and happiness can I enjoy the fruits of my labor.
+Were it not so, far better would it be to fail, for happiness is the wine that sharpens the taste of the meal. 
+To enjoy success I must have happiness, and laughter will be the maiden who serves me.
+I will be happy.
+I will be successful.
+I will be the greatest salesman the world has ever known.
+</code></pre>]]></content>
+    <summary type="html"><![CDATA[<h3 id="-">当你生活不如意时,当你工作不顺心时,当你遇到烦心事时.......</h3>
+<h3 id="-more-">请仔细阅读以下文字,也许可以帮助你走出困境.]]></summary>
+    
+      <category term="life" scheme="http://loveliuli.com/tags/life/"/>
+    
+      <category term="生活" scheme="http://loveliuli.com/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[puppet介绍]]></title>
+    <link href="http://loveliuli.com/2013/11/11/tools/tool_01_puppet_introduce/"/>
+    <id>http://loveliuli.com/2013/11/11/tools/tool_01_puppet_introduce/</id>
+    <published>2013-11-11T14:35:44.000Z</published>
+    <updated>2014-05-23T10:29:56.000Z</updated>
+    <content type="html"><![CDATA[<p>本文档目标是描述Puppet的 manifest在系统上是如何工作。此过程相当复杂，但是一般也不需要了解其中太多的细节。整理此文档也正是为了那些想了解更多关于Puppet内部机制人更方便更直接理解。<a id="more"></a></p>
+<p>在介绍之前，我们先看两个关于Puppet的经典图。一方面希望这两幅图能帮助理解，另一方面也希望下面的解释能帮助理解这两幅图。
+Puppet架构图</p>
+<p><img src="http://ww3.sinaimg.cn/large/b7ec873bgw1ednlygdpeuj209p04vjrk.jpg" alt="Puppet架构图">
+Puppet工作流程图
+<img src="http://ww3.sinaimg.cn/large/b7ec873bgw1ednm9apav3j20j90a7dh8.jpg" alt="Puppet工作流程图"></p>
+<h1 id="high-level">High Level</h1>
+<p>粗略来看，Puppet有三个主要的执行阶段--编译、实例化和配置</p>
+<h1 id="-">编译</h1>
+<p>这阶段描述如何将一个基于文本的manifest转变为一个针对特定节点规范(node-specific specification)。任何与此主机无关的代码都会被忽略，而任何与此主机相关的代码都会被插入，意味着变量扩展并且所有的结果都是文字字符串。</p>
+<p>编译阶段与Puppet库资源类型的唯一联系就是所有作为结果的资源规范都会被验证：也就是验证指定的类型是有效的并且该类型所有特定属性都是有效的。这时候没有对属性值的验证。</p>
+<p>在网络安装环境中，这阶段完全发生在服务端。此阶段的输出是一个类似于哈希的简单资源集合。</p>
+<h1 id="-">实例化</h1>
+<p>这阶段将简单的哈希和数组(编译阶段的输出)转变为Puppet库对象。因为这阶段需要依赖客户端的很多信息才能正常工作（比如，使用什么类型的包，什么类型的服务等），这阶段完全发生在客户端。</p>
+<p>从简单的格式转换为文字的Puppet对象允许这些对象对输入做更强大的验证，这是大部分输入验证发生的地方。如果你指定有效的属性但却赋予无效的值，在这里你可以发现它。意味着你将在客户端实例化配置时验证这类值错误，而不是在服务端。</p>
+<p>这阶段的输出是全部的机器配置，而它能够改变本地系统。</p>
+<h1 id="-">配置</h1>
+<p>这阶段Puppet真正改变系统。每个资源实例比较自身特定状态与机器状态并且去做任何需要更改的变动。如果机器状态恰好与指定状态一致，则不需要做任何变动。</p>
+<h1 id="lower-level">Lower Level</h1>
+<p>上述三个阶段每个都可以分解为更多步骤。</p>
+<h1 id="-1-">编译阶段1：解析</h1>
+<p>输入：使用Puppet语言编写的Manifests</p>
+<p>输出：解析树(AST对象实例)</p>
+<p>入口：Puppet::Parser::Parser#parse</p>
+<p>这时候，所有Puppet manifests开始为文本文件，解析器的工作就是理解这些文件。解析器只做了很少的工作-它将文本转换为一种文本直接映射回文本的格式，创建解析树本质上等价于（创建）文本自身。这时的验证仅仅是语法的验证。</p>
+<p>这阶段无论是否使用节点，无论使用stand-alone Puppet解释器或者客户端/服务端系统。一旦启动Puppet，解析过程就会发生。</p>
+<h1 id="-2-">编译阶段2：解释</h1>
+<p>输入：解析树(AST对象实例)和客户端信息（由Facter收集的facts）</p>
+<p>输出：Trees of TransObject and TransBucket instances</p>
+<p>入口：Puppet::Parser::AST#evaluate</p>
+<p>出口：Puppet::Parser::Scope#to_trans</p>
+<p>许多配置需要依赖客户端信息来决定。当Puppet客户端开始运行，它会加载Facter库，收集所有能够收集的facts,并且将这些facts传给解释器。当你通过网络使用Puppet，这些facts会经过网络传输到服务端，然后服务端会利用这些信息来编译客户端配置。</p>
+<p>这阶段传递给服务端的信息(像操作系统和硬件体系结构等)，既让服务端能够对客户端配置做出决定，同时它也能让服务端向配置中插入客户端信息，像IP地址和MAC地址这些信息。</p>
+<p>解释器将解析树和客户端信息合并为一个简单可传输对象树。这个可传输对象映射manifeasts定义的配置，它仍是一个树，但是它是一个类树，而资源包含在这些类中。</p>
+<h1 id="-">节点和无节点</h1>
+<p>当你使用Puppet时，有选项选择是否使用节点资源。如果不使用节点资源，每次一个客户端连接都需要解释整个配置，自顶向下解释解析树。在这种情况下，你必须有某种明确的选择机制来指定哪个代码适用哪个节点。</p>
+<p>如果你使用节点资源，那么，解释器就会预编译所有与特定节点无关的代码。当一个节点连接时，解释器就会寻找此节点名（从Facter facts中检索）相关的代码然后仅仅编译这些相关代码。</p>
+<h1 id="-">配置传输</h1>
+<p>输入：可传输对象</p>
+<p>输出：可传输对象</p>
+<p>入口：Puppet::Network::Server::Master#getconfig</p>
+<p>出口：Puppet::Network::Client::Master#getconfig</p>
+<p>如果使用stand-alone Puppet，那么就没有配置传输，因为客户端和服务端是同一进程。如果使用基于网络的Puppetd客户端和Puppetmasterd服务端，那么这些配置一旦编译完毕，就必须发送到客户端。</p>
+<p>Puppet目前是将这些可传输对象转变为YAML，它经过CGI转义然后使用XMLRPC通过HTTPS发送。客户端接收配置，反转义，缓存到磁盘以免下次服务端不可用，然后使用YAML再将它转换为普通ruby可传输对象。</p>
+<h1 id="-">实例化阶段</h1>
+<p>输入：可传输对象</p>
+<p>输出： Puppet::Type instances</p>
+<p>入口：Puppet::Network::Client::Master#run</p>
+<p>出口：Puppet::Transaction#initialize</p>
+<p>为了创建Puppet 库对象(Puppet::Type子类实例)，在可传输对象顶层调用to_trans。所有的容器对象转换为Puppet::Type::Component实例，所有普通对象转变为Puppet资源类型实例。</p>
+<p>这是所有输入验证发生地而且经常在这里值转换为更可用形式。例如，文件系统始终返回用户IDs，而不是用户名，因此Puppet对象将它们适当转换。(顺便提及下，有时候Puppet会在对文件chown时创建用户，意味着只要有可能Puppet会忽略验证错误直到最后一刻)。</p>
+<p>一旦所有资源建立在一个类似图的组件和资源树时，这个树转变为一个GRATR图像。然后这个图像传递给一个新的事务实例。</p>
+<h1 id="-">配置阶段</h1>
+<p>输入：GRATR图</p>
+<p>输出：事物报告</p>
+<p>入口：Puppet::Transaction#evaluate</p>
+<p>出口：Puppet::Transaction#generate_report</p>
+<p>在这个阶段，所有工作的完成，由一个事务控制。</p>
+<h1 id="-">资源生成</h1>
+<p>一些资源管理其他资源实例，例如递归文件操作。在这个阶段，任何静态生成的资源都被生成。然后这些生成的资源被添加到资源图。</p>
+<h1 id="-">关系</h1>
+<p>配置进程的下一阶段创建一个图来为资源依赖建模。Puppet语言的目标之一就是使文件顺序问题尽可能少；这意味着一个需要依赖其他资源的Puppet资源在manifest中会被列在它依赖的资源之后，也就是说被依赖的资源将会在它依赖的资源之后被实例化。最后依赖关系图会和原始资源图进行合并来创建一个完整的有着所有资源和所有关系的图。</p>
+<h1 id="-">评估</h1>
+<p>配置事务会对最终关系图做一个拓扑排序并且遍历结果列表，按顺序评价每个资源。每个资源的每个非同步属性都会生成一个Puppet::StateChange对象。事务使用该对象严格控制这些资源需要做哪些改变和在什么时候改变，当然也会确保提供日志。</p>
+<p>报告 随着事务的进行，它会收集日志和度量指标。在评估的最后，将这些信息转变为报告，发送给服务端。</p>
+<h1 id="-">总结</h1>
+<p>这是Puppet Manifest转变为一个完整配置的完整流程。对于Puppet系统，还有更多，例如FileBuckets，但是这些更多是支持角色而不是主要魅力所在。</p>
+]]></content>
+    <summary type="html"><![CDATA[<p>本文档目标是描述Puppet的 manifest在系统上是如何工作。此过程相当复杂，但是一般也不需要了解其中太多的细节。整理此文档也正是为了那些想了解更多关于Puppet内部机制人更方便更直接理解。]]></summary>
+    
+      <category term="puppet" scheme="http://loveliuli.com/tags/puppet/"/>
+    
+      <category term="工具" scheme="http://loveliuli.com/categories/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
