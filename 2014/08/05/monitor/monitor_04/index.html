@@ -230,49 +230,49 @@
     <div class="entry">
       
         <p>本文主要讲述zabbix低层次发现硬盘设备.详细过程如下.<a id="more"></a></p>
-<h3 id="1-创建模板">1.创建模板</h3>
+<h3 id="1-">1.创建模板</h3>
 <p><img src="http://ww4.sinaimg.cn/large/b7ec873bgw1ej0qvz7acjj21hb06mdip.jpg" alt="创建模板"></p>
-<h3 id="2-创建item_prototypes">2.创建item prototypes</h3>
+<h3 id="2-item-prototypes">2.创建item prototypes</h3>
 <p><img src="http://ww3.sinaimg.cn/large/b7ec873bgw1ej0qwfju8lj21g20g0adf.jpg" alt="创建item prototypes"></p>
-<h3 id="3-创建graph_prototypes">3.创建graph prototypes</h3>
+<h3 id="3-graph-prototypes">3.创建graph prototypes</h3>
 <p><img src="http://ww2.sinaimg.cn/large/b7ec873bgw1ej0qwx6898j21hc0ag43r.jpg" alt="创建graph prototypes">    </p>
-<h3 id="4-Agent端配置">4.Agent端配置</h3>
+<h3 id="4-agent-">4.Agent端配置</h3>
 <p>agent端的配置文件需要进行如下配置:</p>
-<pre><code>UserParameter=custom.vfs.dev.discovery,<span class="regexp">/bin/sh</span> /opt/zabbix/disk.sh
-<span class="comment"># reads completed successfully</span>
-UserParameter=custom.vfs.dev.<span class="keyword">read</span>.ops[<span class="variable">*]</span>,cat /proc/diskstats | egrep <span class="variable">$1</span> | head -<span class="number">1</span> | awk <span class="string">'{print $$4}'</span>
-<span class="comment"># sectors read</span>
-UserParameter=custom.vfs.dev.<span class="keyword">read</span>.sectors[<span class="variable">*]</span>,cat /proc/diskstats | egrep <span class="variable">$1</span> | head -<span class="number">1</span> | awk <span class="string">'{print $$6}'</span>
-<span class="comment"># time spent reading (ms)</span>
-UserParameter=custom.vfs.dev.<span class="keyword">read</span>.ms[<span class="variable">*]</span>,cat /proc/diskstats | egrep <span class="variable">$1</span> | head -<span class="number">1</span> | awk <span class="string">'{print $$7}'</span>
-<span class="comment"># writes completed</span>
-UserParameter=custom.vfs.dev.<span class="keyword">write</span>.ops[<span class="variable">*]</span>,cat /proc/diskstats | egrep <span class="variable">$1</span> | head -<span class="number">1</span> | awk <span class="string">'{print $$8}'</span>
-<span class="comment"># sectors written</span>
-UserParameter=custom.vfs.dev.<span class="keyword">write</span>.sectors[<span class="variable">*]</span>,cat /proc/diskstats | egrep <span class="variable">$1</span> | head -<span class="number">1</span> | awk <span class="string">'{print $$10}'</span>
-<span class="comment"># time spent writing (ms)</span>
-UserParameter=custom.vfs.dev.<span class="keyword">write</span>.ms[<span class="variable">*]</span>,cat /proc/diskstats | egrep <span class="variable">$1</span> | head -<span class="number">1</span> | awk <span class="string">'{print $$11}'</span>
-<span class="comment"># I/Os currently in progress</span>
-UserParameter=custom.vfs.dev.io.active[<span class="variable">*]</span>,cat /proc/diskstats | egrep <span class="variable">$1</span> | head -<span class="number">1</span> | awk <span class="string">'{print $$12}'</span>
-<span class="comment"># time spent doing I/Os (ms)</span>
-UserParameter=custom.vfs.dev.io.ms[<span class="variable">*]</span>,cat /proc/diskstats | egrep <span class="variable">$1</span> | head -<span class="number">1</span> | awk <span class="string">'{print $$13}'</span>
+<pre><code>UserParameter=custom.vfs.dev.discovery,/bin/sh /opt/zabbix/disk.sh
+# reads completed successfully
+UserParameter=custom.vfs.dev.read.ops[*],cat /proc/diskstats | egrep $1 | head -1 | awk &#39;{print $$4}&#39;
+# sectors read
+UserParameter=custom.vfs.dev.read.sectors[*],cat /proc/diskstats | egrep $1 | head -1 | awk &#39;{print $$6}&#39;
+# time spent reading (ms)
+UserParameter=custom.vfs.dev.read.ms[*],cat /proc/diskstats | egrep $1 | head -1 | awk &#39;{print $$7}&#39;
+# writes completed
+UserParameter=custom.vfs.dev.write.ops[*],cat /proc/diskstats | egrep $1 | head -1 | awk &#39;{print $$8}&#39;
+# sectors written
+UserParameter=custom.vfs.dev.write.sectors[*],cat /proc/diskstats | egrep $1 | head -1 | awk &#39;{print $$10}&#39;
+# time spent writing (ms)
+UserParameter=custom.vfs.dev.write.ms[*],cat /proc/diskstats | egrep $1 | head -1 | awk &#39;{print $$11}&#39;
+# I/Os currently in progress
+UserParameter=custom.vfs.dev.io.active[*],cat /proc/diskstats | egrep $1 | head -1 | awk &#39;{print $$12}&#39;
+# time spent doing I/Os (ms)
+UserParameter=custom.vfs.dev.io.ms[*],cat /proc/diskstats | egrep $1 | head -1 | awk &#39;{print $$13}&#39;
 </code></pre><p>[root@pay-03-vmain:/opt/zabbix]# cat disk.sh </p>
-<pre><code><span class="shebang">#!/bin/bash</span>
-diskarray=(`cat /proc/diskstats |grep -E <span class="string">"\bvd[abcdefg]\b|\bsd[abcdefg]\b|\bc0d0p[0~9]\b"</span>|grep -i <span class="string">"\b<span class="variable">$1</span>\b"</span>|awk <span class="string">'{print $3}'</span>|sort|uniq   <span class="number">2</span>&gt;/dev/null`)
-length=<span class="variable">${#diskarray[@]}</span>
-<span class="built_in">printf</span> <span class="string">"{\n"</span>
-<span class="built_in">printf</span>  <span class="string">'\t'</span><span class="string">"\"data\":["</span>
-<span class="keyword">for</span> ((i=<span class="number">0</span>;i&lt;<span class="variable">$length</span>;i++))
-<span class="keyword">do</span>
-    <span class="built_in">printf</span> <span class="string">'\n\t\t{'</span>
-    <span class="built_in">printf</span> <span class="string">"\"{#DISK}\":\"<span class="variable">${diskarray[$i]}</span>\"}"</span>
-    <span class="keyword">if</span> [ <span class="variable">$i</span> <span class="operator">-lt</span> $[<span class="variable">$length</span>-<span class="number">1</span>] ];<span class="keyword">then</span>
-            <span class="built_in">printf</span> <span class="string">','</span>
-    <span class="keyword">fi</span>
-<span class="keyword">done</span>
-<span class="built_in">printf</span>  <span class="string">"\n\t]\n"</span>
-<span class="built_in">printf</span> <span class="string">"}\n"</span>
+<pre><code>#!/bin/bash
+diskarray=(`cat /proc/diskstats |grep -E &quot;\bvd[abcdefg]\b|\bsd[abcdefg]\b|\bc0d0p[0~9]\b&quot;|grep -i &quot;\b$1\b&quot;|awk &#39;{print $3}&#39;|sort|uniq   2&gt;/dev/null`)
+length=${#diskarray[@]}
+printf &quot;{\n&quot;
+printf  &#39;\t&#39;&quot;\&quot;data\&quot;:[&quot;
+for ((i=0;i&lt;$length;i++))
+do
+    printf &#39;\n\t\t{&#39;
+    printf &quot;\&quot;{#DISK}\&quot;:\&quot;${diskarray[$i]}\&quot;}&quot;
+    if [ $i -lt $[$length-1] ];then
+            printf &#39;,&#39;
+    fi
+done
+printf  &quot;\n\t]\n&quot;
+printf &quot;}\n&quot;
 </code></pre><p>注意chown -R zabbix:zabbix /opt/zabbix/disk.sh</p>
-<h3 id="5-效果图">5.效果图</h3>
+<h3 id="5-">5.效果图</h3>
 <p><img src="http://ww4.sinaimg.cn/large/b7ec873bgw1ej0qz0o7uoj21gr0f647j.jpg" alt="自动发现效果图"></p>
 
       
@@ -344,6 +344,12 @@ var duoshuoQuery = {short_name:"loveliuli"};
   <h3 class="title">分类</h3>
   <ul class="entry">
   
+    <li><a href="/categories/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/categories/php/">php</a><small>2</small></li>
+  
+    <li><a href="/categories/puppet/">puppet</a><small>1</small></li>
+  
     <li><a href="/categories/优化/">优化</a><small>1</small></li>
   
     <li><a href="/categories/其他/">其他</a><small>1</small></li>
@@ -361,6 +367,8 @@ var duoshuoQuery = {short_name:"loveliuli"};
     <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
   
     <li><a href="/categories/生活/">生活</a><small>1</small></li>
+  
+    <li><a href="/categories/生活领悟/">生活领悟</a><small>1</small></li>
   
     <li><a href="/categories/监控/">监控</a><small>6</small></li>
   
@@ -380,7 +388,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 10.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 10.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 10.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a>
+    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 15.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 15.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 15.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 15.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a><a href="/tags/生活领悟/" style="font-size: 10.00px;">生活领悟</a>
   </div>
 </div>
 
@@ -399,7 +407,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2014 Copyright By Qun.Xue  版权所有
+  &copy; 2015 Copyright By Qun.Xue  版权所有
   
 </div>
 <script type="text/javascript">

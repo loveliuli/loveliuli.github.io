@@ -229,105 +229,116 @@
     </header>
     <div class="entry">
       
-        <h2 id="一-zabbix的zatree插件安装">一.zabbix的zatree插件安装</h2>
-<p>zabbix最近出了个比较有用的插件zatree,能够将所有的graph总体显示,而且可以根据关键字和时间进行查询以及汇总.<a id="more"></a><br>以下是zabbix-2.2.*版本的zatree安装,其他方式大家也可以去github项目获取安装方式.<br>    [github项目链接]: <a href="https://github.com/spide4k/zatree/tree/master/zabbix-2.2.x" target="_blank">https://github.com/spide4k/zatree/tree/master/zabbix-2.2.x</a>  嘿嘿,下面开始插件安装吧.</p>
-<h3 id="1-下载文件">1.下载文件</h3>
-<pre><code>git <span class="keyword">clone</span> https:<span class="comment">//github.com/spide4k/zatree.git zatree</span>
-</code></pre><h3 id="2-复制相关文件">2.复制相关文件</h3>
+        <h2 id="-zabbix-zatree-">一.zabbix的zatree插件安装</h2>
+<p>zabbix最近出了个比较有用的插件zatree,能够将所有的graph总体显示,而且可以根据关键字和时间进行查询以及汇总.<a id="more"></a>
+以下是zabbix-2.2.*版本的zatree安装,其他方式大家也可以去github项目获取安装方式.
+    [github项目链接]: <a href="https://github.com/spide4k/zatree/tree/master/zabbix-2.2.x" target="_blank">https://github.com/spide4k/zatree/tree/master/zabbix-2.2.x</a>  嘿嘿,下面开始插件安装吧.</p>
+<h3 id="1-">1.下载文件</h3>
+<pre><code>git clone https://github.com/spide4k/zatree.git zatree
+</code></pre><h3 id="2-">2.复制相关文件</h3>
 <p>假如zabbix web目录位置在/var/www/zabbix,定义zabbix目录</p>
-<pre><code><span class="attribute">ZABBIX_PATH</span>=<span class="string">/var/www/zabbix</span>
+<pre><code>ZABBIX_PATH=/var/www/zabbix
 </code></pre><p>复制相关文件和目录</p>
-<pre><code><span class="keyword">cp</span> -rf zatree/zabbix-<span class="number">2.2</span><span class="preprocessor">.x</span> $ZABBIX_PATH/zatree
+<pre><code>cp -rf zatree/zabbix-2.2.x $ZABBIX_PATH/zatree
 
 cd $ZABBIX_PATH/zatree/addfile
 
-<span class="keyword">cp</span> -f CLineGraphDraw_Zabbix<span class="preprocessor">.php</span> CGraphDraw_Zabbix<span class="preprocessor">.php</span> CImageTextTable_Zabbix<span class="preprocessor">.php</span> $ZABBIX_PATH/include/classes/graphdraw/
+cp -f CLineGraphDraw_Zabbix.php CGraphDraw_Zabbix.php CImageTextTable_Zabbix.php $ZABBIX_PATH/include/classes/graphdraw/
 
-<span class="keyword">cp</span> -f zabbix<span class="preprocessor">.php</span> zabbix_chart<span class="preprocessor">.php</span> $ZABBIX_PATH/
+cp -f zabbix.php zabbix_chart.php $ZABBIX_PATH/
 
-<span class="keyword">cp</span> -f CItemValue<span class="preprocessor">.php</span> $ZABBIX_PATH/api/classes/
+cp -f CItemValue.php $ZABBIX_PATH/api/classes/
 
-<span class="keyword">cp</span> -f menu<span class="preprocessor">.inc</span><span class="preprocessor">.php</span> $ZABBIX_PATH/include/
-<span class="keyword">cp</span> -f main<span class="preprocessor">.js</span> $ZABBIX_PATH/js/
+cp -f menu.inc.php $ZABBIX_PATH/include/
+cp -f main.js $ZABBIX_PATH/js/
 
-<span class="keyword">cp</span> -f API<span class="preprocessor">.php</span> $ZABBIX_PATH/include/classes/api/
-</code></pre><h3 id="3-支持web_interface,修改配置文件">3.支持web interface,修改配置文件</h3>
-<pre><code>vi <span class="variable">$ZABBIX_PATH</span>/zatree/zabbix_config.php
+cp -f API.php $ZABBIX_PATH/include/classes/api/
+</code></pre><h3 id="3-web-interface-">3.支持web interface,修改配置文件</h3>
+<pre><code>vi $ZABBIX_PATH/zatree/zabbix_config.php
 
-<span class="string">'user'</span>=&gt;<span class="string">'xxx'</span>, <span class="comment">//web登陆的用户名</span>
+&#39;user&#39;=&gt;&#39;xxx&#39;, //web登陆的用户名
 
-<span class="string">'passowrd'</span>=&gt;<span class="string">'xxx'</span>, <span class="comment">//web登陆的密码</span>
-</code></pre><h2 id="二-zatree优化之左侧栏目按照主机组显示">二.zatree优化之左侧栏目按照主机组显示</h2>
+&#39;passowrd&#39;=&gt;&#39;xxx&#39;, //web登陆的密码
+</code></pre><h2 id="-zatree-">二.zatree优化之左侧栏目按照主机组显示</h2>
 <p>admin用户效果图:</p>
 <p><img src="http://ww4.sinaimg.cn/large/b7ec873bgw1eixfrybl7kj20gr04vjru.jpg" alt="admin用户看到的组效果"></p>
 <p>普通用户效果图:</p>
 <p><img src="http://ww1.sinaimg.cn/large/b7ec873bgw1eixg0haajlj20h5038gls.jpg" alt="普通用户看到的组效果"></p>
-<p>优化法如下，这里针对zatree的zabbix-2.2.x版本做修改，方法同样适合zabbix-2.0.x版本：<br>进入zatree目录，修改以下两个文件：<br><strong>第一步：zabbix_ajax.php</strong><br>传递$_COOKIE[‘zbx_sessionid’]给hostgroupGet()，获取当前用户具有readable权限的主机组列表。</p>
-<pre><code><span class="variable">$groups</span> = <span class="variable">$zabbixApi</span>-&gt;hostgroupGet(<span class="keyword">array</span>(<span class="string">"output"</span> =&gt; <span class="string">"extend"</span>, <span class="string">"monitored_hosts"</span> =&gt; <span class="keyword">true</span>)
+<p>优化法如下，这里针对zatree的zabbix-2.2.x版本做修改，方法同样适合zabbix-2.0.x版本：
+进入zatree目录，修改以下两个文件：
+<strong>第一步：zabbix_ajax.php</strong>
+传递$_COOKIE[&#39;zbx_sessionid&#39;]给hostgroupGet()，获取当前用户具有readable权限的主机组列表。</p>
+<pre><code>$groups = $zabbixApi-&gt;hostgroupGet(array(&quot;output&quot; =&gt; &quot;extend&quot;, &quot;monitored_hosts&quot; =&gt; true)
 </code></pre><p>修改为：</p>
-<pre><code><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_COOKIE</span>[<span class="string">'zbx_sessionid'</span>])){
-    <span class="variable">$groups</span> = <span class="variable">$zabbixApi</span>-&gt;hostgroupGet(<span class="keyword">array</span>(<span class="string">"output"</span> =&gt; <span class="string">"extend"</span>, <span class="string">"monitored_hosts"</span> =&gt; <span class="keyword">true</span>), <span class="string">''</span>, <span class="variable">$_COOKIE</span>[<span class="string">'zbx_sessionid'</span>]);
-        } <span class="keyword">else</span> {
-        <span class="variable">$groups</span> = <span class="variable">$zabbixApi</span>-&gt;hostgroupGet(<span class="keyword">array</span>(<span class="string">"output"</span> =&gt; <span class="string">"extend"</span>, <span class="string">"monitored_hosts"</span> =&gt; <span class="keyword">true</span>));
+<pre><code>if(isset($_COOKIE[&#39;zbx_sessionid&#39;])){
+    $groups = $zabbixApi-&gt;hostgroupGet(array(&quot;output&quot; =&gt; &quot;extend&quot;, &quot;monitored_hosts&quot; =&gt; true), &#39;&#39;, $_COOKIE[&#39;zbx_sessionid&#39;]);
+        } else {
+        $groups = $zabbixApi-&gt;hostgroupGet(array(&quot;output&quot; =&gt; &quot;extend&quot;, &quot;monitored_hosts&quot; =&gt; true));
     }
-</code></pre><p><strong>第二步：ZabbixApiAbstract.class.php</strong><br>修改2594行hostgroupGet方法，添加$sessionid形参。当传入$sessionid参数时，设置$this-&gt;auth的值为$sessionid。</p>
-<pre><code><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hostgroupGet</span><span class="params">(<span class="variable">$params</span>=array<span class="params">()</span>, <span class="variable">$arrayKeyProperty</span>=<span class="string">''</span>)</span>
-{</span>
-    <span class="comment">// get params array for request</span>
-    <span class="variable">$params</span> = <span class="variable">$this</span>-&gt;getRequestParamsArray(<span class="variable">$params</span>);
+</code></pre><p><strong>第二步：ZabbixApiAbstract.class.php</strong>
+修改2594行hostgroupGet方法，添加$sessionid形参。当传入$sessionid参数时，设置$this-&gt;auth的值为$sessionid。</p>
+<pre><code>public function hostgroupGet($params=array(), $arrayKeyProperty=&#39;&#39;)
+{
+    // get params array for request
+    $params = $this-&gt;getRequestParamsArray($params);
 
-    <span class="comment">// request</span>
-    <span class="keyword">return</span> <span class="variable">$this</span>-&gt;request(<span class="string">'hostgroup.get'</span>, <span class="variable">$params</span>, <span class="variable">$arrayKeyProperty</span>);
+    // request
+    return $this-&gt;request(&#39;hostgroup.get&#39;, $params, $arrayKeyProperty);
 }
 </code></pre><p>修改为：</p>
-<pre><code><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hostgroupGet</span><span class="params">(<span class="variable">$params</span>=array<span class="params">()</span>, <span class="variable">$arrayKeyProperty</span>=<span class="string">''</span>, <span class="variable">$sessionid</span>=<span class="string">''</span>)</span>
-{</span>
-    <span class="comment">// get params array for request</span>
-    <span class="variable">$params</span> = <span class="variable">$this</span>-&gt;getRequestParamsArray(<span class="variable">$params</span>);
+<pre><code>public function hostgroupGet($params=array(), $arrayKeyProperty=&#39;&#39;, $sessionid=&#39;&#39;)
+{
+    // get params array for request
+    $params = $this-&gt;getRequestParamsArray($params);
 
-    <span class="comment">// request</span>
-    <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$sessionid</span>))
-        <span class="variable">$this</span>-&gt;auth = <span class="variable">$sessionid</span>;
-    <span class="keyword">return</span> <span class="variable">$this</span>-&gt;request(<span class="string">'hostgroup.get'</span>, <span class="variable">$params</span>, <span class="variable">$arrayKeyProperty</span>);
+    // request
+    if (isset($sessionid))
+        $this-&gt;auth = $sessionid;
+    return $this-&gt;request(&#39;hostgroup.get&#39;, $params, $arrayKeyProperty);
 }
-</code></pre><h3 id="三-优化zatree支持HTTP_Basic_Authorization认证访问zabbix_API">三.优化zatree支持HTTP Basic Authorization认证访问zabbix API</h3>
+</code></pre><h3 id="-zatree-http-basic-authorization-zabbix-api">三.优化zatree支持HTTP Basic Authorization认证访问zabbix API</h3>
 <p>考虑到让zabbix更加安全,所以采用了https的方式进行访问,但是这是zatree标签页打开时,出现了一堆错误.如下图所示:</p>
 <p><img src="http://ww4.sinaimg.cn/large/b7ec873bgw1eixg86gkn0j215502ptag.jpg" alt="报错"></p>
-<h2 id="优化过程如下:">优化过程如下:</h2>
-<p>进入zatree目录，修改以下四个文件：<br><strong>步骤一、修改zabbix_config.php</strong><br>添加HTTP Basic Authorization认证用户名和密码参数。如果没有设置HTTP Basic Authorization认证，http_user和http_password的值为空就行。</p>
-<pre><code><span class="php"><span class="preprocessor">&lt;?php</span> 
-<span class="keyword">global</span> <span class="variable">$zabbix_api_config</span>;
+<h2 id="-">优化过程如下:</h2>
+<p>进入zatree目录，修改以下四个文件：
+<strong>步骤一、修改zabbix_config.php</strong>
+添加HTTP Basic Authorization认证用户名和密码参数。如果没有设置HTTP Basic Authorization认证，http_user和http_password的值为空就行。</p>
+<pre><code>&lt;?php 
+global $zabbix_api_config;
 
-<span class="variable">$zabbix_api_config</span>=<span class="keyword">array</span>(
-<span class="string">'api_url'</span>=&gt;<span class="string">'api_jsonrpc.php'</span>,
-<span class="string">'http_user'</span>=&gt;<span class="string">'xxxxx'</span>,
-<span class="string">'http_password'</span>=&gt;<span class="string">'xxxxx'</span>,
-<span class="string">'user'</span>=&gt;<span class="string">'Admin'</span>,
-<span class="string">'passowrd'</span>=&gt;<span class="string">'xxxxx'</span>,
-<span class="string">'graph_url'</span>=&gt;<span class="string">'zabbix_chart.php'</span>,
+$zabbix_api_config=array(
+&#39;api_url&#39;=&gt;&#39;api_jsonrpc.php&#39;,
+&#39;http_user&#39;=&gt;&#39;xxxxx&#39;,
+&#39;http_password&#39;=&gt;&#39;xxxxx&#39;,
+&#39;user&#39;=&gt;&#39;Admin&#39;,
+&#39;passowrd&#39;=&gt;&#39;xxxxx&#39;,
+&#39;graph_url&#39;=&gt;&#39;zabbix_chart.php&#39;,
 );
 
-<span class="preprocessor">?&gt;</span></span>
-</code></pre><p><strong>步骤二、修改zabbix_ajax.php第33行，添加当有HTTP认证时的$url_http。</strong><br>    $url_http = dirname(dirname(‘http://‘ . $_SERVER[‘HTTP_HOST’] . $_SERVER[“REQUEST_URI”]));</p>
+?&gt;
+</code></pre><p><strong>步骤二、修改zabbix_ajax.php第33行，添加当有HTTP认证时的$url_http。</strong>
+    $url_http = dirname(dirname(&#39;http://&#39; . $_SERVER[&#39;HTTP_HOST&#39;] . $_SERVER[&quot;REQUEST_URI&quot;]));</p>
 <p>修改为：</p>
-<pre><code><span class="keyword">if</span> (!empty(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_user'</span>]) &amp;&amp; !empty(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_password'</span>])) {
-            <span class="variable">$url_http</span> = <span class="keyword">dirname</span>(<span class="keyword">dirname</span>(<span class="string">'https://'</span> . <span class="keyword">trim</span>(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_user'</span>]) . <span class="string">':'</span> . <span class="keyword">trim</span>(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_password'</span>]) . <span class="string">'@'</span> . <span class="variable">$_SERVER</span>[<span class="string">'HTTP_HOST'</span>] . <span class="variable">$_SERVER</span>[<span class="string">"REQUEST_URI"</span>]));
-    } <span class="keyword">else</span> {
-            <span class="variable">$url_http</span> = <span class="keyword">dirname</span>(<span class="keyword">dirname</span>(<span class="string">'https://'</span> . <span class="variable">$_SERVER</span>[<span class="string">'HTTP_HOST'</span>] . <span class="variable">$_SERVER</span>[<span class="string">"REQUEST_URI"</span>]));
+<pre><code>if (!empty($zabbix_api_config[&#39;http_user&#39;]) &amp;&amp; !empty($zabbix_api_config[&#39;http_password&#39;])) {
+            $url_http = dirname(dirname(&#39;https://&#39; . trim($zabbix_api_config[&#39;http_user&#39;]) . &#39;:&#39; . trim($zabbix_api_config[&#39;http_password&#39;]) . &#39;@&#39; . $_SERVER[&#39;HTTP_HOST&#39;] . $_SERVER[&quot;REQUEST_URI&quot;]));
+    } else {
+            $url_http = dirname(dirname(&#39;https://&#39; . $_SERVER[&#39;HTTP_HOST&#39;] . $_SERVER[&quot;REQUEST_URI&quot;]));
     }
-</code></pre><p><strong>步骤三、修改graph.php第141行，添加当有HTTP认证时的$url_http。</strong><br>    $url_http = dirname(dirname(‘http://‘ . $_SERVER[‘HTTP_HOST’] . $_SERVER[“REQUEST_URI”]));</p>
+</code></pre><p><strong>步骤三、修改graph.php第141行，添加当有HTTP认证时的$url_http。</strong>
+    $url_http = dirname(dirname(&#39;http://&#39; . $_SERVER[&#39;HTTP_HOST&#39;] . $_SERVER[&quot;REQUEST_URI&quot;]));</p>
 <p>修改为：</p>
-<pre><code><span class="keyword">if</span> (!empty(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_user'</span>]) &amp;&amp; !empty(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_password'</span>])) {
-            <span class="variable">$url_http</span> = <span class="keyword">dirname</span>(<span class="keyword">dirname</span>(<span class="string">'https://'</span> . <span class="keyword">trim</span>(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_user'</span>]) . <span class="string">':'</span> . <span class="keyword">trim</span>(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_password'</span>]) . <span class="string">'@'</span> . <span class="variable">$_SERVER</span>[<span class="string">'HTTP_HOST'</span>] . <span class="variable">$_SERVER</span>[<span class="string">"REQUEST_URI"</span>]));
-    } <span class="keyword">else</span> {
-            <span class="variable">$url_http</span> = <span class="keyword">dirname</span>(<span class="keyword">dirname</span>(<span class="string">'https://'</span> . <span class="variable">$_SERVER</span>[<span class="string">'HTTP_HOST'</span>] . <span class="variable">$_SERVER</span>[<span class="string">"REQUEST_URI"</span>]));
+<pre><code>if (!empty($zabbix_api_config[&#39;http_user&#39;]) &amp;&amp; !empty($zabbix_api_config[&#39;http_password&#39;])) {
+            $url_http = dirname(dirname(&#39;https://&#39; . trim($zabbix_api_config[&#39;http_user&#39;]) . &#39;:&#39; . trim($zabbix_api_config[&#39;http_password&#39;]) . &#39;@&#39; . $_SERVER[&#39;HTTP_HOST&#39;] . $_SERVER[&quot;REQUEST_URI&quot;]));
+    } else {
+            $url_http = dirname(dirname(&#39;https://&#39; . $_SERVER[&#39;HTTP_HOST&#39;] . $_SERVER[&quot;REQUEST_URI&quot;]));
     }
-</code></pre><p><strong>步骤四、修改big_graph.php第88行，添加当有HTTP认证时的$url_http。</strong><br>    $url_http = dirname(dirname(‘http://‘ . $_SERVER[‘HTTP_HOST’] . $_SERVER[“REQUEST_URI”]));</p>
+</code></pre><p><strong>步骤四、修改big_graph.php第88行，添加当有HTTP认证时的$url_http。</strong>
+    $url_http = dirname(dirname(&#39;http://&#39; . $_SERVER[&#39;HTTP_HOST&#39;] . $_SERVER[&quot;REQUEST_URI&quot;]));</p>
 <p>修改为：</p>
-<pre><code><span class="keyword">if</span> (!empty(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_user'</span>]) &amp;&amp; !empty(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_password'</span>])) {
-            <span class="variable">$url_http</span> = <span class="keyword">dirname</span>(<span class="keyword">dirname</span>(<span class="string">'https://'</span> . <span class="keyword">trim</span>(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_user'</span>]) . <span class="string">':'</span> . <span class="keyword">trim</span>(<span class="variable">$zabbix_api_config</span>[<span class="string">'http_password'</span>]) . <span class="string">'@'</span> . <span class="variable">$_SERVER</span>[<span class="string">'HTTP_HOST'</span>] . <span class="variable">$_SERVER</span>[<span class="string">"REQUEST_URI"</span>]));
-    } <span class="keyword">else</span> {
-            <span class="variable">$url_http</span> = <span class="keyword">dirname</span>(<span class="keyword">dirname</span>(<span class="string">'https://'</span> . <span class="variable">$_SERVER</span>[<span class="string">'HTTP_HOST'</span>] . <span class="variable">$_SERVER</span>[<span class="string">"REQUEST_URI"</span>]));
+<pre><code>if (!empty($zabbix_api_config[&#39;http_user&#39;]) &amp;&amp; !empty($zabbix_api_config[&#39;http_password&#39;])) {
+            $url_http = dirname(dirname(&#39;https://&#39; . trim($zabbix_api_config[&#39;http_user&#39;]) . &#39;:&#39; . trim($zabbix_api_config[&#39;http_password&#39;]) . &#39;@&#39; . $_SERVER[&#39;HTTP_HOST&#39;] . $_SERVER[&quot;REQUEST_URI&quot;]));
+    } else {
+            $url_http = dirname(dirname(&#39;https://&#39; . $_SERVER[&#39;HTTP_HOST&#39;] . $_SERVER[&quot;REQUEST_URI&quot;]));
     } 
 </code></pre>
       
@@ -399,6 +410,12 @@ var duoshuoQuery = {short_name:"loveliuli"};
   <h3 class="title">分类</h3>
   <ul class="entry">
   
+    <li><a href="/categories/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/categories/php/">php</a><small>2</small></li>
+  
+    <li><a href="/categories/puppet/">puppet</a><small>1</small></li>
+  
     <li><a href="/categories/优化/">优化</a><small>1</small></li>
   
     <li><a href="/categories/其他/">其他</a><small>1</small></li>
@@ -416,6 +433,8 @@ var duoshuoQuery = {short_name:"loveliuli"};
     <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
   
     <li><a href="/categories/生活/">生活</a><small>1</small></li>
+  
+    <li><a href="/categories/生活领悟/">生活领悟</a><small>1</small></li>
   
     <li><a href="/categories/监控/">监控</a><small>6</small></li>
   
@@ -435,7 +454,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 10.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 10.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 10.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a>
+    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 15.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 15.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 15.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 15.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a><a href="/tags/生活领悟/" style="font-size: 10.00px;">生活领悟</a>
   </div>
 </div>
 
@@ -454,7 +473,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2014 Copyright By Qun.Xue  版权所有
+  &copy; 2015 Copyright By Qun.Xue  版权所有
   
 </div>
 <script type="text/javascript">

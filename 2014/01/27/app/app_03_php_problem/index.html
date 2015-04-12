@@ -230,33 +230,36 @@
     <div class="entry">
       
         <hr>
-<h1 id="问题出现">问题出现</h1>
-<h4 id="由于最近公司扫描发现php和apache版本过低，有几个比较严重的漏洞，所以准备对php和apache进行升级。<!-more->">由于最近公司扫描发现php和apache版本过低，有几个比较严重的漏洞，所以准备对php和apache进行升级。<a id="more"></a></h4>
-<pre><code>apache版本为<span class="number">2.4</span><span class="number">.3</span>，但是在开启apache发现加载libphp5<span class="preprocessor">.so</span>时错误：undefined symbol:unixd_config,
-经查明原因：http2<span class="number">.4</span>目前不再支持php5<span class="number">.2</span>版本，要使用php为<span class="number">5.3</span>或者以上的版本，所以PHP也需要升级。
-在官网下载<span class="number">5.3</span><span class="number">.28</span>版本后，安装过程中发现有如下问题：
+<h1 id="-">问题出现</h1>
+<h4 id="-php-apache-php-apache-more-">由于最近公司扫描发现php和apache版本过低，有几个比较严重的漏洞，所以准备对php和apache进行升级。<a id="more"></a></h4>
+<pre><code>apache版本为2.4.3，但是在开启apache发现加载libphp5.so时错误：undefined symbol:unixd_config,
+经查明原因：http2.4目前不再支持php5.2版本，要使用php为5.3或者以上的版本，所以PHP也需要升级。
+在官网下载5.3.28版本后，安装过程中发现有如下问题：
 ./configure过程很顺利，在make环节发生错误。报错：
-/root/php-<span class="number">5.3</span><span class="number">.28</span>/Zend/zend_language_parser<span class="preprocessor">.h</span>:<span class="number">317</span>:错误:与‘zendparse’类型冲突。
-下一句给了提示：zend_globals_macros<span class="preprocessor">.h</span>：<span class="number">35</span>中‘zendparse’类型如此：
-</code></pre><h1 id="解决过程">解决过程</h1>
+/root/php-5.3.28/Zend/zend_language_parser.h:317:错误:与‘zendparse’类型冲突。
+下一句给了提示：zend_globals_macros.h：35中‘zendparse’类型如此：
+</code></pre><h1 id="-">解决过程</h1>
 <pre><code>打开./Zend/zend_language_parser.h文件，看看zendparese参数：
-<span class="number">316</span> <span class="preprocessor">#<span class="keyword">if</span> defined __STDC__ || defined __cplusplus</span>
-<span class="number">317</span> <span class="keyword">int</span> zendparse (<span class="keyword">void</span>);
-<span class="number">318</span> <span class="preprocessor">#<span class="keyword">else</span></span>
-<span class="number">319</span> <span class="keyword">int</span> zendparse ();
-<span class="number">320</span> <span class="preprocessor">#<span class="keyword">endif</span></span>
-再看看zend_globals_macros.h：<span class="number">35</span>是什么参数。
-<span class="number">33</span> <span class="preprocessor">#ifdef ZTS</span>
-<span class="number">34</span> <span class="preprocessor"># <span class="keyword">define</span> CG(v) TSRMG(compiler_globals_id, zend_compiler_globals *, v)</span>
-<span class="number">35</span> <span class="keyword">int</span> zendparse(<span class="keyword">void</span> *compiler_globals);
-<span class="number">36</span> <span class="preprocessor">#<span class="keyword">else</span></span>
+316 #if defined __STDC__ || defined __cplusplus
+317 int zendparse (void);
+318 #else
+319 int zendparse ();
+320 #endif
+再看看zend_globals_macros.h：35是什么参数。
+33 #ifdef ZTS
+34 # define CG(v) TSRMG(compiler_globals_id, zend_compiler_globals *, v)
+35 int zendparse(void *compiler_globals);
+36 #else
 </code></pre><p>好吧，那我就把35行的参数，改到zend_language_parser.h 317行。</p>
-<pre><code><span class="number">316</span> <span class="preprocessor">#<span class="keyword">if</span> defined __STDC__ || defined __cplusplus</span>
-<span class="number">317</span> <span class="keyword">int</span> zendparse (<span class="keyword">void</span> *compiler_globals);
-<span class="number">318</span> <span class="preprocessor">#<span class="keyword">else</span></span>
-<span class="number">319</span> <span class="keyword">int</span> zendparse ();
-<span class="number">320</span> <span class="preprocessor">#<span class="keyword">endif</span></span>
-</code></pre><p>再进行make，OK。<br>顺利完成了。<br>官方版本发布的太急了吧，有此错误。<br>PS：生产服务器一定三思，此参数的更改可能会影响到您的业务。</p>
+<pre><code>316 #if defined __STDC__ || defined __cplusplus
+317 int zendparse (void *compiler_globals);
+318 #else
+319 int zendparse ();
+320 #endif
+</code></pre><p>再进行make，OK。
+顺利完成了。
+官方版本发布的太急了吧，有此错误。
+PS：生产服务器一定三思，此参数的更改可能会影响到您的业务。</p>
 
       
     </div>
@@ -327,6 +330,12 @@ var duoshuoQuery = {short_name:"loveliuli"};
   <h3 class="title">分类</h3>
   <ul class="entry">
   
+    <li><a href="/categories/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/categories/php/">php</a><small>2</small></li>
+  
+    <li><a href="/categories/puppet/">puppet</a><small>1</small></li>
+  
     <li><a href="/categories/优化/">优化</a><small>1</small></li>
   
     <li><a href="/categories/其他/">其他</a><small>1</small></li>
@@ -344,6 +353,8 @@ var duoshuoQuery = {short_name:"loveliuli"};
     <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
   
     <li><a href="/categories/生活/">生活</a><small>1</small></li>
+  
+    <li><a href="/categories/生活领悟/">生活领悟</a><small>1</small></li>
   
     <li><a href="/categories/监控/">监控</a><small>6</small></li>
   
@@ -363,7 +374,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 10.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 10.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 10.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a>
+    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 15.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 15.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 15.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 15.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a><a href="/tags/生活领悟/" style="font-size: 10.00px;">生活领悟</a>
   </div>
 </div>
 
@@ -382,7 +393,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2014 Copyright By Qun.Xue  版权所有
+  &copy; 2015 Copyright By Qun.Xue  版权所有
   
 </div>
 <script type="text/javascript">

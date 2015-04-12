@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>linux测试即时网速 | Time Memory</title>
+  <title>Markdown | Time Memory</title>
   <meta name="author" content="Copyright By Qun.Xue  版权所有">
   
   <meta name="description" content="where there is will there is way">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="linux测试即时网速"/>
+  
   <meta property="og:site_name" content="Time Memory"/>
 
   
@@ -201,121 +201,25 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
-  
-    <div class="gallery">
-  <div class="photoset">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+<h2 class="archive-title category">Markdown</h2>
+
+
+  <div class="archive">
     
-      <img src="">
+      <article class="post">
+        <div class="post-content">
+          <header>
+            <div class="icon"></div>
+            <time datetime="2013-11-11T03:40:41.000Z"><a href="/2013/11/11/markdownsytax/">11月 11 2013</a></time>
+            
+              <h1 class="title"><a href="/2013/11/11/markdownsytax/">Markdown：syntax</a></h1>
+            
+          </header>
+        </div>
+      </article>
     
   </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-05-12T12:59:19.000Z"><a href="/2014/05/12/script/script_01/">5月 12 2014</a></time>
-      
-      
-  
-    <h1 class="title">linux测试即时网速</h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h3 id="平时在测试客户端网速时,linux上没有好的工具,只好自己写脚本来进行测试,以下是我平时实用的一个测试脚本工具,比较简单,仅供参考-<!-more->">平时在测试客户端网速时,linux上没有好的工具,只好自己写脚本来进行测试,以下是我平时实用的一个测试脚本工具,比较简单,仅供参考.<a id="more"></a></h3>
-<h3 id="Cat_bw_test-sh">Cat bw_test.sh</h3>
-<pre><code><span class="shebang">#!/bin/bash</span>
-<span class="function"><span class="title">out</span></span>()
-{
-<span class="keyword">exit</span>
-}
-
-trap <span class="string">"out"</span> <span class="number">2</span>
-
-<span class="keyword">while</span> <span class="literal">true</span>
-<span class="keyword">do</span>
-string1=`ifconfig <span class="variable">$1</span> | grep <span class="string">"bytes"</span> | awk <span class="string">'{printf $2}'</span>`
-rx1=<span class="variable">${string1##bytes:}</span>
-string2=`ifconfig <span class="variable">$1</span> | grep <span class="string">"bytes"</span> | awk <span class="string">'{printf $6}'</span>`
-tx1=<span class="variable">${string2##bytes:}</span>
-sleep <span class="number">1</span>
-clear
-string3=`ifconfig <span class="variable">$1</span> | grep <span class="string">"bytes"</span> | awk <span class="string">'{printf $2}'</span>`
-rx2=<span class="variable">${string3##bytes:}</span>
-string4=`ifconfig <span class="variable">$1</span> | grep <span class="string">"bytes"</span> | awk <span class="string">'{printf $6}'</span>`
-tx2=<span class="variable">${string4##bytes:}</span>
-<span class="comment">#echo $rx1</span>
-<span class="comment">#echo $rx2</span>
-temp=`expr <span class="variable">$rx2</span> - <span class="variable">$rx1</span>`
-r1=`expr <span class="variable">$temp</span> / <span class="number">1024</span>`
-<span class="built_in">echo</span> 当前下载速度:<span class="variable">$r1</span> kB/s
-temp=`expr <span class="variable">$tx2</span> - <span class="variable">$tx1</span>`
-r2=`expr <span class="variable">$temp</span> / <span class="number">1024</span>`
-<span class="built_in">echo</span> 当前上传速度:<span class="variable">$r2</span> KB/s
-<span class="keyword">done</span>
-</code></pre>
-      
-    </div>
-    <footer>
-      
-        
-  
-  <div class="categories">
-    <a href="/categories/脚本/">脚本</a>
-  </div>
-
-        
-  
-  <div class="tags">
-    <a href="/tags/script/">script</a>
-  </div>
-
-        <!-- Baidu Button BEGIN -->
-<div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare">
-<a class="bds_tsina"></a>
-<a class="bds_qzone"></a>
-<a class="bds_tqq"></a>
-<a class="bds_renren"></a>
-<a class="bds_t163"></a>
-<span class="bds_more"></span>
-<a class="shareCount"></a>
-</div>
-<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6861768" ></script>
-<script type="text/javascript" id="bdshell_js"></script>
-<script type="text/javascript">
-document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
-</script>
-<!-- Baidu Button END -->
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-<section id="comment">
-  <!-- Duoshuo Comment BEGIN -->
-	<div class="ds-thread"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"loveliuli"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = 'http://static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		|| document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-<!-- Duoshuo Comment END -->
-</section>
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
@@ -329,6 +233,12 @@ var duoshuoQuery = {short_name:"loveliuli"};
 <div class="widget tag">
   <h3 class="title">分类</h3>
   <ul class="entry">
+  
+    <li><a href="/categories/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/categories/php/">php</a><small>2</small></li>
+  
+    <li><a href="/categories/puppet/">puppet</a><small>1</small></li>
   
     <li><a href="/categories/优化/">优化</a><small>1</small></li>
   
@@ -348,6 +258,8 @@ var duoshuoQuery = {short_name:"loveliuli"};
   
     <li><a href="/categories/生活/">生活</a><small>1</small></li>
   
+    <li><a href="/categories/生活领悟/">生活领悟</a><small>1</small></li>
+  
     <li><a href="/categories/监控/">监控</a><small>6</small></li>
   
     <li><a href="/categories/网络/">网络</a><small>1</small></li>
@@ -366,7 +278,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 10.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 10.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 10.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a>
+    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 15.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 15.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 15.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 15.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a><a href="/tags/生活领悟/" style="font-size: 10.00px;">生活领悟</a>
   </div>
 </div>
 
@@ -385,7 +297,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2014 Copyright By Qun.Xue  版权所有
+  &copy; 2015 Copyright By Qun.Xue  版权所有
   
 </div>
 <script type="text/javascript">

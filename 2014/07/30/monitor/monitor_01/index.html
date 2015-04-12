@@ -229,19 +229,24 @@
     </header>
     <div class="entry">
       
-        <p><strong>Zabbix log里面发现”Not all processes could be identified”报错</strong><br>在zabbix_agentd.conf里添加了一条监控项:<a id="more"></a></p>
-<pre><code>UserParameter=linux.people[<span class="variable">*]</span>,netstat -antp|<span class="keyword">grep</span> <span class="string">'$1'</span>|<span class="keyword">grep</span> -v LISTEN|wc -l
+        <p><strong>Zabbix log里面发现&quot;Not all processes could be identified&quot;报错</strong>
+在zabbix_agentd.conf里添加了一条监控项:<a id="more"></a></p>
+<pre><code>UserParameter=linux.people[*],netstat -antp|grep &#39;$1&#39;|grep -v LISTEN|wc -l
 </code></pre><p>重启代理进程后,发现监控里的值为0，看了下日志发现不停地输出如下的log:</p>
-<pre><code>(<span class="keyword">Not</span> <span class="keyword">all</span> processes could be identified, non-owned <span class="keyword">process</span> info 
-will <span class="keyword">not</span> be shown, you would have <span class="keyword">to</span> be root <span class="keyword">to</span> see it <span class="keyword">all</span>.)
-</code></pre><p>一直没找到问题所在,虽然在server端采集数据是没有任何问题,但是客户端的log中会一直报这个错误,后来su到zabbix用户执行了一下该命令,才发现了问题所在.<br>原来是netstat -lantup里的<strong>-p</strong>参数需要<strong>root</strong>用户才能使用,所以结果值总是为0.<br>修改如下:<br>UserParameter=linux.people[*],netstat -ant|grep ‘$1’|grep -v LISTEN|wc -l<br>重启后正常了.</p>
+<pre><code>(Not all processes could be identified, non-owned process info 
+will not be shown, you would have to be root to see it all.)
+</code></pre><p>一直没找到问题所在,虽然在server端采集数据是没有任何问题,但是客户端的log中会一直报这个错误,后来su到zabbix用户执行了一下该命令,才发现了问题所在. 
+原来是netstat -lantup里的<strong>-p</strong>参数需要<strong>root</strong>用户才能使用,所以结果值总是为0.
+修改如下:
+UserParameter=linux.people[*],netstat -ant|grep &#39;$1&#39;|grep -v LISTEN|wc -l
+重启后正常了.</p>
 <p>不能使用root,有时候执行一些命令还确实不方便.为了能让zabbix执行一些需要root才能支持的命令、参数等，只有使用sudo，解决步骤如下：</p>
-<pre><code><span class="comment"># groupadd monitor</span>
-<span class="comment"># usermod -G zabbix</span>
-<span class="comment"># visudo -f /etc/sudoers                   #增加最后两行,并且注释掉Defaults    requiretty</span>
-<span class="comment">#Defaults    requiretty          #一定要注释掉</span>
-<span class="constant">Cmnd_Alias</span> <span class="constant">MONITORING</span> = <span class="regexp">/bin/netstat</span>,<span class="regexp">/sbin/sudo</span>   <span class="comment">#以后还需要添加什么命令添加到后面即可</span>
-%monitor        <span class="constant">ALL</span>=(root) <span class="constant">NOPASSWD</span><span class="symbol">:MONITORING</span>
+<pre><code># groupadd monitor
+# usermod -G zabbix
+# visudo -f /etc/sudoers                   #增加最后两行,并且注释掉Defaults    requiretty
+#Defaults    requiretty          #一定要注释掉
+Cmnd_Alias MONITORING = /bin/netstat,/sbin/sudo   #以后还需要添加什么命令添加到后面即可
+%monitor        ALL=(root) NOPASSWD:MONITORING
 </code></pre>
       
     </div>
@@ -312,6 +317,12 @@ var duoshuoQuery = {short_name:"loveliuli"};
   <h3 class="title">分类</h3>
   <ul class="entry">
   
+    <li><a href="/categories/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/categories/php/">php</a><small>2</small></li>
+  
+    <li><a href="/categories/puppet/">puppet</a><small>1</small></li>
+  
     <li><a href="/categories/优化/">优化</a><small>1</small></li>
   
     <li><a href="/categories/其他/">其他</a><small>1</small></li>
@@ -329,6 +340,8 @@ var duoshuoQuery = {short_name:"loveliuli"};
     <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
   
     <li><a href="/categories/生活/">生活</a><small>1</small></li>
+  
+    <li><a href="/categories/生活领悟/">生活领悟</a><small>1</small></li>
   
     <li><a href="/categories/监控/">监控</a><small>6</small></li>
   
@@ -348,7 +361,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 10.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 10.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 10.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a>
+    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 15.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 15.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 15.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 15.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a><a href="/tags/生活领悟/" style="font-size: 10.00px;">生活领悟</a>
   </div>
 </div>
 
@@ -367,7 +380,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2014 Copyright By Qun.Xue  版权所有
+  &copy; 2015 Copyright By Qun.Xue  版权所有
   
 </div>
 <script type="text/javascript">

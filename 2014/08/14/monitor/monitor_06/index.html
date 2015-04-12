@@ -231,24 +231,32 @@
       
         <p>本文主要讲述Zabbix远程执行命令.<a id="more"></a></p>
 <p>本教程是测试zabbix的远程执行功能,比较简单,点拨思路,自己发散.</p>
-<h3 id="一-创建item和触发器">一.创建item和触发器</h3>
-<p>1.1 创建item<br>我这里是测试服务irqbalance,当服务irqbalance停止后,zabbix触发后,会自动拉起irqbalance服务.<br>Item:<br>UserParameter=xsj.irq.sum,ps xua|grep -w  “irqbalance”|grep -v grep|wc -l<br>1.2 创建触发器:</p>
+<h3 id="-item-">一.创建item和触发器</h3>
+<p>1.1 创建item
+我这里是测试服务irqbalance,当服务irqbalance停止后,zabbix触发后,会自动拉起irqbalance服务.
+Item:
+UserParameter=xsj.irq.sum,ps xua|grep -w  &quot;irqbalance&quot;|grep -v grep|wc -l
+1.2 创建触发器:</p>
 <p><img src="http://ww1.sinaimg.cn/large/b7ec873bgw1ejbzxgcgeoj20pa0dl75a.jpg" alt="创建触发器"></p>
-<h3 id="二-创建脚本或者命令">二.创建脚本或者命令</h3>
-<p>2.1 如果你使用脚本,需要提前写好脚本,记得chmod755以及chow zabbix.命令的话,直接使用sudo执行.考虑到安全问题,这里的sudo控制最好细化.<br>2.2 本例使用sudo /etc/init.d/irqbalance start来进行测试</p>
-<h3 id="三-开启sudo权限">三.开启sudo权限</h3>
-<p>下例是授权zabbix无密码允许netstat命令:<br><strong>授权zabbix用户无密码运行netstat命令</strong></p>
-<pre><code><span class="keyword">chmod</span> +w /etc/sudoers 
-sed -i <span class="string">'s/^\(Defaults\s\+requiretty\)/#\1/'</span> /etc/sudoers
-<span class="keyword">grep</span> -<span class="keyword">q</span> <span class="string">'^zabbix ALL=(ALL).*netstat'</span> /etc/sudoers || echo <span class="string">'zabbix ALL=(ALL)       NOPASSWD: /bin/netstat'</span> &gt;&gt; <span class="regexp">/etc/sudoers</span>
-<span class="keyword">chmod</span> <span class="number">440</span> /etc/sudoers
+<h3 id="-">二.创建脚本或者命令</h3>
+<p>2.1 如果你使用脚本,需要提前写好脚本,记得chmod755以及chow zabbix.命令的话,直接使用sudo执行.考虑到安全问题,这里的sudo控制最好细化.
+2.2 本例使用sudo /etc/init.d/irqbalance start来进行测试</p>
+<h3 id="-sudo-">三.开启sudo权限</h3>
+<p>下例是授权zabbix无密码允许netstat命令:
+<strong>授权zabbix用户无密码运行netstat命令</strong></p>
+<pre><code>chmod +w /etc/sudoers 
+sed -i &#39;s/^\(Defaults\s\+requiretty\)/#\1/&#39; /etc/sudoers
+grep -q &#39;^zabbix ALL=(ALL).*netstat&#39; /etc/sudoers || echo &#39;zabbix ALL=(ALL)       NOPASSWD: /bin/netstat&#39; &gt;&gt; /etc/sudoers
+chmod 440 /etc/sudoers
 </code></pre><p>我们只是使用irqbalance 服务来测试,所以比较简单,visudo最后添加一行:</p>
-<pre><code>zabbix <span class="keyword">ALL</span>=(<span class="keyword">ALL</span>)       NOPASSWD: /etc/init.d/irqbalance start
-</code></pre><h3 id="四-创建action">四.创建action</h3>
+<pre><code>zabbix ALL=(ALL)       NOPASSWD: /etc/init.d/irqbalance start
+</code></pre><h3 id="-action">四.创建action</h3>
 <p><img src="http://ww2.sinaimg.cn/large/b7ec873bgw1ejc029sm4rj20uy0argnh.jpg" alt="创建action"></p>
 <p><img src="http://ww1.sinaimg.cn/large/b7ec873bgw1ejc045a5crj20uu0lf41z.jpg" alt="创建action"></p>
-<h3 id="五-测试">五.测试</h3>
-<p>测试过程:关闭irqbalance服务,web界面查看告警以及命令执行情况.<br><strong>注意事项</strong>:<br>1.On some systems sudoers file will prevent non-local users from executing commands. To change this, comment out <strong>requiretty</strong> option in /etc/sudoers.<br>2.Make sure that the <strong>EnableRemoteCommands</strong> parameter is <strong>set to 1</strong> and uncommented. Restart agent daemon if changing this parameter.</p>
+<h3 id="-">五.测试</h3>
+<p>测试过程:关闭irqbalance服务,web界面查看告警以及命令执行情况.<br><strong>注意事项</strong>:
+1.On some systems sudoers file will prevent non-local users from executing commands. To change this, comment out <strong>requiretty</strong> option in /etc/sudoers.
+2.Make sure that the <strong>EnableRemoteCommands</strong> parameter is <strong>set to 1</strong> and uncommented. Restart agent daemon if changing this parameter.</p>
 
       
     </div>
@@ -319,6 +327,12 @@ var duoshuoQuery = {short_name:"loveliuli"};
   <h3 class="title">分类</h3>
   <ul class="entry">
   
+    <li><a href="/categories/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/categories/php/">php</a><small>2</small></li>
+  
+    <li><a href="/categories/puppet/">puppet</a><small>1</small></li>
+  
     <li><a href="/categories/优化/">优化</a><small>1</small></li>
   
     <li><a href="/categories/其他/">其他</a><small>1</small></li>
@@ -336,6 +350,8 @@ var duoshuoQuery = {short_name:"loveliuli"};
     <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
   
     <li><a href="/categories/生活/">生活</a><small>1</small></li>
+  
+    <li><a href="/categories/生活领悟/">生活领悟</a><small>1</small></li>
   
     <li><a href="/categories/监控/">监控</a><small>6</small></li>
   
@@ -355,7 +371,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 10.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 10.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 10.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a>
+    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 15.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 15.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 15.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 15.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a><a href="/tags/生活领悟/" style="font-size: 10.00px;">生活领悟</a>
   </div>
 </div>
 
@@ -374,7 +390,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2014 Copyright By Qun.Xue  版权所有
+  &copy; 2015 Copyright By Qun.Xue  版权所有
   
 </div>
 <script type="text/javascript">

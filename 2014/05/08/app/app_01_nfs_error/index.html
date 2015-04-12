@@ -229,65 +229,68 @@
     </header>
     <div class="entry">
       
-        <p>今天准备在正式环境测试一下puppet,搭建仓库后,需要搭建一个nfs来进行文件共享,让下面发agnet通过nfs安装.<a id="more"></a><br>yum install nfs-utils成功后,启动nfs服务时,发现有如下报错信息:</p>
-<pre><code>[root@master ~]<span class="preprocessor"># service nfsd start</span>
+        <p>今天准备在正式环境测试一下puppet,搭建仓库后,需要搭建一个nfs来进行文件共享,让下面发agnet通过nfs安装.<a id="more"></a>
+yum install nfs-utils成功后,启动nfs服务时,发现有如下报错信息:</p>
+<pre><code>[root@master ~]# service nfsd start
 nfsd: unrecognized service
-[root@master ~]<span class="preprocessor"># service nfs start</span>
+[root@master ~]# service nfs start
 Starting NFS services:  [  OK  ]
-Starting NFS quotas: Cannot register service: RPC: Unable <span class="keyword">to</span> receive; errno = Connection refused
-rpc.rquotad: unable <span class="keyword">to</span> register (RQUOTAPROG, RQUOTAVERS, udp).
+Starting NFS quotas: Cannot register service: RPC: Unable to receive; errno = Connection refused
+rpc.rquotad: unable to register (RQUOTAPROG, RQUOTAVERS, udp).
 [FAILED]
 Starting NFS mountd: [FAILED]
-Starting NFS daemon: rpc.nfsd: writing fd <span class="keyword">to</span> kernel failed: errno <span class="number">111</span> (Connection refused)
-rpc.nfsd: unable <span class="keyword">to</span> <span class="keyword">set</span> any sockets <span class="keyword">for</span> nfsd
+Starting NFS daemon: rpc.nfsd: writing fd to kernel failed: errno 111 (Connection refused)
+rpc.nfsd: unable to set any sockets for nfsd
 [FAILED]
 </code></pre><p>从原因来看是由于不能注册服务,RPC不能接收.网上一查,发现原因如下:</p>
 <p>Redhat系列在6.0版本之后没有portmap服务控制rpc的启动，NFS和nfslock的启动需要向rpc进行注册，rpc不启动的话就会报错。</p>
 <hr>
-<p>解决方法：启动rpcbind&amp;rpcidmap rpcbind是6.0版本后默认的RPC服务，所以要先于nfs启动。<br>如果不启动rpcidmap则会造成用户权限的映射错误，用户的权限看起来是一串数字。<br>具体解决如下:</p>
-<pre><code>[root<span class="variable">@master</span> ~]<span class="comment"># service nfs start</span>
-<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">services:</span>  [  <span class="constant">OK</span>  ]
-<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">quotas:</span> <span class="constant">Cannot</span> register <span class="symbol">service:</span> <span class="constant">RPC</span><span class="symbol">:</span> <span class="constant">Unable</span> to receive; errno = <span class="constant">Connection</span> refused
-rpc.<span class="symbol">rquotad:</span> unable to register (<span class="constant">RQUOTAPROG</span>, <span class="constant">RQUOTAVERS</span>, udp).
-[<span class="constant">FAILED</span>]
-<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">mountd:</span> [<span class="constant">FAILED</span>]
-<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">daemon:</span> rpc.<span class="symbol">nfsd:</span> writing fd to kernel <span class="symbol">failed:</span> errno <span class="number">111</span> (<span class="constant">Connection</span> refused)
-rpc.<span class="symbol">nfsd:</span> unable to set any sockets <span class="keyword">for</span> nfsd
-[<span class="constant">FAILED</span>]
-[root<span class="variable">@master</span> ~]<span class="comment"># /etc/init.d/rpcbind start</span>
-<span class="constant">Starting</span> <span class="symbol">rpcbind:</span> [  <span class="constant">OK</span>  ]
-[root<span class="variable">@master</span> ~]<span class="comment"># /etc/init.d/rpcidmapd start</span>
-<span class="constant">Starting</span> <span class="constant">RPC</span> <span class="symbol">idmapd:</span> [  <span class="constant">OK</span>  ]
-[root<span class="variable">@master</span> ~]<span class="comment"># service nfs start</span>
-<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">services:</span>  [  <span class="constant">OK</span>  ]
-<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">quotas:</span> [  <span class="constant">OK</span>  ]
-<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">mountd:</span> [  <span class="constant">OK</span>  ]
-<span class="constant">Starting</span> <span class="constant">NFS</span> <span class="symbol">daemon:</span> [  <span class="constant">OK</span>  ]
-[root<span class="variable">@master</span> ~]<span class="comment"># </span>
+<p>解决方法：启动rpcbind&amp;rpcidmap rpcbind是6.0版本后默认的RPC服务，所以要先于nfs启动。
+如果不启动rpcidmap则会造成用户权限的映射错误，用户的权限看起来是一串数字。
+具体解决如下:</p>
+<pre><code>[root@master ~]# service nfs start
+Starting NFS services:  [  OK  ]
+Starting NFS quotas: Cannot register service: RPC: Unable to receive; errno = Connection refused
+rpc.rquotad: unable to register (RQUOTAPROG, RQUOTAVERS, udp).
+[FAILED]
+Starting NFS mountd: [FAILED]
+Starting NFS daemon: rpc.nfsd: writing fd to kernel failed: errno 111 (Connection refused)
+rpc.nfsd: unable to set any sockets for nfsd
+[FAILED]
+[root@master ~]# /etc/init.d/rpcbind start
+Starting rpcbind: [  OK  ]
+[root@master ~]# /etc/init.d/rpcidmapd start
+Starting RPC idmapd: [  OK  ]
+[root@master ~]# service nfs start
+Starting NFS services:  [  OK  ]
+Starting NFS quotas: [  OK  ]
+Starting NFS mountd: [  OK  ]
+Starting NFS daemon: [  OK  ]
+[root@master ~]# 
 </code></pre><hr>
 <p>在客户端挂载nfs时,发现有如下问题:</p>
-<pre><code>root@agent1 media]<span class="preprocessor"># /bin/mount -t nfs 10.20.102.154:/puppet /media/</span>
-mount: wrong fs type, bad <span class="keyword">option</span>, bad superblock <span class="keyword">on</span> <span class="number">10.20</span><span class="number">.102</span><span class="number">.154</span>:/puppet,
-   missing codepage <span class="keyword">or</span> helper program, <span class="keyword">or</span> other <span class="keyword">error</span>
-   (<span class="keyword">for</span> several filesystems (e.g. nfs, cifs) you might
+<pre><code>root@agent1 media]# /bin/mount -t nfs 10.20.102.154:/puppet /media/
+mount: wrong fs type, bad option, bad superblock on 10.20.102.154:/puppet,
+   missing codepage or helper program, or other error
+   (for several filesystems (e.g. nfs, cifs) you might
    need a /sbin/mount.&lt;type&gt; helper program)
-   <span class="keyword">In</span> some cases useful info <span class="keyword">is</span> found <span class="keyword">in</span> syslog - <span class="keyword">try</span>
-   dmesg | tail  <span class="keyword">or</span> so
+   In some cases useful info is found in syslog - try
+   dmesg | tail  or so
 </code></pre><p>解决方法是在客户端也需要启动rpcbind和rpcidmapd服务.</p>
-<pre><code>[root<span class="property">@agent1</span> ~]<span class="comment"># /etc/init.d/rpcbind start</span>
-Starting <span class="attribute">rpcbind</span>: [  OK  ]
-[root<span class="property">@agent1</span> ~]<span class="comment"># /etc/init.d/rpcidmapd start</span>
-Starting RPC <span class="attribute">idmapd</span>: [  OK  ]    
-[root<span class="property">@agent1</span> ~]<span class="comment"># mount -t nfs 10.20.102.154:/puppet /media</span>
-[root<span class="property">@agent1</span> ~]<span class="comment"># df -h</span>
-Filesystem            Size  Used Avail Use% Mounted <span class="literal">on</span>
+<pre><code>[root@agent1 ~]# /etc/init.d/rpcbind start
+Starting rpcbind: [  OK  ]
+[root@agent1 ~]# /etc/init.d/rpcidmapd start
+Starting RPC idmapd: [  OK  ]    
+[root@agent1 ~]# mount -t nfs 10.20.102.154:/puppet /media
+[root@agent1 ~]# df -h
+Filesystem            Size  Used Avail Use% Mounted on
 /dev/mapper/vg_centos6264-lv_root
-                   <span class="number">25</span>G   <span class="number">17</span>G  <span class="number">6.2</span>G  <span class="number">74</span>% /
-tmpfs                 <span class="number">1.5</span>G     <span class="number">0</span>  <span class="number">1.5</span>G   <span class="number">0</span>% /dev/shm
-/dev/vda1             <span class="number">485</span>M   <span class="number">51</span>M  <span class="number">409</span>M  <span class="number">11</span>% /boot
-<span class="number">10.20</span><span class="number">.102</span><span class="number">.154</span>:/puppet
-                   <span class="number">26</span>G   <span class="number">17</span>G  <span class="number">7.7</span>G  <span class="number">68</span>% /media
-[root<span class="property">@agent1</span> ~]<span class="comment"># </span>
+                   25G   17G  6.2G  74% /
+tmpfs                 1.5G     0  1.5G   0% /dev/shm
+/dev/vda1             485M   51M  409M  11% /boot
+10.20.102.154:/puppet
+                   26G   17G  7.7G  68% /media
+[root@agent1 ~]# 
 </code></pre>
       
     </div>
@@ -358,6 +361,12 @@ var duoshuoQuery = {short_name:"loveliuli"};
   <h3 class="title">分类</h3>
   <ul class="entry">
   
+    <li><a href="/categories/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/categories/php/">php</a><small>2</small></li>
+  
+    <li><a href="/categories/puppet/">puppet</a><small>1</small></li>
+  
     <li><a href="/categories/优化/">优化</a><small>1</small></li>
   
     <li><a href="/categories/其他/">其他</a><small>1</small></li>
@@ -375,6 +384,8 @@ var duoshuoQuery = {short_name:"loveliuli"};
     <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
   
     <li><a href="/categories/生活/">生活</a><small>1</small></li>
+  
+    <li><a href="/categories/生活领悟/">生活领悟</a><small>1</small></li>
   
     <li><a href="/categories/监控/">监控</a><small>6</small></li>
   
@@ -394,7 +405,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 10.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 10.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 10.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a>
+    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 15.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 15.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 15.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 15.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a><a href="/tags/生活领悟/" style="font-size: 10.00px;">生活领悟</a>
   </div>
 </div>
 
@@ -413,7 +424,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2014 Copyright By Qun.Xue  版权所有
+  &copy; 2015 Copyright By Qun.Xue  版权所有
   
 </div>
 <script type="text/javascript">

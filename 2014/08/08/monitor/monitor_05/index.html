@@ -232,201 +232,201 @@
         <p>本文主要讲述zabbix触发器函数.<a id="more"></a></p>
 <h3 id="1-abschange">1.abschange</h3>
 <pre><code>参数:缺省
-值类型:float, <span class="keyword">int</span>, str, text, <span class="keyword">log</span>
-返回值解析:    Returns absolute difference between <span class="keyword">last</span> <span class="keyword">and</span> previous <span class="keyword">values</span>.
+值类型:float, int, str, text, log
+返回值解析:    Returns absolute difference between last and previous values.
             For strings:
-            <span class="number">0</span> - <span class="keyword">values</span> are equal
-            <span class="number">1</span> - <span class="keyword">values</span> differ
-<span class="string">`abschange函数`</span>
+            0 - values are equal
+            1 - values differ
+`abschange函数`
 对于数字类型的处理方式:返回最后一个值和倒数第二个值的绝对不同,也就是返回一个正数
-对于字符串类型的处理方式:返回<span class="number">0</span>说明值没变化,返回<span class="number">1</span>说明值有变化
+对于字符串类型的处理方式:返回0说明值没变化,返回1说明值有变化
 </code></pre><h3 id="2-change">2.change</h3>
 <pre><code>参数:缺省
-值类型:float, <span class="keyword">int</span>, str, text, <span class="keyword">log</span>
-返回值解析:    Returns difference between <span class="keyword">last</span> <span class="keyword">and</span> previous <span class="keyword">values</span>.
+值类型:float, int, str, text, log
+返回值解析:    Returns difference between last and previous values.
             For strings:
-            <span class="number">0</span> - <span class="keyword">values</span> are equal
-            <span class="number">1</span> - <span class="keyword">values</span> differ
-<span class="string">`change函数`</span>
+            0 - values are equal
+            1 - values differ
+`change函数`
 对于数字类型的处理方式:返回最后一个值和倒数第二个值的差,也就是返回一个数值,可正可负可为零
-对于字符串类型的处理方式:返回<span class="number">0</span>说明值没变化,返回<span class="number">1</span>说明值有变化
+对于字符串类型的处理方式:返回0说明值没变化,返回1说明值有变化
 </code></pre><h3 id="3-avg">3.avg</h3>
-<pre><code>参数<span class="symbol">:sec</span> <span class="keyword">or</span> <span class="comment">#num</span>
-值类型<span class="symbol">:float</span>, int
-返回值解析<span class="symbol">:</span>
-一段时间的平均值.这段时间可以设置为秒或者一个收集值的个数(前面用一个<span class="comment">#符号,例如:#5-最近5个值),这是第一个参数</span>
-函数接收秒,也可以是一个时间段,当需要对比当前平均值和指定时间段的时候,非常有用.例如<span class="symbol">:avg</span>(<span class="number">3600</span>,<span class="number">86400</span>)将会返回一天前的一小时内的平均值.
-参数 **时间段**从<span class="number">1.8</span>.<span class="number">2</span>开始支持.
-</code></pre><h3 id="4-band">4.band</h3>
-<pre><code>参数<span class="symbol">:sec</span> <span class="keyword">or</span> <span class="comment">#num</span>
-值类型<span class="symbol">:int</span>
-返回值解析<span class="symbol">:</span>
-返回值 为一个监控项和一个掩码的按位与.
-第一个参数为秒或者<span class="comment">#num</span>
-第二个参数是掩码(强制性的)是一个<span class="number">64</span>位无符号整数.(<span class="number">0</span> - <span class="number">18446744073709551615</span>).
-第三个参数是time_shift
-这个函数从zabbix2.<span class="number">2.0</span>开始支持.
-</code></pre><h3 id="5-count">5.count</h3>
-<pre><code>参数:sec <span class="keyword">or</span> <span class="comment">#num</span>
-值类型:float, <span class="keyword">int</span>, str, text, <span class="keyword">log</span>
+<pre><code>参数:sec or #num
+值类型:float, int
 返回值解析:
-一段时间内采集值的个数.这段时间可以设置成秒或者一个数字(用<span class="comment">#前缀,表示多少个),这是第一个参数.</span>
+一段时间的平均值.这段时间可以设置为秒或者一个收集值的个数(前面用一个#符号,例如:#5-最近5个值),这是第一个参数
+函数接收秒,也可以是一个时间段,当需要对比当前平均值和指定时间段的时候,非常有用.例如:avg(3600,86400)将会返回一天前的一小时内的平均值.
+参数 **时间段**从1.8.2开始支持.
+</code></pre><h3 id="4-band">4.band</h3>
+<pre><code>参数:sec or #num
+值类型:int
+返回值解析:
+返回值 为一个监控项和一个掩码的按位与.
+第一个参数为秒或者#num
+第二个参数是掩码(强制性的)是一个64位无符号整数.(0 - 18446744073709551615).
+第三个参数是time_shift
+这个函数从zabbix2.2.0开始支持.
+</code></pre><h3 id="5-count">5.count</h3>
+<pre><code>参数:sec or #num
+值类型:float, int, str, text, log
+返回值解析:
+一段时间内采集值的个数.这段时间可以设置成秒或者一个数字(用#前缀,表示多少个),这是第一个参数.
 函数接收第二个可选参数和第三个可选参数以及第四个time_shift参数.
-对于样式:正数值-精确匹配;浮点值-匹配到<span class="number">0</span>.<span class="number">000001</span>
+对于样式:正数值-精确匹配;浮点值-匹配到0.000001
 支持操作符:
 eq-等于
-<span class="keyword">ne</span>-不等于
-<span class="keyword">gt</span>-大于
+ne-不等于
+gt-大于
 ge-大于等于
-<span class="keyword">lt</span>-小于
+lt-小于
 le-小于等于
 like-包含
-band-按位与. 这个函数从zabbix2.<span class="number">2.0</span>开始支持.
+band-按位与. 这个函数从zabbix2.2.0开始支持.
 如果有band参数,则第二个参数为分数形式,比较值/掩码
 如果按位与的结果等于被比较数,则值被计数一次,如果被计较值和掩码相等,只需要指定掩码,无需/.
-对于整形监控项:操作符e<span class="string">q(默认)</span>,<span class="keyword">ne</span>, <span class="keyword">gt</span>, ge, <span class="keyword">lt</span>, le, band 均被支持.
-对于浮点型监控项:操作符e<span class="string">q(默认)</span>,<span class="keyword">ne</span>, <span class="keyword">gt</span>, ge, <span class="keyword">lt</span>, le, band 均被支持.
-对于字符串,文本和<span class="keyword">log</span>监控项:操作符like(默认的),eq,<span class="keyword">ne</span>均被支持.
+对于整形监控项:操作符eq(默认),ne, gt, ge, lt, le, band 均被支持.
+对于浮点型监控项:操作符eq(默认),ne, gt, ge, lt, le, band 均被支持.
+对于字符串,文本和log监控项:操作符like(默认的),eq,ne均被支持.
 例子:
-count(<span class="number">600</span>) -最近十分钟值的个数.
-count(<span class="number">600</span>,<span class="number">12</span>) - 最近十分钟的值为<span class="number">12</span>的个数.
-count(<span class="number">600</span>,<span class="number">12</span>,<span class="string">"gt"</span>) - 最近十分钟的值大于<span class="number">12</span>的个数.
-count(<span class="comment">#10,12,"gt") - 最近10个值大于12的个数.</span>
-count(<span class="number">600</span>,<span class="number">12</span>,<span class="string">"gt"</span>,<span class="number">86400</span>) - 一天前最近十分钟的值大于<span class="number">12</span>的个数.
-count(<span class="number">600</span>,<span class="number">6</span>/<span class="number">7</span>,<span class="string">"band"</span>) - 最近十分钟监控项有二进制有<span class="number">110</span>的个数.
-count(<span class="number">600</span>,,,<span class="number">86400</span>) - 一天前最近十分钟值的个数.
-<span class="comment">#num 参数从Zabbix 1.6.1开始支持.</span>
-time_shift 参数从zabbix1.<span class="number">8.2</span>开始支持.
+count(600) -最近十分钟值的个数.
+count(600,12) - 最近十分钟的值为12的个数.
+count(600,12,&quot;gt&quot;) - 最近十分钟的值大于12的个数.
+count(#10,12,&quot;gt&quot;) - 最近10个值大于12的个数.
+count(600,12,&quot;gt&quot;,86400) - 一天前最近十分钟的值大于12的个数.
+count(600,6/7,&quot;band&quot;) - 最近十分钟监控项有二进制有110的个数.
+count(600,,,86400) - 一天前最近十分钟值的个数.
+#num 参数从Zabbix 1.6.1开始支持.
+time_shift 参数从zabbix1.8.2开始支持.
 </code></pre><h3 id="6-date">6.date</h3>
 <pre><code>参数:缺省
-值类型<span class="pseudo">:any</span>
+值类型:any
 返回值解析:
-返回当前日期,以<span class="tag">YYYYMMDD</span>格式.例如<span class="pseudo">:20031025</span>
+返回当前日期,以YYYYMMDD格式.例如:20031025
 </code></pre><h3 id="7-dayofmonth">7.dayofmonth</h3>
-<pre><code>参数<span class="symbol">:</span>缺省
-值类型<span class="symbol">:any</span>
-返回值解析<span class="symbol">:</span>
-返回一个月(<span class="number">1</span>~<span class="number">31</span>)中的天.这个函数从<span class="number">1.8</span>.<span class="number">5</span>开始支持.
+<pre><code>参数:缺省
+值类型:any
+返回值解析:
+返回一个月(1~31)中的天.这个函数从1.8.5开始支持.
 </code></pre><h3 id="8-dayofweek">8.dayofweek</h3>
-<pre><code>参数<span class="symbol">:</span>缺省
-值类型<span class="symbol">:any</span>
-返回值解析<span class="symbol">:</span>
-返回一周中的某一天.例如<span class="symbol">:Mon-</span><span class="number">1</span> ,sun-<span class="number">7</span>
+<pre><code>参数:缺省
+值类型:any
+返回值解析:
+返回一周中的某一天.例如:Mon-1 ,sun-7
 </code></pre><h3 id="9-delta">9.delta</h3>
-<pre><code>参数<span class="symbol">:sec</span> <span class="keyword">or</span> <span class="comment">#num</span>
-值类型<span class="symbol">:float</span>, int
-返回值解析<span class="symbol">:</span>
-返回一段时间内最大值和最小值的不同.可以通过设置第一个参数为秒和<span class="comment">#.</span>
-从<span class="number">1.8</span>.<span class="number">2</span>版本起,支持秒和可选的time_shift参数.例子参考avg()函数.
+<pre><code>参数:sec or #num
+值类型:float, int
+返回值解析:
+返回一段时间内最大值和最小值的不同.可以通过设置第一个参数为秒和#.
+从1.8.2版本起,支持秒和可选的time_shift参数.例子参考avg()函数.
 </code></pre><h3 id="10-diff">10.diff</h3>
 <pre><code>参数:缺省
-值类型:<span class="keyword">float</span>, <span class="keyword">int</span>, <span class="keyword">str</span>, text, <span class="keyword">log</span>
+值类型:float, int, str, text, log
 返回值解析:
-<span class="number">1</span>-最后一个和倒数第二个值不同
-<span class="number">0</span>-相反
+1-最后一个和倒数第二个值不同
+0-相反
 </code></pre><h3 id="11-fuzzytime">11.fuzzytime</h3>
 <pre><code>参数:sec
-值类型:float, <span class="keyword">int</span>
+值类型:float, int
 返回值解析:
-返回值为<span class="number">1</span>,如果和zabbix <span class="keyword">server</span>的时间戳相差N秒,否则为<span class="number">0</span>
-痛楚使用system.localtime来监测本地时间是否与zabbix <span class="keyword">server</span>同步
+返回值为1,如果和zabbix server的时间戳相差N秒,否则为0
+痛楚使用system.localtime来监测本地时间是否与zabbix server同步
 </code></pre><h3 id="12-iregexp">12.iregexp</h3>
-<pre><code>参数:<span class="number">1</span>st - <span class="keyword">string</span>, <span class="number">2</span>nd - <span class="built_in">sec</span> <span class="operator">or</span> <span class="comment">#num</span>
-值类型:str, <span class="built_in">log</span>, <span class="keyword">text</span>
+<pre><code>参数:1st - string, 2nd - sec or #num
+值类型:str, log, text
 返回值解析:
 本函数是对于大小写不敏感的正则表达式.
 </code></pre><h3 id="13-last">13.last</h3>
-<pre><code>参数:<span class="built_in">sec</span> <span class="operator">or</span> <span class="comment">#num</span>
-值类型:float, int, str, <span class="keyword">text</span>, <span class="built_in">log</span>
+<pre><code>参数:sec or #num
+值类型:float, int, str, text, log
 返回值解析:
 最近最新的值,参数:
-<span class="built_in">sec</span>-忽略
-<span class="comment">#num-最近的N个值</span>
+sec-忽略
+#num-最近的N个值
 例如:
-<span class="keyword">last</span>(<span class="number">0</span>)也等于<span class="keyword">last</span>(<span class="comment">#1)</span>
-<span class="keyword">last</span>(<span class="comment">#3)-最近的第三个值</span>
-<span class="keyword">last</span>也支持time_shift参数,例如:<span class="keyword">last</span>(<span class="number">0</span>,<span class="number">86400</span>)将返回一天前的最近值.
+last(0)也等于last(#1)
+last(#3)-最近的第三个值
+last也支持time_shift参数,例如:last(0,86400)将返回一天前的最近值.
 zabbix不能保证值的精确顺序,如果在历史记录里面一秒钟存在两个值的话.
-参数<span class="comment">#num从zabbix1.6.2开始支持.</span>
-参数time_shift从zabbix1<span class="number">.8</span><span class="number">.2</span>开始支持.
+参数#num从zabbix1.6.2开始支持.
+参数time_shift从zabbix1.8.2开始支持.
 </code></pre><h3 id="15-logseverity">15.logseverity</h3>
 <pre><code>参数:缺省
-值类型:<span class="built_in">log</span>
+值类型:log
 返回值解析:
-返回最后获得的<span class="built_in">log</span>条目的级别,参数缺省.
-<span class="number">0</span>- 默认级别
-N-级别(整数,对于windows时间<span class="built_in">log</span>有用:<span class="number">1</span> - Information, <span class="number">2</span> - Warning, <span class="number">4</span> - <span class="keyword">Error</span>, <span class="number">7</span> - Failure Audit, <span class="number">8</span> - Success Audit, <span class="number">9</span> - Critical, <span class="number">10</span> - Verbose)
-Zabbix 采集<span class="built_in">log</span>级别从windows的日志系统.
+返回最后获得的log条目的级别,参数缺省.
+0- 默认级别
+N-级别(整数,对于windows时间log有用:1 - Information, 2 - Warning, 4 - Error, 7 - Failure Audit, 8 - Success Audit, 9 - Critical, 10 - Verbose)
+Zabbix 采集log级别从windows的日志系统.
 </code></pre><h3 id="16-logsource">16.logsource</h3>
-<pre><code>参数:<span class="keyword">string</span>
-值类型:<span class="built_in">log</span>
+<pre><code>参数:string
+值类型:log
 返回值解析:
-检查最新的<span class="built_in">log</span>条目是否和参数匹配.
-<span class="number">0</span>-不匹配
-<span class="number">1</span>-匹配
-一般针对于windows事件<span class="built_in">log</span>.例如: logsource(<span class="string">"VMware Server"</span>).
+检查最新的log条目是否和参数匹配.
+0-不匹配
+1-匹配
+一般针对于windows事件log.例如: logsource(&quot;VMware Server&quot;).
 </code></pre><h3 id="17-max">17.max</h3>
-<pre><code>参数<span class="symbol">:sec</span> <span class="keyword">or</span> <span class="comment">#num</span>
-值类型<span class="symbol">:float</span>,int
-返回值解析<span class="symbol">:</span>
-一段时间的最大值.这段时间可以设置为秒或者一个收集值的个数(前面用一个<span class="comment">#符号,例如:#5-最近5个值),这是第一个参数</span>
-从zabbix1.<span class="number">8.2</span>开始支持秒,可选参数time_shift.
-</code></pre><h3 id="18-min">18.min</h3>
-<pre><code>参数<span class="symbol">:sec</span> <span class="keyword">or</span> <span class="comment">#num</span>
-值类型<span class="symbol">:float</span>,int
-返回值解析<span class="symbol">:</span>
-一段时间的最小值.这段时间可以设置为秒或者一个收集值的个数(前面用一个<span class="comment">#符号,例如:#5-最近5个值),这是第一个参数</span>
-从zabbix1.<span class="number">8.2</span>开始支持秒,可选参数time_shift.
-</code></pre><h3 id="19-nodata">19.nodata</h3>
-<pre><code>参数:<span class="built_in">sec</span> 
-值类型: <span class="keyword">any</span>
+<pre><code>参数:sec or #num
+值类型:float,int
 返回值解析:
-返回值<span class="number">1</span>-如果一段时间没有接收到数据,时间段不应该少于<span class="number">30</span>s
-返回值<span class="number">0</span>-相反
+一段时间的最大值.这段时间可以设置为秒或者一个收集值的个数(前面用一个#符号,例如:#5-最近5个值),这是第一个参数
+从zabbix1.8.2开始支持秒,可选参数time_shift.
+</code></pre><h3 id="18-min">18.min</h3>
+<pre><code>参数:sec or #num
+值类型:float,int
+返回值解析:
+一段时间的最小值.这段时间可以设置为秒或者一个收集值的个数(前面用一个#符号,例如:#5-最近5个值),这是第一个参数
+从zabbix1.8.2开始支持秒,可选参数time_shift.
+</code></pre><h3 id="19-nodata">19.nodata</h3>
+<pre><code>参数:sec 
+值类型: any
+返回值解析:
+返回值1-如果一段时间没有接收到数据,时间段不应该少于30s
+返回值0-相反
 </code></pre><h3 id="20-now">20.now</h3>
 <pre><code>参数:缺省
-值类型<span class="pseudo">:any</span>
+值类型:any
 返回值解析:
-返回自从1970年1月1日00<span class="pseudo">:00</span><span class="pseudo">:00</span>来的秒数.
+返回自从1970年1月1日00:00:00来的秒数.
 </code></pre><h3 id="21-prev">21.prev</h3>
 <pre><code>参数:缺省
-值类型:<span class="keyword">float</span>, <span class="keyword">int</span>, <span class="keyword">str</span>, text, <span class="keyword">log</span>
+值类型:float, int, str, text, log
 返回值解析:
 返回历史值,参数缺省.
-类似last(#<span class="number">2</span>)
+类似last(#2)
 </code></pre><h3 id="22-regexp">22.regexp</h3>
-<pre><code>参数:<span class="number">1</span>st - <span class="keyword">string</span>, <span class="number">2</span>nd - <span class="built_in">sec</span> <span class="operator">or</span> <span class="comment">#num</span>
-值类型: str, <span class="keyword">text</span>, <span class="built_in">log</span>
+<pre><code>参数:1st - string, 2nd - sec or #num
+值类型: str, text, log
 返回值解析:
 检查最新值是否匹配正则表达式.参数为正则表达式,POSIX扩展格式.
 第二个可选参数是用来采集数据的秒数或者收集值的数量.这样的情况下,将有一个以上的值被处理.
 这个函数大小写敏感.
-返回值为<span class="number">0</span>:发现有匹配的
-返回值为<span class="number">1</span>:没有发现匹配的
+返回值为0:发现有匹配的
+返回值为1:没有发现匹配的
 </code></pre><h3 id="23-str">23.str</h3>
-<pre><code>参数:<span class="number">1</span>st - <span class="keyword">string</span>, <span class="number">2</span>nd - <span class="built_in">sec</span> <span class="operator">or</span> <span class="comment">#num</span>
-值类型:str, <span class="keyword">text</span>, <span class="built_in">log</span>
+<pre><code>参数:1st - string, 2nd - sec or #num
+值类型:str, text, log
 返回值解析:
 发现最新值中的字符串,参数为定义被发现的字符串,大小写敏感.
 第二个可选参数是用来采集数据的秒数或者收集值的数量.这样的情况下,将有一个以上的值被处理.
-返回值为<span class="number">0</span>:发现有匹配的
-返回值为<span class="number">1</span>:没有发现匹配的
+返回值为0:发现有匹配的
+返回值为1:没有发现匹配的
 </code></pre><h3 id="24-strlen">24.strlen</h3>
-<pre><code>参数:<span class="built_in">sec</span> <span class="operator">or</span> <span class="comment">#num</span>
-值类型:str, <span class="keyword">text</span>, <span class="built_in">log</span>
+<pre><code>参数:sec or #num
+值类型:str, text, log
 返回值解析:
 最新值(字符)的长度
-参数 和<span class="keyword">last</span>的类似.
+参数 和last的类似.
 例如:
-strlen(<span class="number">0</span>) 等同于 strlen(<span class="comment">#1)</span>
-strlen(<span class="comment">#3) - 最新的第三个值的长度</span>
-strlen(<span class="number">0</span>,<span class="number">86400</span>) - 一天前最新值的长度
+strlen(0) 等同于 strlen(#1)
+strlen(#3) - 最新的第三个值的长度
+strlen(0,86400) - 一天前最新值的长度
 </code></pre><h3 id="25-sum">25.sum</h3>
-<pre><code>参数<span class="symbol">:sec</span> <span class="keyword">or</span> <span class="comment">#num</span>
-值类型<span class="symbol">:float</span>, int
-返回值解析<span class="symbol">:</span>
-一段时间内采集值求和.这段时间可以设置成秒或者一个数字(用<span class="comment">#前缀,表示多少个),这是第一个参数.</span>
-从zabbix1.<span class="number">8.2</span>开始支持秒,可选参数time_shift.
+<pre><code>参数:sec or #num
+值类型:float, int
+返回值解析:
+一段时间内采集值求和.这段时间可以设置成秒或者一个数字(用#前缀,表示多少个),这是第一个参数.
+从zabbix1.8.2开始支持秒,可选参数time_shift.
 </code></pre>
       
     </div>
@@ -497,6 +497,12 @@ var duoshuoQuery = {short_name:"loveliuli"};
   <h3 class="title">分类</h3>
   <ul class="entry">
   
+    <li><a href="/categories/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/categories/php/">php</a><small>2</small></li>
+  
+    <li><a href="/categories/puppet/">puppet</a><small>1</small></li>
+  
     <li><a href="/categories/优化/">优化</a><small>1</small></li>
   
     <li><a href="/categories/其他/">其他</a><small>1</small></li>
@@ -514,6 +520,8 @@ var duoshuoQuery = {short_name:"loveliuli"};
     <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
   
     <li><a href="/categories/生活/">生活</a><small>1</small></li>
+  
+    <li><a href="/categories/生活领悟/">生活领悟</a><small>1</small></li>
   
     <li><a href="/categories/监控/">监控</a><small>6</small></li>
   
@@ -533,7 +541,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 10.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 10.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 10.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a>
+    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 15.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 15.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 15.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 15.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a><a href="/tags/生活领悟/" style="font-size: 10.00px;">生活领悟</a>
   </div>
 </div>
 
@@ -552,7 +560,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2014 Copyright By Qun.Xue  版权所有
+  &copy; 2015 Copyright By Qun.Xue  版权所有
   
 </div>
 <script type="text/javascript">

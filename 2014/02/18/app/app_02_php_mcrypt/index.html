@@ -231,41 +231,41 @@
       
         <hr>
 <p> 由于最近需要对php的模块进行扩展，所以进行了简单整理，过程如下。<a id="more"></a></p>
-<h2 id="问题的解决">问题的解决</h2>
-<pre><code><span class="shebang">#!/bin/bash</span>
-cur_dir=<span class="variable">${pwd}</span>
-tar zxvf libmcrypt-<span class="number">2.5</span>.<span class="number">8</span>.tar.gz
-<span class="built_in">cd</span> libmcrypt-<span class="number">2.5</span>.<span class="number">8</span>
+<h2 id="-">问题的解决</h2>
+<pre><code>#!/bin/bash
+cur_dir=${pwd}
+tar zxvf libmcrypt-2.5.8.tar.gz
+cd libmcrypt-2.5.8
 ./configure
 make &amp;&amp; make install
 
-<span class="built_in">cd</span> ..
-tar xvf mhash-<span class="number">0.9</span>.<span class="number">9.9</span>.tar.bz2
-<span class="built_in">cd</span> mhash-<span class="number">0.9</span>.<span class="number">9.9</span>
+cd ..
+tar xvf mhash-0.9.9.9.tar.bz2
+cd mhash-0.9.9.9
 ./configure
 make &amp;&amp; make install
 
-<span class="built_in">cd</span> ..
-tar zxvf m4-<span class="number">1.4</span>.<span class="number">9</span>.tar.gz 
-<span class="built_in">cd</span> m4-<span class="number">1.4</span>.<span class="number">9</span>
+cd ..
+tar zxvf m4-1.4.9.tar.gz 
+cd m4-1.4.9
 ./configure
 make &amp;&amp; make install
 
-<span class="built_in">cd</span> ..
-tar zxvf autoconf-<span class="number">2.62</span>.tar.gz 
-<span class="built_in">cd</span> autoconf-<span class="number">2.62</span>
+cd ..
+tar zxvf autoconf-2.62.tar.gz 
+cd autoconf-2.62
 ./configure
 make &amp;&amp; make install
 
-<span class="built_in">cd</span> ..
-tar zxvf mcrypt-<span class="number">2.6</span>.<span class="number">8</span>.tar.gz
-<span class="built_in">cd</span> mcrypt-<span class="number">2.6</span>.<span class="number">8</span>
+cd ..
+tar zxvf mcrypt-2.6.8.tar.gz
+cd mcrypt-2.6.8
 LD_LIBRARY_PATH=/usr/local/lib ./configure 
 make &amp;&amp; make install
 
-<span class="built_in">cd</span> ..
-tar zxvf php-<span class="number">5.2</span>.<span class="number">17</span>.tar.gz
-<span class="built_in">cd</span> php-<span class="number">5.2</span>.<span class="number">17</span>/ext/mcrypt/
+cd ..
+tar zxvf php-5.2.17.tar.gz
+cd php-5.2.17/ext/mcrypt/
 /usr/local/
 php/bin/phpize
 ./configure  --with-php-config=/usr/local/php/bin/php-config  
@@ -273,17 +273,17 @@ make &amp;&amp; make test &amp;&amp; make install
 
 
 
-cp /usr/local/php/lib/php/extensions/no-debug-non-zts-<span class="number">20060613</span>/mcrypt.so /usr/local/php
+cp /usr/local/php/lib/php/extensions/no-debug-non-zts-20060613/mcrypt.so /usr/local/php
 
 service httpd restart
 </code></pre><p>其他模块的扩展可以依葫芦画瓢，没有难度的。</p>
-<pre><code>[root@chcp-ct01-log01 mcrypt]<span class="preprocessor"># php -m</span>
+<pre><code>[root@chcp-ct01-log01 mcrypt]# php -m
 [PHP Modules]
 bcmath
 Core
-<span class="built_in">ctype</span>
+ctype
 curl
-<span class="built_in">date</span>
+date
 dom
 ereg
 fileinfo
@@ -296,28 +296,28 @@ json
 libxml
 mbstring
 </code></pre><p> <strong>mcrypt</strong></p>
-<pre><code><span class="tag">mysql</span>
-<span class="tag">pcre</span>
-<span class="tag">PDO</span>
-<span class="tag">pdo_sqlite</span>
-<span class="tag">Phar</span>
-<span class="tag">posix</span>
-<span class="tag">Reflection</span>
-<span class="tag">session</span>
-<span class="tag">SimpleXML</span>
-<span class="tag">sockets</span>
-<span class="tag">SPL</span>
-<span class="tag">SQLite</span>
-<span class="tag">sqlite3</span>
-<span class="tag">standard</span>
-<span class="tag">tokenizer</span>
-<span class="tag">xml</span>
-<span class="tag">xmlreader</span>
-<span class="tag">xmlwriter</span>
-<span class="tag">Zend</span> <span class="tag">Guard</span> <span class="tag">Loader</span>
-<span class="tag">zlib</span>
-<span class="attr_selector">[Zend Modules]</span>
-<span class="tag">Zend</span> <span class="tag">Guard</span> <span class="tag">Loader</span>
+<pre><code>mysql
+pcre
+PDO
+pdo_sqlite
+Phar
+posix
+Reflection
+session
+SimpleXML
+sockets
+SPL
+SQLite
+sqlite3
+standard
+tokenizer
+xml
+xmlreader
+xmlwriter
+Zend Guard Loader
+zlib
+[Zend Modules]
+Zend Guard Loader
 </code></pre>
       
     </div>
@@ -388,6 +388,12 @@ var duoshuoQuery = {short_name:"loveliuli"};
   <h3 class="title">分类</h3>
   <ul class="entry">
   
+    <li><a href="/categories/Markdown/">Markdown</a><small>1</small></li>
+  
+    <li><a href="/categories/php/">php</a><small>2</small></li>
+  
+    <li><a href="/categories/puppet/">puppet</a><small>1</small></li>
+  
     <li><a href="/categories/优化/">优化</a><small>1</small></li>
   
     <li><a href="/categories/其他/">其他</a><small>1</small></li>
@@ -405,6 +411,8 @@ var duoshuoQuery = {short_name:"loveliuli"};
     <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
   
     <li><a href="/categories/生活/">生活</a><small>1</small></li>
+  
+    <li><a href="/categories/生活领悟/">生活领悟</a><small>1</small></li>
   
     <li><a href="/categories/监控/">监控</a><small>6</small></li>
   
@@ -424,7 +432,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 10.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 10.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 10.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 10.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a>
+    <a href="/tags/Performance tuning/" style="font-size: 10.00px;">Performance tuning</a><a href="/tags/application/" style="font-size: 10.00px;">application</a><a href="/tags/base/" style="font-size: 10.00px;">base</a><a href="/tags/cluster/" style="font-size: 10.00px;">cluster</a><a href="/tags/command/" style="font-size: 10.00px;">command</a><a href="/tags/database/" style="font-size: 10.00px;">database</a><a href="/tags/life/" style="font-size: 10.00px;">life</a><a href="/tags/markdown/" style="font-size: 15.00px;">markdown</a><a href="/tags/monitor/" style="font-size: 20.00px;">monitor</a><a href="/tags/network/" style="font-size: 10.00px;">network</a><a href="/tags/php_modules/" style="font-size: 15.00px;">php_modules</a><a href="/tags/php_problem/" style="font-size: 15.00px;">php_problem</a><a href="/tags/puppet/" style="font-size: 15.00px;">puppet</a><a href="/tags/script/" style="font-size: 10.00px;">script</a><a href="/tags/security/" style="font-size: 10.00px;">security</a><a href="/tags/virtualization/" style="font-size: 10.00px;">virtualization</a><a href="/tags/生活领悟/" style="font-size: 10.00px;">生活领悟</a>
   </div>
 </div>
 
@@ -443,7 +451,7 @@ var duoshuoQuery = {short_name:"loveliuli"};
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2014 Copyright By Qun.Xue  版权所有
+  &copy; 2015 Copyright By Qun.Xue  版权所有
   
 </div>
 <script type="text/javascript">
