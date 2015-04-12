@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[Time Memory]]></title>
+  <title><![CDATA[鹰击长空]]></title>
   <subtitle><![CDATA[Where there is a will, there is way。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://loveliuli.com/"/>
-  <updated>2015-04-12T01:50:18.353Z</updated>
+  <updated>2015-04-12T01:53:07.943Z</updated>
   <id>http://loveliuli.com/</id>
   
   <author>
@@ -730,17 +730,17 @@ tmpfs                 1.5G     0  1.5G   0% /dev/shm
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/base/base_01/"/>
-    <id>http://loveliuli.com/2014/02/21/base/base_01/</id>
+    <link href="http://loveliuli.com/2014/02/21/virtual/virtual_01/"/>
+    <id>http://loveliuli.com/2014/02/21/virtual/virtual_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T11:35:21.000Z</updated>
+    <updated>2014-05-23T09:54:20.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
 ]]></content>
     
     
-      <category term="base" scheme="http://loveliuli.com/tags/base/"/>
+      <category term="virtualization" scheme="http://loveliuli.com/tags/virtualization/"/>
     
-      <category term="基础" scheme="http://loveliuli.com/categories/%E5%9F%BA%E7%A1%80/"/>
+      <category term="虚拟化" scheme="http://loveliuli.com/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
     
   </entry>
   
@@ -757,6 +757,22 @@ tmpfs                 1.5G     0  1.5G   0% /dev/shm
       <category term="network" scheme="http://loveliuli.com/tags/network/"/>
     
       <category term="网络" scheme="http://loveliuli.com/categories/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Welcome to my blog]]></title>
+    <link href="http://loveliuli.com/2014/02/21/base/base_01/"/>
+    <id>http://loveliuli.com/2014/02/21/base/base_01/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-05-23T11:35:21.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
+]]></content>
+    
+    
+      <category term="base" scheme="http://loveliuli.com/tags/base/"/>
+    
+      <category term="基础" scheme="http://loveliuli.com/categories/%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
@@ -793,6 +809,18 @@ tmpfs                 1.5G     0  1.5G   0% /dev/shm
   </entry>
   
   <entry>
+    <title><![CDATA[Hello World]]></title>
+    <link href="http://loveliuli.com/2014/02/21/hello-world/"/>
+    <id>http://loveliuli.com/2014/02/21/hello-world/</id>
+    <published>2014-02-21T08:36:12.000Z</published>
+    <updated>2014-02-21T08:36:12.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="http://zespia.tw/hexo" target="_blank">Hexo</a>! This is your very first post. Check <a href="http://zespia.tw/hexo/docs" target="_blank">documentation</a> to learn how to use.</p>
+]]></content>
+    
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Welcome to my blog]]></title>
     <link href="http://loveliuli.com/2014/02/21/datebase/datebase_01/"/>
     <id>http://loveliuli.com/2014/02/21/datebase/datebase_01/</id>
@@ -805,34 +833,6 @@ tmpfs                 1.5G     0  1.5G   0% /dev/shm
       <category term="database" scheme="http://loveliuli.com/tags/database/"/>
     
       <category term="数据库" scheme="http://loveliuli.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/virtual/virtual_01/"/>
-    <id>http://loveliuli.com/2014/02/21/virtual/virtual_01/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T09:54:20.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
-]]></content>
-    
-    
-      <category term="virtualization" scheme="http://loveliuli.com/tags/virtualization/"/>
-    
-      <category term="虚拟化" scheme="http://loveliuli.com/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <link href="http://loveliuli.com/2014/02/21/hello-world/"/>
-    <id>http://loveliuli.com/2014/02/21/hello-world/</id>
-    <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-02-21T08:36:12.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://zespia.tw/hexo" target="_blank">Hexo</a>! This is your very first post. Check <a href="http://zespia.tw/hexo/docs" target="_blank">documentation</a> to learn how to use.</p>
-]]></content>
-    
     
   </entry>
   
@@ -1166,6 +1166,111 @@ sed -n &#39;51q;45,50p&#39; filename       # 一样，但快得多
   
   <entry>
     <title><![CDATA[php5.3上扩展mcrypt模块]]></title>
+    <link href="http://loveliuli.com/2014/02/18/app/app_02_php_mcrypt/"/>
+    <id>http://loveliuli.com/2014/02/18/app/app_02_php_mcrypt/</id>
+    <published>2014-02-18T01:27:46.000Z</published>
+    <updated>2014-05-23T10:31:53.000Z</updated>
+    <content type="html"><![CDATA[<hr>
+<p> 由于最近需要对php的模块进行扩展，所以进行了简单整理，过程如下。<a id="more"></a></p>
+<h2 id="-">问题的解决</h2>
+<pre><code>#!/bin/bash
+cur_dir=${pwd}
+tar zxvf libmcrypt-2.5.8.tar.gz
+cd libmcrypt-2.5.8
+./configure
+make &amp;&amp; make install
+
+cd ..
+tar xvf mhash-0.9.9.9.tar.bz2
+cd mhash-0.9.9.9
+./configure
+make &amp;&amp; make install
+
+cd ..
+tar zxvf m4-1.4.9.tar.gz 
+cd m4-1.4.9
+./configure
+make &amp;&amp; make install
+
+cd ..
+tar zxvf autoconf-2.62.tar.gz 
+cd autoconf-2.62
+./configure
+make &amp;&amp; make install
+
+cd ..
+tar zxvf mcrypt-2.6.8.tar.gz
+cd mcrypt-2.6.8
+LD_LIBRARY_PATH=/usr/local/lib ./configure 
+make &amp;&amp; make install
+
+cd ..
+tar zxvf php-5.2.17.tar.gz
+cd php-5.2.17/ext/mcrypt/
+/usr/local/
+php/bin/phpize
+./configure  --with-php-config=/usr/local/php/bin/php-config  
+make &amp;&amp; make test &amp;&amp; make install
+
+
+
+cp /usr/local/php/lib/php/extensions/no-debug-non-zts-20060613/mcrypt.so /usr/local/php
+
+service httpd restart
+</code></pre><p>其他模块的扩展可以依葫芦画瓢，没有难度的。</p>
+<pre><code>[root@chcp-ct01-log01 mcrypt]# php -m
+[PHP Modules]
+bcmath
+Core
+ctype
+curl
+date
+dom
+ereg
+fileinfo
+filter
+gd
+gettext    
+hash
+iconv
+json
+libxml
+mbstring
+</code></pre><p> <strong>mcrypt</strong></p>
+<pre><code>mysql
+pcre
+PDO
+pdo_sqlite
+Phar
+posix
+Reflection
+session
+SimpleXML
+sockets
+SPL
+SQLite
+sqlite3
+standard
+tokenizer
+xml
+xmlreader
+xmlwriter
+Zend Guard Loader
+zlib
+[Zend Modules]
+Zend Guard Loader
+</code></pre>]]></content>
+    <summary type="html"><![CDATA[<hr>
+<p> 由于最近需要对php的模块进行扩展，所以进行了简单整理，过程如下。]]></summary>
+    
+      <category term="php_modules" scheme="http://loveliuli.com/tags/php_modules/"/>
+    
+      <category term="应用" scheme="http://loveliuli.com/categories/%E5%BA%94%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[php5.3上扩展mcrypt模块]]></title>
     <link href="http://loveliuli.com/2014/02/18/php_mcrypt/"/>
     <id>http://loveliuli.com/2014/02/18/php_mcrypt/</id>
     <published>2014-02-18T01:27:46.000Z</published>
@@ -1268,111 +1373,6 @@ Zend Guard Loader
       <category term="php_modules" scheme="http://loveliuli.com/tags/php_modules/"/>
     
       <category term="php" scheme="http://loveliuli.com/categories/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[php5.3上扩展mcrypt模块]]></title>
-    <link href="http://loveliuli.com/2014/02/18/app/app_02_php_mcrypt/"/>
-    <id>http://loveliuli.com/2014/02/18/app/app_02_php_mcrypt/</id>
-    <published>2014-02-18T01:27:46.000Z</published>
-    <updated>2014-05-23T10:31:53.000Z</updated>
-    <content type="html"><![CDATA[<hr>
-<p> 由于最近需要对php的模块进行扩展，所以进行了简单整理，过程如下。<a id="more"></a></p>
-<h2 id="-">问题的解决</h2>
-<pre><code>#!/bin/bash
-cur_dir=${pwd}
-tar zxvf libmcrypt-2.5.8.tar.gz
-cd libmcrypt-2.5.8
-./configure
-make &amp;&amp; make install
-
-cd ..
-tar xvf mhash-0.9.9.9.tar.bz2
-cd mhash-0.9.9.9
-./configure
-make &amp;&amp; make install
-
-cd ..
-tar zxvf m4-1.4.9.tar.gz 
-cd m4-1.4.9
-./configure
-make &amp;&amp; make install
-
-cd ..
-tar zxvf autoconf-2.62.tar.gz 
-cd autoconf-2.62
-./configure
-make &amp;&amp; make install
-
-cd ..
-tar zxvf mcrypt-2.6.8.tar.gz
-cd mcrypt-2.6.8
-LD_LIBRARY_PATH=/usr/local/lib ./configure 
-make &amp;&amp; make install
-
-cd ..
-tar zxvf php-5.2.17.tar.gz
-cd php-5.2.17/ext/mcrypt/
-/usr/local/
-php/bin/phpize
-./configure  --with-php-config=/usr/local/php/bin/php-config  
-make &amp;&amp; make test &amp;&amp; make install
-
-
-
-cp /usr/local/php/lib/php/extensions/no-debug-non-zts-20060613/mcrypt.so /usr/local/php
-
-service httpd restart
-</code></pre><p>其他模块的扩展可以依葫芦画瓢，没有难度的。</p>
-<pre><code>[root@chcp-ct01-log01 mcrypt]# php -m
-[PHP Modules]
-bcmath
-Core
-ctype
-curl
-date
-dom
-ereg
-fileinfo
-filter
-gd
-gettext    
-hash
-iconv
-json
-libxml
-mbstring
-</code></pre><p> <strong>mcrypt</strong></p>
-<pre><code>mysql
-pcre
-PDO
-pdo_sqlite
-Phar
-posix
-Reflection
-session
-SimpleXML
-sockets
-SPL
-SQLite
-sqlite3
-standard
-tokenizer
-xml
-xmlreader
-xmlwriter
-Zend Guard Loader
-zlib
-[Zend Modules]
-Zend Guard Loader
-</code></pre>]]></content>
-    <summary type="html"><![CDATA[<hr>
-<p> 由于最近需要对php的模块进行扩展，所以进行了简单整理，过程如下。]]></summary>
-    
-      <category term="php_modules" scheme="http://loveliuli.com/tags/php_modules/"/>
-    
-      <category term="应用" scheme="http://loveliuli.com/categories/%E5%BA%94%E7%94%A8/"/>
     
   </entry>
   
