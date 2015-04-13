@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Where there is a will, there is way。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://loveliuli.com/"/>
-  <updated>2015-04-13T14:19:59.458Z</updated>
+  <updated>2015-04-13T14:26:02.533Z</updated>
   <id>http://loveliuli.com/</id>
   
   <author>
@@ -19,11 +19,11 @@
     <link href="http://loveliuli.com/2015/04/13/life/life_02_changeme/"/>
     <id>http://loveliuli.com/2015/04/13/life/life_02_changeme/</id>
     <published>2015-04-13T14:18:19.000Z</published>
-    <updated>2015-04-13T14:18:41.000Z</updated>
+    <updated>2015-04-13T14:23:15.000Z</updated>
     <content type="html"><![CDATA[<h3 id="-">从今天起，我要做一个快乐的人，忘记过去不开心的一切。</h3>
-<h3 id="-more-">在今后的生活中，我只追求至真至善至美；细心发现身边的真、善、美.<a id="more"></a></h3>
+<h3 id="-more-">从今天起，我用一生的时间去追求至真至善至美，细心发现身边的真、善、美！<a id="more"></a></h3>
 <h3 id="-"><strong>忘记过去</strong></h3>
-<pre><code>从今天起，我要做一个快乐的人，忘记过去不开心的一切。
+<pre><code>从今天起，我要做一个快乐的人，忘记过去不开心的一切，忘记他人眼光
 我要在我的记忆里，只留下真、善、美的印记
 因为在人即将离开人世的那一刹那，其他的一切都是小我，包括钱财、美色、权利、躯体等，都会消失
 唯有真、善、美，一直伴随在真我身边，不会随着生命消失而消失
@@ -53,7 +53,7 @@
 </code></pre><p>只要人人都献出一点爱，世界将变成美好的人间。    </p>
 ]]></content>
     <summary type="html"><![CDATA[<h3 id="-">从今天起，我要做一个快乐的人，忘记过去不开心的一切。</h3>
-<h3 id="-more-">在今后的生活中，我只追求至真至善至美；细心发现身边的真、善、美.]]></summary>
+<h3 id="-more-">从今天起，我用一生的时间去追求至真至善至美，细心发现身边的真、善、美！]]></summary>
     
       <category term="life" scheme="http://loveliuli.com/tags/life/"/>
     
@@ -793,17 +793,17 @@ tmpfs                 1.5G     0  1.5G   0% /dev/shm
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/performance/Performance_01/"/>
-    <id>http://loveliuli.com/2014/02/21/performance/Performance_01/</id>
+    <link href="http://loveliuli.com/2014/02/21/security/security_01/"/>
+    <id>http://loveliuli.com/2014/02/21/security/security_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T11:45:36.000Z</updated>
+    <updated>2014-05-23T10:39:32.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
 ]]></content>
     
     
-      <category term="Performance tuning" scheme="http://loveliuli.com/tags/Performance%20tuning/"/>
+      <category term="security" scheme="http://loveliuli.com/tags/security/"/>
     
-      <category term="优化" scheme="http://loveliuli.com/categories/%E4%BC%98%E5%8C%96/"/>
+      <category term="安全" scheme="http://loveliuli.com/categories/%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
@@ -1185,17 +1185,17 @@ sed -n &#39;51q;45,50p&#39; filename       # 一样，但快得多
   
   <entry>
     <title><![CDATA[Welcome to my blog]]></title>
-    <link href="http://loveliuli.com/2014/02/21/security/security_01/"/>
-    <id>http://loveliuli.com/2014/02/21/security/security_01/</id>
+    <link href="http://loveliuli.com/2014/02/21/performance/Performance_01/"/>
+    <id>http://loveliuli.com/2014/02/21/performance/Performance_01/</id>
     <published>2014-02-21T08:36:12.000Z</published>
-    <updated>2014-05-23T10:39:32.000Z</updated>
+    <updated>2014-05-23T11:45:36.000Z</updated>
     <content type="html"><![CDATA[<p>Welcome to my blog!.</p>
 ]]></content>
     
     
-      <category term="security" scheme="http://loveliuli.com/tags/security/"/>
+      <category term="Performance tuning" scheme="http://loveliuli.com/tags/Performance%20tuning/"/>
     
-      <category term="安全" scheme="http://loveliuli.com/categories/%E5%AE%89%E5%85%A8/"/>
+      <category term="优化" scheme="http://loveliuli.com/categories/%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   
