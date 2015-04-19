@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Zabbix Agent安装和配置 | 鹰击长空</title>
+  <title>揭秘让您和家人远离灾祸的真正原理，绝对受益终生！ | 鹰击长空</title>
   <meta name="author" content="Copyright By Qun.Xue  版权所有">
   
   <meta name="description" content="where there is will there is way">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Zabbix Agent安装和配置"/>
+  <meta property="og:title" content="揭秘让您和家人远离灾祸的真正原理，绝对受益终生！"/>
   <meta property="og:site_name" content="鹰击长空"/>
 
   
@@ -219,114 +219,30 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-07-31T05:11:12.000Z"><a href="/2014/07/31/monitor/monitor_02/">7月 31 2014</a></time>
+        <time datetime="2015-04-13T14:18:19.000Z"><a href="/2015/04/13/life/life_03_traditional culture_01/">4月 13 2015</a></time>
       
       
   
-    <h1 class="title">Zabbix Agent安装和配置</h1>
+    <h1 class="title">揭秘让您和家人远离灾祸的真正原理，绝对受益终生！</h1>
   
 
     </header>
     <div class="entry">
       
-        <h3 id="1-zabbix-2-2-4-tar-gz-">1.下载安装包(zabbix-2.2.4.tar.gz)</h3>
-<p><a href="http://www.zabbix.com/download.php" target="_blank">http://www.zabbix.com/download.php</a>
-由于目前server安装的最新稳定版本2.2.4,所以agent端安装不得高于server端版本,且agent端一般改动比较小,所以安装2.2.1(stable)和2.2.4(stable)都行.<a id="more"></a>
-说明:由于线上已经安装了一套agent环境,为了不引起冲突,所以本次安装时,选择了源码编译,自己指定安装路径和进程启动用户.正常情况下建议使用rpm安装.</p>
-<h3 id="2-">2.安装</h3>
-<h4 id="2-1-zabbix-etc-zabbix_agentd_om">2.1 zabbix安装目录: /etc/zabbix_agentd_om</h4>
-<pre><code>mkdir -p /etc/zabbix_agentd_om
-</code></pre><h4 id="2-2-zabbix-">2.2 进程启动用户zabbix:</h4>
-<pre><code>groupadd  zabbix -g 200
-useradd zabbix -g zabbix -u 200 
-</code></pre><h4 id="2-3-log-pid-">2.3 创建log和pid文件目录</h4>
-<pre><code>mkdir -p /var/log/zabbix
-chown zabbix:zabbix /var/log/zabbix
-mkdir -p /var/run/zabbix
-chown zabbix:zabbix /var/run/zabbix
-</code></pre><h4 id="2-4-">2.4 安装</h4>
-<pre><code>tar zxvf zabbix-2.2.4.tar.gz
-cd zabbix-2.2.4
-./configure --prefix=/etc/zabbix_agentd_om --enable-agent
-make &amp;&amp; make install
-</code></pre><h3 id="3-">3.修改配置</h3>
-<pre><code>mkdir -p /etc/zabbix_agentd_om/etc/zabbix_agentd.conf.d/
-cat /dev/null &gt; /etc/zabbix_agentd_om/etc/zabbix_agentd.conf
-vi /etc/zabbix_agentd_om/etc/zabbix_agentd.conf
-PidFile=/var/run/zabbix/zabbix_agented_om.pid
-LogFile=/var/log/zabbix/zabbix_agented_om.log
-LogFileSize=0
-erver=42.62.**.**
-ListenPort=10060
-ServerActive=42.62.**.**
-Hostname=Zabbix server
-Include=/etc/zabbix_agentd_om/etc/zabbix_agentd.conf.d/
-</code></pre><h3 id="4-">4.开启和关闭脚本添加</h3>
-<p>将以下脚本添加到/etc/init.d/目录下,并给予执行权限
-    cat /etc/init.d/zabbix_agent_om </p>
-<pre><code>#!/bin/sh
-# chkconfig: - 86 14
-# description: Zabbix agent daemon
-# processname: zabbix_agentd
-# config: /etc/zabbix_agentd_om/etc/zabbix_agentd.conf
-# Source function library.
-. /etc/rc.d/init.d/functions
-if [ -x /etc/zabbix_agentd_om/sbin/zabbix_agentd ]; then
-exec=etc/zabbix_agentd_om/sbin/zabbix_agentd
-else
-exit 5
-fi
-prog=${exec##*/}
-conf=/etc/zabbix_agentd_om/etc/zabbix_agentd.conf
-lockfile=/var/lock/subsys/zabbix-agented
-start()
-{
-echo -n $&quot;Starting Zabbix agent: &quot;
-daemon $exec -c $conf
-rv=$?
-echo
-[ $rv -eq 0 ] &amp;&amp; touch $lockfile
-return $rv
-}
-stop()
-{
-echo -n $&quot;Shutting down Zabbix agent: &quot;
-killall -u zabbix
-rv=$?
-echo
-[ $rv -eq 0 ] &amp;&amp; rm -f $lockfile
-return $rv
-}
-restart()
-{
-stop
-start
-}
-case &quot;$1&quot; in
-start|stop|restart)
-    $1
-    ;;
-force-reload)
-    restart
-    ;;
-status)
-    status $prog
-    ;;
-*)
-    echo $&quot;Usage: $0 {start|stop|status|restart|try-restart|force-reload}&quot;
-    exit 2
-    ;;
-esac
-</code></pre><h3 id="5-">5.开启和关闭方法:</h3>
-<pre><code>chmod 755 /etc/init.d/zabbix_agent_om
-service zabbix_agent_om start
-service zabbix_agent_om stop    
-</code></pre><h3 id="6-">6.设置开机启动:</h3>
-<pre><code>chkconfig --add zabbix_agent_om 
-chkconfig zabbix_agent_om on
-</code></pre><h3 id="7-">7.防火墙设置</h3>
-<p>在agent需要允许能和server端通讯,记得保存iptables.</p>
-
+        <h3 id="-">为什么今天的孩子那么爱生病，今天的年轻人那么容易英年早逝？平时儿童医院孩子们看病排队排到外面来。</h3>
+<p>有很多年轻的人一出名就死了，有些官员一提升重病，有的人家里有钱刚盖完房子，人去世了，出车祸了。为什么？就是这四个字“德不配位”。
+我们所有的财富、智慧，我们的一切，老祖宗用一个字来代表叫物。厚德才能承载万物。
+这就是清华大学的校训——“厚德载物”，厚，深厚的意思；德按照自然规律去工作、去生活、去做人做事；载就是承载；物就是我们说的福报。
+相反是那句话？叫德不配位。位就是我们的待遇，就是我们的德行不配我们的福报。
+打个比方说，这有一张桌子，它能承受十斤重的份量，您非得给它放上15斤、20斤、50斤的重量，那我们看这个桌子怎么样？它就开始发抖，它就开始变形了，出现崩溃之前的先兆。
+所以我们一定要明白清华大学的古训“厚德载物”，金钱、权力、名望都是自己的福报，都是压自己的物啊，您能承载的了吗？靠什么承载，靠符合万物规律的德行。<a id="more"></a></p>
+<h3 id="-"><strong>忘记过去</strong></h3>
+<pre><code>从今天起，我要做一个快乐的人，忘记过去不开心的一切，忘记他人眼光
+我要在我的记忆里，只留下真、善、美的印记
+因为在人即将离开人世的那一刹那，其他的一切都是小我，包括钱财、美色、权利、躯体等，都会消失
+唯有真、善、美，一直伴随在真我身边，不会随着生命消失而消失
+所以就有了人之将死其言也善，鸟之将死其鸣也哀谚语
+</code></pre>
       
     </div>
     <footer>
@@ -334,13 +250,13 @@ chkconfig zabbix_agent_om on
         
   
   <div class="categories">
-    <a href="/categories/监控/">监控</a>
+    <a href="/categories/传统文化/">传统文化</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/monitor/">monitor</a>
+    <a href="/tags/life/">life</a>
   </div>
 
         <!-- Baidu Button BEGIN -->
